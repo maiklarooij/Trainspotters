@@ -9,7 +9,7 @@ def load_data(scale = 'Holland'):
     with open(f"data/Connecties{scale}.csv", mode="r") as file:
         connections_csv = list(csv.reader(file))
     
-    with open("data/StationsHolland.csv", mode="r") as file:
+    with open(f"data/Stations{scale}.csv", mode="r") as file:
         stations_csv = list(csv.reader(file))
 
     return {'connections': connections_csv, 'stations': stations_csv}
