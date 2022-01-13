@@ -6,6 +6,9 @@ Studenten: Mijntje Meijer, Sam Bijhouwer, Maik Larooij
 
 ## To-do's
 
-- Score juist uitrekenen door 10000 te vermenigvuldigen met fractie van stations in routemap
-- Vullen van de routemap in een functie binnen routemap laten gebeuren? 
 - Juist commenten van de code zodat dat niet allemaal aan het einde hoeft
+- Hoe slaan we het makkelijkst aantal stations op voor berekening etc?
+
+## Vragen gesprek
+
+- Twee uur per traject of twee uur in totaal?

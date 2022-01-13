@@ -17,7 +17,7 @@ def load_data(scale = 'Holland'):
 # Define max route time and total stations
 MAX_ROUTE_TIME = 120
 SCALE = 'Holland'
-TOTAL_STATIONS = len(load_data(scale = SCALE)['stations'])
+TOTAL_STATIONS = len(load_data(scale = SCALE)['stations'][1:])
 
 class Connection:
     """ Object which represents a connection """
@@ -73,7 +73,10 @@ class Routemap:
             for connection in route.connections:
                 Min += connection.distance
         
-        score = 10000 - (len(self.routes) * 100 + Min)
+        # Calculate number of stations - TODO: maybe make this easier?
+        frac_stations = len({item for sublist in [list(route.stations) for route in self.routes.values()] for item in sublist}) / TOTAL_STATIONS
+        print({item for sublist in [list(route.stations) for route in self.routes.values()] for item in sublist})
+        score = (frac_stations * 10000) - (len(self.routes) * 100 + Min)
 
         return score
 
@@ -95,6 +98,18 @@ class Routemap:
 
             writer.writerow(footer)
 
+    def fill_routemap_random(self, connections_data):
+        """ 
+        Fills the routemap on a random basis
+        """
+
+        for line in connections_data[1:]:
+            c = Connection(line[0], line[1], int(line[2]))
+            while True:
+                random_route = random.randint(0, 6)
+                if self.routes[random_route].add_connection(c):
+                    break
+
 
 # Get the necessary data
 connections_csv, stations_csv = (load_data(scale = SCALE)['connections'],
@@ -102,13 +117,7 @@ connections_csv, stations_csv = (load_data(scale = SCALE)['connections'],
 
 # Create a routemap and add connections
 test = Routemap(7)
-for line in connections_csv[1:]:
-    c = Connection(line[0], line[1], int(line[2]))
-    while True:
-        random_route = random.randint(0, 6)
-        if test.routes[random_route].add_connection(c):
-            break
+test.fill_routemap_random(connections_csv)
 
 test.print_solution()
-test.calc_score()
 test.generate_output()
