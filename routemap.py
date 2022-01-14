@@ -118,12 +118,14 @@ class Routemap:
 
         # Calculate total time of all routes
         M = 0
+        connections = set()
         for route in self.routes.values():
             for connection in route.connections:
                 M += connection.distance
+                connections.add(connection)
         
-        # Calculate number of stations and number of routes - TODO: maybe make this easier?
-        P = len({connection for route in self.routes.values() for connection in route.connections}) / TOTAL_CONNECTIONS
+        # Calculate number of stations and number of routes
+        P = len(connections) / TOTAL_CONNECTIONS
         T = len(self.routes)
 
         # Calculate final score
