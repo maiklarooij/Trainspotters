@@ -144,7 +144,7 @@ class Routemap:
 
             # Retrieve stations from all routes and write them to the file
             for i, route in self.routes.items():
-                writer.writerow([f'train_{i+1}', list(route.stations)])
+                writer.writerow([f'train_{i+1}', f'[{", ".join(route.stations)}]'])
 
             writer.writerow(footer)
 
