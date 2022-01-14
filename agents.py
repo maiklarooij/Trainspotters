@@ -11,7 +11,9 @@ import random
 import model
 import environment
 
-def random_algorithm(routemap, max_route_time, scale):
+def random_algorithm(max_route_time, max_routes, total_connections, scale):
+
+    routemap = model.Routemap(max_routes, max_route_time, total_connections)
 
     stations = environment.get_stations(scale)
 
