@@ -9,6 +9,7 @@
 
 import csv
 import random
+import pandas as pd
 
 def load_data(scale = 'Holland'):
     """ 
@@ -27,7 +28,7 @@ def load_data(scale = 'Holland'):
 # Define max route time, scale and total stations
 MAX_ROUTE_TIME = 120
 SCALE = 'Holland'
-TOTAL_STATIONS = len(load_data(scale = SCALE)['stations'][1:])
+TOTAL_CONNECTIONS = len(load_data(scale = SCALE)['connections'][1:])
 
 class Connection:
     """ 
@@ -122,7 +123,7 @@ class Routemap:
                 M += connection.distance
         
         # Calculate number of stations and number of routes - TODO: maybe make this easier?
-        P = len({item for sublist in [list(route.stations) for route in self.routes.values()] for item in sublist}) / TOTAL_STATIONS
+        P = len({connection for route in self.routes.values() for connection in route.connections}) / TOTAL_CONNECTIONS
         T = len(self.routes)
 
         # Calculate final score
