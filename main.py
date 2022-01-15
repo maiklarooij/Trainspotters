@@ -1,16 +1,13 @@
-import sys
+from cgi import test
+from code.classes.graph import Graph
+from code.algorithms.randomise import random_solution
 
-import agents
-import environment
-import model
+if __name__ == "__main__":
 
-scale = sys.argv[1]
-algorithm = sys.argv[2]
+    test_graph = Graph("data/StationsHolland.csv", "data/ConnectiesHolland.csv")
+    #print(test_graph.stations)
+    #print(test_graph.connections)
+    #print(test_graph.stations['Alkmaar'].neighbors)
 
-MAX_ROUTE_TIME, MAX_ROUTES, TOTAL_CONNECTIONS, TOTAL_STATIONS = environment.get_constants(scale)
-
-if algorithm == 'random':
-    routemap = agents.random_algorithm(MAX_ROUTE_TIME, MAX_ROUTES, TOTAL_CONNECTIONS, scale)
-
-routemap.print_solution()
-routemap.generate_output()
+    random_solution = random_solution(test_graph, 'Holland')
+    print(random_solution.calc_score(len(test_graph.connections)))
