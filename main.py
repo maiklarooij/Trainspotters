@@ -11,3 +11,4 @@ if __name__ == "__main__":
 
     random_solution = random_solution(test_graph, 'Holland')
     print(random_solution.calc_score(len(test_graph.connections)))
+    random_solution.generate_output(len(test_graph.connections))
