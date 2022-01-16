@@ -18,7 +18,7 @@ def random_solution(graph, scale):
 
     routemap = Routemap()
 
-    for i in range(number_of_routes):
+    for _ in range(number_of_routes):
 
         route = Route()
 
