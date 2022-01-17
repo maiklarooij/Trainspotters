@@ -9,7 +9,7 @@
 import folium
 import random
 
-def make_train_map(routemap, graph, middle_loc):
+def make_train_map(routemap, graph, middle_loc, output_file):
     """ 
     Creates a folium train map, showing stations and connections.
     Takes in the complete graph and the routemap extracted from the graph.
@@ -61,4 +61,4 @@ def make_train_map(routemap, graph, middle_loc):
             
             seen_connections.add(connection)
 
-    base_map.save("routemap.html")
+    base_map.save(f"results/{output_file}.html")

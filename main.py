@@ -19,4 +19,4 @@ if __name__ == "__main__":
     print(random_solution.calc_score(len(test_graph.connections)))
     random_solution.generate_output(len(test_graph.connections))
 
-    make_train_map(random_solution, test_graph, [52.37888718, 4.900277615])
+    make_train_map(random_solution, test_graph, [52.37888718, 4.900277615], 'random_solution')
