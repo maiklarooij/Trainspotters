@@ -49,3 +49,9 @@ class Graph():
 
         return connections
 
+    def fetch_connection(self, station1, station2):
+        """ 
+        Given two station objects, return the connection object of the two stations
+        """
+        return [connection for connection in self.connections if connection.station1 in (station1, station2) and connection.station2 in (station1, station2)][0]
+

@@ -1,10 +1,5 @@
 .vscode
 __pycache__/
 data/
-<<<<<<< HEAD
 *.csv
 milestones/.ipynb_checkpoints/*
-=======
-milestones/
-output.csv
->>>>>>> 8b7bbcb00110fd6440d50476db4ad56a276811ef

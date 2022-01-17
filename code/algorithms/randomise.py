@@ -3,15 +3,25 @@ import random
 from code.classes.route import Route
 from code.classes.routemap import Routemap
 
+def get_constants(scale):
+    """ 
+    Determine constants based on the scale
+    """ 
+    if scale == 'Holland':
+        MAX_TIME = 120
+        MAX_ROUTES = 7
+    else: 
+        MAX_TIME = 180
+        MAX_ROUTES = 20
+    
+    return MAX_TIME, MAX_ROUTES
 
 def random_solution(graph, scale):
     """
     Generates a solution on a random basis. Takes in a graph and outputs a routemap object
     """
 
-    if scale == 'Holland':
-        MAX_TIME = 120
-        MAX_ROUTES = 7
+    MAX_TIME, MAX_ROUTES = get_constants(scale)
 
     # Randomly pick a number of routes
     number_of_routes = random.randint(1, MAX_ROUTES)
@@ -30,9 +40,9 @@ def random_solution(graph, scale):
             # Pick random station from candidates
             new_station = random.choice(candidates)
 
-            # If not first station, add connection between stations to the route
+            # If not first station (i.e. distance is not 0), add connection between stations to the route
             if new_station[1] != 0:
-                new_connection = [connection for connection in graph.connections if connection.station1 in (new_station[0], origin_station[0]) and connection.station2 in (new_station[0], origin_station[0])][0]
+                new_connection = graph.fetch_connection(new_station[0], origin_station[0])
                 route.add_connection(new_connection)
 
             route.add_station(new_station[0], new_station[1])
