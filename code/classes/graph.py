@@ -29,7 +29,7 @@ class Graph():
 
             for row in reader:
                 name = row['station']
-                coord = (row['x'], row['y'])
+                coord = (float(row['x']), float(row['y']))
                 stations[name] = Station(name, coord)
         
         return stations
