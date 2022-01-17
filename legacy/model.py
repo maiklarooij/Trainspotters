@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# routemap.py
+# model.py
 #
 # contains class definitions of objects in the RailNL case:
 # connections, routes and routemap
@@ -9,25 +9,7 @@
 
 import csv
 import random
-
-def load_data(scale = 'Holland'):
-    """ 
-    Load in the necessary .csv files. Options: 
-    scale = 'Holland' or 'Nationaal'
-    """
-
-    with open(f"data/Connecties{scale}.csv", mode="r") as file:
-        connections_csv = list(csv.reader(file))
-    
-    with open(f"data/Stations{scale}.csv", mode="r") as file:
-        stations_csv = list(csv.reader(file))
-
-    return {'connections': connections_csv, 'stations': stations_csv}
-
-# Define max route time, scale and total stations
-MAX_ROUTE_TIME = 120
-SCALE = 'Holland'
-TOTAL_STATIONS = len(load_data(scale = SCALE)['stations'][1:])
+import environment
 
 class Connection:
     """ 
@@ -56,21 +38,14 @@ class Route:
     def __init__(self):
 
         self.connections = []
-        self.stations = set()
+        self.stationlist = []
 
     def add_connection(self, connection):
         """ Adds a connection to the route if the total distance does not exceed 120 minutes """
 
-        if sum(c.distance for c in self.connections) + connection.distance > MAX_ROUTE_TIME:
-            return False
-        else:
-            self.connections.append(connection)
+        self.connections.append(connection)
 
-            # Also add origin and destination station of the connection to set of stations
-            self.stations.add(connection.origin)
-            self.stations.add(connection.destination)
-
-            return True
+        return True
 
     def __str__(self):
         """ Writes some information about the connection """
@@ -83,8 +58,12 @@ class Routemap:
     Object which represents all routes, forming a routemap 
     A routemap consists of Route objects
     """
-    def __init__(self, amount):
-        self.routes = {i:Route() for i in range(amount)}
+    def __init__(self, max_routes, max_route_time, total_connections):
+        self.routes = {i:Route() for i in range(max_routes)}
+        self.stationlist = []
+        self.max_routes = max_routes
+        self.max_route_time = max_route_time
+        self.total_connections = total_connections
     
     def print_solution(self):
         """ 
@@ -117,14 +96,17 @@ class Routemap:
 
         # Calculate total time of all routes
         M = 0
+        connections = set()
         for route in self.routes.values():
             for connection in route.connections:
                 M += connection.distance
-        
+                connections.add(connection)
+
         # Calculate number of stations and number of routes - TODO: maybe make this easier?
-        P = len({item for sublist in [list(route.stations) for route in self.routes.values()] for item in sublist}) / TOTAL_STATIONS
+        P = len(connections) / self.total_connections
         T = len(self.routes)
 
+        print(M, P, T)
         # Calculate final score
         score = (P * 10000) - (T * 100 + M)
 
@@ -144,14 +126,14 @@ class Routemap:
 
             # Retrieve stations from all routes and write them to the file
             for i, route in self.routes.items():
-                writer.writerow([f'train_{i+1}', f'[{", ".join(route.stations)}]'])
+                writer.writerow([f'train_{i+1}', f'[{", ".join(route.stationlist)}]'])
 
             writer.writerow(footer)
 
     def fill_routemap_random(self, connections_data):
         """ Fills the routemap on a random basis """
 
-        for line in connections_data[1:]:
+        for line in connections_data:
             c = Connection(line[0], line[1], float(line[2]))
             while True:
                 random_route = random.randint(0, 6)
@@ -159,13 +141,5 @@ class Routemap:
                     break
 
 
-# Get the necessary data
-connections_csv, stations_csv = (load_data(scale = SCALE)['connections'],
-                                load_data(scale = SCALE)['stations'])
 
-# Create a routemap and add connections
-test = Routemap(7)
-test.fill_routemap_random(connections_csv)
 
-test.print_solution()
-test.generate_output()
