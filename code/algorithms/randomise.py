@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# randomise.py
+#
+# Functions to create a random baseline 
+#
+# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# -----------------------------------------------------------
+
 import random
 
 from code.classes.route import Route
@@ -20,16 +28,17 @@ def random_solution(graph, scale):
     """
     Generates a solution on a random basis. Takes in a graph and outputs a routemap object
     """
-
     MAX_TIME, MAX_ROUTES = get_constants(scale)
 
     # Randomly pick a number of routes
     number_of_routes = random.randint(1, MAX_ROUTES)
 
+    # Create a routemap object to fill with routes
     routemap = Routemap()
 
     for _ in range(number_of_routes):
 
+        # Create a route object for every iteration
         route = Route()
 
         # Initiate stations with start distance 0

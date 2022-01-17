@@ -1,3 +1,12 @@
+# -----------------------------------------------------------
+# connection.py
+#
+# Class definition of a Connection object
+# A connection consists of two Station objects and a distance
+#
+# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# -----------------------------------------------------------
+
 class Connection():
     def __init__(self, station1, station2, distance):
         self.station1 = station1

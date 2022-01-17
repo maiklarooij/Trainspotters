@@ -1,3 +1,12 @@
+# -----------------------------------------------------------
+# station.py
+#
+# Class definition of a Station object
+# A Station has a name, coordinates and stores neighbors
+#
+# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# -----------------------------------------------------------
+
 class Station():
     def __init__(self, name, coord):
         self.name = name

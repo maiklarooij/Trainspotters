@@ -1,3 +1,13 @@
+# -----------------------------------------------------------
+# graph.py
+#
+# Class definition of a Graph object
+# A Graph contains Station and Connection objects, forming
+# a graph from .csv files. The Graph is used in algorithms
+#
+# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# -----------------------------------------------------------
+
 import csv
 
 from .station import Station

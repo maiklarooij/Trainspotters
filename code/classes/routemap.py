@@ -1,3 +1,13 @@
+# -----------------------------------------------------------
+# routemap.py
+#
+# Class definition of a Routemap object
+# A Routemap consists of Route objects and contains functions 
+# to calculate the quality of the lines and generate output
+#
+# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# -----------------------------------------------------------
+
 import csv
 
 class Routemap():
@@ -52,7 +62,9 @@ class Routemap():
         return score
 
     def generate_output(self, graph_connections):
-        """ Writes the output to a .csv file """
+        """ 
+        Writes the output to a .csv file 
+        """
 
         header = ['train', 'stations']
         footer = ['score', self.calc_score(graph_connections)]
