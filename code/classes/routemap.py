@@ -44,20 +44,20 @@ class Routemap():
         Calculates the score of the routemap according to the formula:
         K = P*10000 - (T*100 + M)
         
-        P = Fractions of all connections included in routemap
+        P = Fraction of all connections included in routemap
         T = Number of routes used in routemap
         M = Total time of all routes in minutes
         """
 
         # Calculate total time of all routes
-        M = sum([route.total_time for route in self.routes])
+        self.M = sum([route.total_time for route in self.routes])
 
         # Calculate number of stations and number of routes - TODO: maybe make this easier?
-        P = self.get_total_connections() / graph_connections
-        T = len(self.routes)
+        self.P = self.get_total_connections() / graph_connections
+        self.T = len(self.routes)
 
         # Calculate final score
-        score = (P * 10000) - (T * 100 + M)
+        score = (self.P * 10000) - (self.T * 100 + self.M)
 
         return score
 
