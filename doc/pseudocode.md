@@ -14,7 +14,7 @@ for each N do
         add random station to route
         candidates = []
         for each neighbor of picked station do
-            if neigbor not in visited and does not exceed total time
+            if neigbor not visited and does not exceed total time
                 add neighbor, distance to neighbor to candidates
 
     add route to routemap
