@@ -42,26 +42,27 @@ def random_solution(graph, scale):
         route = Route()
 
         # Initiate stations with start distance 0
-        candidates = [(station, 0, 0) for station in graph.stations.values()]
+        candidates = [(station, station, 0) for station in graph.stations.values()]
 
         while candidates:
-            
+
             # Pick random station from candidates
-            new_station = random.choice(candidates)
-    
-            # If not first station (i.e. distance is not 0), add connection between stations to the route
-            if new_station[1] != 0:
-                # Connection can be made with either first or last station in route with the new station
-                new_connection = graph.fetch_connection(route.stations[0], route.stations[-1], new_station[0])
+            origin_station, new_station, distance = random.choice(candidates)
+
+            # Retrieve connection object and add to route
+            if distance != 0:
+                new_connection = graph.fetch_connection(origin_station, new_station)
                 route.add_connection(new_connection)
 
-            route.add_station(new_station[0], new_station[1], new_station[2])
+            # Add station to route
+            route.add_station(origin_station, new_station)
 
-            # Create list with candidates in the form (neighbor, distance to neighbor, place to insert neighbor)
-            candidates = [(neighbor, distance, 0 if station == new_station else route.stations.index(station) + 1) for station in [route.stations[i] for i in (0, -1)] for neighbor, distance in station.neighbors.items()
-                                                if route.total_time + distance < MAX_TIME and neighbor not in route.stations]
+            # Create a list of new candidates
+            candidates = [(station, neighbor, distance) for station in [route.stations[0], route.stations[-1]]
+                                                        for neighbor, distance in station.neighbors.items()
+                                                        if route.total_time + distance < MAX_TIME and
+                                                        neighbor not in route.stations]
             print(route.stations)
         routemap.add_route(route)
-        
-                                                                                        
+                                                           
     return routemap

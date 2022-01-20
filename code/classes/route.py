@@ -14,19 +14,28 @@ class Route():
         self.connections = []
         self.total_time = 0
 
-    def add_station(self, station, time, place):
+    def add_station(self, start, station):
         """
         Adds a station object to the route and increases total time of the route
         """
-        
-        self.stations.insert(place, station)
-        self.total_time += time
 
+        # If station is first station, append to list
+        if start == station:
+            self.stations.append(station)
+            return
+
+        # Determine if the origin station is at the start or end of the route
+        index = self.stations.index(start)
+
+        # If at the start, insert new station before origin station. Else, insert new station at the end
+        self.stations.insert(0 if index == 0 else index + 1, station)
+        
     def add_connection(self, connection):
         """
         Adds a connection object to the route
         """
         self.connections.append(connection)
+        self.total_time += connection.distance
 
     def __str__(self):
         return f"{[station for station in self.stations]}"
