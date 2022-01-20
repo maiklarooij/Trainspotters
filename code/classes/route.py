@@ -14,11 +14,12 @@ class Route():
         self.connections = []
         self.total_time = 0
 
-    def add_station(self, station, time):
+    def add_station(self, station, time, place):
         """
         Adds a station object to the route and increases total time of the route
         """
-        self.stations.append(station)
+        
+        self.stations.insert(place, station)
         self.total_time += time
 
     def add_connection(self, connection):
