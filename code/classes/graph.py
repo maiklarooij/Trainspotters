@@ -58,10 +58,14 @@ class Graph():
                 self.stations[row['station2']].add_neighbor(station1, distance)
 
         return connections
-
-    def fetch_connection(self, station1, station2):
+    
+    def fetch_connection(self, start_station, end_station):
         """ 
         Given two station objects, return the connection object of the two stations
         """
-        return [connection for connection in self.connections if connection.station1 in (station1, station2) and connection.station2 in (station1, station2)][0]
+        both = (start_station, end_station)
+        connection = [connection for connection in self.connections if connection.station1 in both and connection.station2 in both]
+        if connection:
+            return connection[0]
 
+        return None

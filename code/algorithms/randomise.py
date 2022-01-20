@@ -42,26 +42,24 @@ def random_solution(graph, scale):
         route = Route()
 
         # Initiate stations with start distance 0
-        candidates = [(station, 0) for station in graph.stations.values()]
+        candidates = [(station, station, 0) for station in graph.stations.values()]
 
         while candidates:
-
             # Pick random station from candidates
             new_station = random.choice(candidates)
-
-            # If not first station (i.e. distance is not 0), add connection between stations to the route
-            if new_station[1] != 0:
-                new_connection = graph.fetch_connection(new_station[0], origin_station[0])
+  
+            if new_station[2] != 0:
+                new_connection = graph.fetch_connection(new_station[0], new_station[1])
                 route.add_connection(new_connection)
 
-            route.add_station(new_station[0], new_station[1])
+            route.add_station(new_station[0], new_station[1], new_station[2])
 
-            # Generate new candidates, must not exceed total time and neighbor must not already be in solution
-            candidates = [(neighbor, distance) for neighbor, distance in new_station[0].neighbors.items() if route.total_time + distance < MAX_TIME 
-                                                                                                        and neighbor not in route.stations]
-
-            # Remember origin station for next iteration
-            origin_station = new_station
+            
+            candidates = [(station, neighbor, distance) for station in [route.stations[0], route.stations[-1]]
+                                                        for neighbor, distance in station.neighbors.items()
+                                                        if route.total_time + distance < MAX_TIME and
+                                                        neighbor not in route.stations]
+ 
 
         routemap.add_route(route)
                                                                                         
