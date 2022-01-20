@@ -16,7 +16,9 @@ class Route():
 
     def add_station(self, start, station):
         """
-        Adds a station object to the route and increases total time of the route
+        Adds a station object to the route at the place based on start station
+        start = station from which the neighbor is going to get added
+        station = station to be added
         """
 
         # If station is first station, append to list
@@ -32,7 +34,7 @@ class Route():
         
     def add_connection(self, connection):
         """
-        Adds a connection object to the route
+        Adds a connection object to the route and count up total time
         """
         self.connections.append(connection)
         self.total_time += connection.distance
