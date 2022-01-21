@@ -14,7 +14,7 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument('--scale', help='Scale to run algorithms on. Options = "Holland" or "Nationaal"', default='Holland',
                    type=str)
-    p.add_argument('--algorithm', help='Algorithm to run', default='random', type=str)
+    p.add_argument('--algorithm', help='Algorithm to run. Options = "random", "greedy", "bf".', default='random', type=str)
     args = p.parse_args(sys.argv[1:])
 
     # Scale = 'Nationaal' or 'Holland'
