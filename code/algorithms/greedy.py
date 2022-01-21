@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# greedy.py
+#
+# Functions to implement a greedy algorithm
+#
+# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# -----------------------------------------------------------
+
 from code.classes.route import Route
 from code.classes.routemap import Routemap
 from .constants import get_constants
@@ -58,7 +66,7 @@ def greedy_solution(graph, scale):
 
         route = Route(MAX_TIME)
         
-        # Get station with least connections as start station
+        # Get station with most connections as start station
         stations = [station for station in stations if station not in stations_visited]
         start_station = get_next_station(stations)
         route.add_station(start_station, start_station)

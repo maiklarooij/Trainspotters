@@ -8,10 +8,11 @@
 # -----------------------------------------------------------
 
 class Station():
-    def __init__(self, name, coord):
+    def __init__(self, name, coord, sid):
         self.name = name
         self.coord = coord
         self.neighbors = {}
+        self.sid = sid
 
     def add_neighbor(self, neighbor, distance):
         """

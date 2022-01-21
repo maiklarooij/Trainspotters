@@ -26,11 +26,11 @@ def make_train_map(routemap, graph, middle_loc, output_file):
                 location = [station.coord[0], station.coord[1]],
                 popup = f"Station {station.name}. Location: ({station.coord[0]}, {station.coord[1]})",
                 icon = folium.Icon(color = 'darkblue', icon = 'train', icon_color = '#FEBE00', prefix = 'fa')).add_to(base_map)
-            stations_in_route.append(station)
+            stations_in_route.append(station.sid)
 
     # Add stations that are not in route
     for station in graph.stations.values():
-        if station not in stations_in_route:
+        if station.sid not in stations_in_route:
             folium.Marker(
                 location = [station.coord[0], station.coord[1]],
                 popup = f"Station {station.name}. Location: ({station.coord[0]}, {station.coord[1]})",

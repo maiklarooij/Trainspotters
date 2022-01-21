@@ -9,11 +9,14 @@
 # -----------------------------------------------------------
 
 class Route():
-    def __init__(self, max_time):
+    def __init__(self, max_time, start_station=None):
         self.stations = []
         self.connections = []
         self.total_time = 0
         self.max_time = max_time
+
+        if start_station:
+            self.add_station(start_station, start_station)
 
     def add_station(self, start, station):
         """
@@ -45,9 +48,9 @@ class Route():
         candidates = [(station, neighbor, distance) for station in [self.stations[0], self.stations[-1]]
                                                         for neighbor, distance in station.neighbors.items()
                                                         if self.total_time + distance < self.max_time and
-                                                        neighbor not in self.stations]
+                                                        neighbor.sid not in [station.sid for station in self.stations]]
 
-        return candidates
+        return list(set(candidates))
 
     def calc_score(self, graph_connections):
         """ 
@@ -70,4 +73,7 @@ class Route():
         return score
         
     def __str__(self):
+        return f"{[station for station in self.stations]}"
+
+    def __repr__(self):
         return f"{[station for station in self.stations]}"

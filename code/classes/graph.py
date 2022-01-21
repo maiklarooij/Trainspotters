@@ -27,10 +27,10 @@ class Graph():
         with open(stations_file, 'r') as s_file:
             reader = csv.DictReader(s_file)
 
-            for row in reader:
+            for i, row in enumerate(reader):
                 name = row['station']
                 coord = (float(row['x']), float(row['y']))
-                stations[name] = Station(name, coord)
+                stations[name] = Station(name, coord, i)
         
         return stations
 
@@ -63,10 +63,10 @@ class Graph():
         """ 
         Given two station objects, return the connection object of the two stations
         """
-        targets = (start_station, end_station)
+        targets = (start_station.sid, end_station.sid)
 
         # Search connection object of the two target stations
-        connection = [connection for connection in self.connections if connection.station1 in targets and connection.station2 in targets]
+        connection = [connection for connection in self.connections if connection.station1.sid in targets and connection.station2.sid in targets]
 
         # Return connection if found
         if connection:
