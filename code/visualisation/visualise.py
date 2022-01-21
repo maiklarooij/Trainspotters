@@ -9,7 +9,7 @@
 import folium
 import random
 
-def make_train_map(routemap, graph, middle_loc, output_file):
+def make_train_map(routemap, graph, middle_loc, algorithm):
     """ 
     Creates a folium train map, showing stations and connections.
     Takes in the complete graph and the routemap extracted from the graph.
@@ -57,8 +57,8 @@ def make_train_map(routemap, graph, middle_loc, output_file):
             folium.PolyLine(
                 locations = [station1_loc, station2_loc],
                 color = color,
-                popup = f"{connection.station1.name} to {connection.station2.name}: {connection.distance} minutes").add_to(base_map)
+                popup = f"{connection.station1.name} to {connection.station2.name}: {connection.distance} minutes. Route {i+1}").add_to(base_map)
             
             seen_connections.add(connection)
 
-    base_map.save(f"results/{output_file}.html")
+    base_map.save(f"results/{algorithm}_solution.html")
