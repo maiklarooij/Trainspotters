@@ -44,14 +44,14 @@ class Graph():
         with open(connections_file, 'r') as c_file:
             reader = csv.DictReader(c_file)
 
-            for row in reader:
+            for i, row in enumerate(reader):
                 
                 # Add station objects from stations in graph
                 station1 = self.stations[row['station1']]
                 station2 = self.stations[row['station2']]
                 distance = float(row['distance'])
 
-                connections.append(Connection(station1, station2, distance))
+                connections.append(Connection(station1, station2, distance, i))
 
                 # Add neighbors to stations
                 self.stations[row['station1']].add_neighbor(station2, distance)

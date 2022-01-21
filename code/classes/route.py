@@ -9,10 +9,11 @@
 # -----------------------------------------------------------
 
 class Route():
-    def __init__(self):
+    def __init__(self, max_time):
         self.stations = []
         self.connections = []
         self.total_time = 0
+        self.max_time = max_time
 
     def add_station(self, start, station):
         """
@@ -20,14 +21,14 @@ class Route():
         start = station from which the neighbor is going to get added
         station = station to be added
         """
-
         # If station is first station, append to list
         if start == station:
             self.stations.append(station)
             return
 
         # Determine if the origin station is at the start or end of the route
-        index = self.stations.index(start)
+        station_s = [station for station in self.stations if station.name == start.name][0]
+        index = self.stations.index(station_s)
 
         # If at the start, insert new station before origin station. Else, insert new station at the end
         self.stations.insert(0 if index == 0 else index + 1, station)
@@ -38,6 +39,15 @@ class Route():
         """
         self.connections.append(connection)
         self.total_time += connection.distance
+
+    def get_new_options(self):
+
+        candidates = [(station, neighbor, distance) for station in [self.stations[0], self.stations[-1]]
+                                                        for neighbor, distance in station.neighbors.items()
+                                                        if self.total_time + distance < self.max_time and
+                                                        neighbor not in self.stations]
+
+        return candidates
 
     def __str__(self):
         return f"{[station for station in self.stations]}"

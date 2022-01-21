@@ -35,7 +35,7 @@ class Routemap():
 
         for route in self.routes:
             for connection in route.connections:
-                all_connections.add(connection)
+                all_connections.add(connection.cid)
 
         return len(all_connections)
 
@@ -52,7 +52,7 @@ class Routemap():
         # Calculate total time of all routes
         self.M = sum([route.total_time for route in self.routes])
 
-        # Calculate number of stations and number of routes - TODO: maybe make this easier?
+        # Calculate number of stations and number of routes
         self.P = self.get_total_connections() / graph_connections
         self.T = len(self.routes)
 

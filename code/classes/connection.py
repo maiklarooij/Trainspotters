@@ -11,10 +11,11 @@ class Connection():
     """
     Represents a connection between two stations.
     """
-    def __init__(self, station1, station2, distance):
+    def __init__(self, station1, station2, distance, cid):
         self.station1 = station1
         self.station2 = station2
         self.distance = distance
+        self.cid = cid
 
     def __repr__(self):
         return f"{self.station1} to {self.station2}. Distance {self.distance}"

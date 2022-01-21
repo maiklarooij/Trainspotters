@@ -10,19 +10,7 @@ import random
 
 from code.classes.route import Route
 from code.classes.routemap import Routemap
-
-def get_constants(scale):
-    """ 
-    Determine constants based on the scale
-    """ 
-    if scale == 'Holland':
-        MAX_TIME = 120
-        MAX_ROUTES = 7
-    else: 
-        MAX_TIME = 180
-        MAX_ROUTES = 20
-    
-    return MAX_TIME, MAX_ROUTES
+from .constants import get_constants
 
 def random_solution(graph, scale):
     """
@@ -39,7 +27,7 @@ def random_solution(graph, scale):
     for _ in range(number_of_routes):
 
         # Create a route object for every iteration
-        route = Route()
+        route = Route(MAX_TIME)
 
         # Initiate stations with start distance 0
         candidates = [(station, station, 0) for station in graph.stations.values()]
@@ -58,11 +46,8 @@ def random_solution(graph, scale):
             route.add_station(origin_station, new_station)
 
             # Create a list of new candidates
-            candidates = [(station, neighbor, distance) for station in [route.stations[0], route.stations[-1]]
-                                                        for neighbor, distance in station.neighbors.items()
-                                                        if route.total_time + distance < MAX_TIME and
-                                                        neighbor not in route.stations]
-            print(route.stations)
+            candidates = route.get_new_options()
+
         routemap.add_route(route)
                                                            
     return routemap
