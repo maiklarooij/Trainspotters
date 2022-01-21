@@ -57,8 +57,9 @@ def greedy_solution(graph, scale):
     while (len(stations_visited) != len(graph.stations)) and len(routemap.routes) != MAX_ROUTES:
 
         route = Route(MAX_TIME)
-
+        
         # Get station with least connections as start station
+        stations = [station for station in stations if station not in stations_visited]
         start_station = get_next_station(stations)
         route.add_station(start_station, start_station)
 

@@ -49,5 +49,25 @@ class Route():
 
         return candidates
 
+    def calc_score(self, graph_connections):
+        """ 
+        Calculates the score of the route according to the formula:
+        K = P*10000 - M
+        
+        P = Fraction of all connections included in routemap
+        M = Total time of all routes in minutes
+        """
+
+        # Calculate total time of all routes
+        self.M = self.total_time
+
+        # Calculate number of stations and number of routes
+        self.P = len(self.connections) / graph_connections
+
+        # Calculate final score
+        score = (self.P * 10000) -  self.M
+
+        return score
+        
     def __str__(self):
         return f"{[station for station in self.stations]}"
