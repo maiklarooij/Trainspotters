@@ -4,15 +4,22 @@
 # Class definition of a Station object
 # A Station has a name, coordinates and stores neighbors
 #
-# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
 class Station():
-    def __init__(self, name, coord, sid):
+    """
+    Represents a single station, for example station Amsterdam Centraal
+
+    Arguments:
+    - name: the name of the station (e.g. Amsterdam Centraal)
+    - coord: the x and y coordinates of the station
+    """
+
+    def __init__(self, name, coord):
         self.name = name
         self.coord = coord
         self.neighbors = {}
-        self.sid = sid
 
     def add_neighbor(self, neighbor, distance):
         """
@@ -24,4 +31,4 @@ class Station():
         return f"{self.name}:{self.coord}"
 
     def __repr__(self):
-        return f"Station {self.name}"
+        return self.name

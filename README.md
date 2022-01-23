@@ -2,7 +2,7 @@
 Vak: [Programmeertheorie 2022](theorie.mprog.nl) <br>
 Gekozen case: [RailNL](https://theorie.mprog.nl/cases/railnl) <br>
 Teamnaam: Trainspotters <br>
-Studenten: Mijntje Meijer, Sam Bijhouwer, Maik Larooij
+Studenten: Sam Bijhouwer, Maik Larooij
 
 ## Caseomschrijving
 
@@ -34,13 +34,13 @@ conda install --file requirements.txt
 Het programma kan op de volgende manier een algoritme draaien:
 
 ```
-python main.py --scale --algorithm
+python main.py --scale (or -s) --algorithm (or -a)
 ```
 
 Bijvoorbeeld het random algoritme op Holland:
 
 ```
-python main.py --scale Holland --algorithm random
+python main.py -s Holland -a random
 ```
 
 Voor hulp bij het draaien van het programma probeer:
@@ -48,3 +48,10 @@ Voor hulp bij het draaien van het programma probeer:
 ```
 python main.py -h
 ```
+
+## Auteurs
+
+"Trainspotters" is een project voor de Universiteit van Amsterdam gemaakt door:
+
+- Sam Bijhouwer
+- Maik Larooij

@@ -5,7 +5,7 @@ def get_constants(scale):
     if scale == 'Holland':
         MAX_TIME = 120
         MAX_ROUTES = 7
-    else: 
+    elif scale == 'Nationaal': 
         MAX_TIME = 180
         MAX_ROUTES = 20
     

@@ -12,9 +12,9 @@ if __name__ == "__main__":
 
     # Command line arguments
     p = argparse.ArgumentParser()
-    p.add_argument('--scale', help='Scale to run algorithms on. Options = "Holland" or "Nationaal"', default='Holland',
+    p.add_argument('-s', '--scale', help='Scale to run algorithms on. Options = "Holland" or "Nationaal"', default='Holland',
                    type=str)
-    p.add_argument('--algorithm', help='Algorithm to run. Options = "random", "greedy", "bf".', default='random', type=str)
+    p.add_argument('-a', '--algorithm', help='Algorithm to run. Options = "random", "greedy", "bf".', default='random', type=str)
     args = p.parse_args(sys.argv[1:])
 
     # Scale = 'Nationaal' or 'Holland'
@@ -23,12 +23,12 @@ if __name__ == "__main__":
     algorithm = args.algorithm
     
     # Make test graph based on scale
-    test_graph = Graph(f"data/Stations{scale}.csv", f"data/Connecties{scale}.csv")
+    test_graph = Graph(f"data/Stations{scale}.csv", f"data/Connecties{scale}.csv", scale)
     nr_connections = len(test_graph.connections)
     algorithms = {'random': random_solution, 'greedy': greedy_solution, 'bf': breadth_first_solution}
 
     # Run algorithm
-    solution = algorithms[algorithm](test_graph, scale)
+    solution = algorithms[algorithm](test_graph)
 
     # Generate results
     solution.generate_output(nr_connections)

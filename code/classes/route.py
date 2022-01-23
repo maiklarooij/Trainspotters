@@ -9,6 +9,14 @@
 # -----------------------------------------------------------
 
 class Route():
+    """ 
+    Represents a route, consisting of station objects and connection objects, forming a route
+
+    Arguments:
+    - max_time: the max. total time of the route in minutes, for Holland max_time = 120, for Nationaal max_time = 180
+    - start_station (optional): enables the option to create a route from a starting station
+    """
+
     def __init__(self, max_time, start_station=None):
         self.stations = []
         self.connections = []
@@ -44,11 +52,14 @@ class Route():
         self.total_time += connection.distance
 
     def get_new_options(self):
-
+        """ 
+        Retrieves new candidates for the route, where candidates can be neighbors of either the first or last station in the route.
+        Candidates must not exceed the max time and must not already exist in route.
+        """
         candidates = [(station, neighbor, distance) for station in [self.stations[0], self.stations[-1]]
                                                         for neighbor, distance in station.neighbors.items()
                                                         if self.total_time + distance < self.max_time and
-                                                        neighbor.sid not in [station.sid for station in self.stations]]
+                                                        neighbor not in self.stations]
 
         return list(set(candidates))
 
@@ -71,6 +82,18 @@ class Route():
         score = (self.P * 10000) -  self.M
 
         return score
+
+    def copy(self):
+        """
+        Creates a deepcopy of self
+        """
+        new_route = Route(self.max_time)
+
+        new_route.connections = self.connections.copy()
+        new_route.stations = self.stations.copy()
+        new_route.total_time = self.total_time
+
+        return new_route
         
     def __str__(self):
         return f"{[station for station in self.stations]}"

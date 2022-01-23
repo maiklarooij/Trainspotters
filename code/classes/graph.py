@@ -5,7 +5,7 @@
 # A Graph contains Station and Connection objects, forming
 # a graph from .csv files. The Graph is used in algorithms
 #
-# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
 import csv
@@ -14,9 +14,19 @@ from .station import Station
 from .connection import Connection
 
 class Graph():
-    def __init__(self, stations_file, connections_file):
+    """
+    Represents a graph, with stations as nodes and connections as edges.
+
+    Arguments:
+    - stations_file: a csv file containing the stations
+    - connections_file: a csv file containing the connections
+    - scale: the scale of the graph, either 'Holland' or 'Nationaal'
+    """
+    
+    def __init__(self, stations_file, connections_file, scale):
         self.stations = self.load_stations(stations_file)
         self.connections = self.load_connections(connections_file)
+        self.scale = scale
 
     def load_stations(self, stations_file):
         """ 
@@ -27,10 +37,10 @@ class Graph():
         with open(stations_file, 'r') as s_file:
             reader = csv.DictReader(s_file)
 
-            for i, row in enumerate(reader):
+            for row in reader:
                 name = row['station']
                 coord = (float(row['x']), float(row['y']))
-                stations[name] = Station(name, coord, i)
+                stations[name] = Station(name, coord)
         
         return stations
 
@@ -44,14 +54,14 @@ class Graph():
         with open(connections_file, 'r') as c_file:
             reader = csv.DictReader(c_file)
 
-            for i, row in enumerate(reader):
+            for row in reader:
                 
                 # Add station objects from stations in graph
                 station1 = self.stations[row['station1']]
                 station2 = self.stations[row['station2']]
                 distance = float(row['distance'])
 
-                connections.append(Connection(station1, station2, distance, i))
+                connections.append(Connection(station1, station2, distance))
 
                 # Add neighbors to stations
                 self.stations[row['station1']].add_neighbor(station2, distance)
@@ -63,10 +73,10 @@ class Graph():
         """ 
         Given two station objects, return the connection object of the two stations
         """
-        targets = (start_station.sid, end_station.sid)
+        targets = (start_station, end_station)
 
         # Search connection object of the two target stations
-        connection = [connection for connection in self.connections if connection.station1.sid in targets and connection.station2.sid in targets]
+        connection = [connection for connection in self.connections if connection.station1 in targets and connection.station2 in targets]
 
         # Return connection if found
         if connection:

@@ -2,15 +2,14 @@
 # breadthfirst.py
 #
 # Functions to implement a breadth first search algorithm
+# Contains pruning based on beam search
 #
-# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
 from code.classes.route import Route
 from code.classes.routemap import Routemap
 from .constants import get_constants
-
-import copy
 
 def measure_increase(route, routemap, candidate, graph):
     """
@@ -18,8 +17,8 @@ def measure_increase(route, routemap, candidate, graph):
     Measures the increase if the candidate would be added to the graph.
     """
     # Make copies
-    routemap_copy = copy.deepcopy(routemap)
-    route_copy = copy.deepcopy(route)
+    routemap_copy = routemap.copy()
+    route_copy = route.copy()
 
     # Add candidate station to route
     route_copy.add_station(candidate[0], candidate[1])
@@ -33,12 +32,12 @@ def measure_increase(route, routemap, candidate, graph):
 
     return route_copy, increase
 
-def breadth_first_solution(graph, scale, beam=5):
+def breadth_first_solution(graph, beam=5):
     """
     Implements a breadth first search algorithm.
     Uses beam search to prune the options.
     """
-    MAX_TIME, MAX_ROUTES = get_constants(scale)
+    MAX_TIME, MAX_ROUTES = get_constants(graph.scale)
 
     routemap = Routemap()
 

@@ -5,12 +5,16 @@
 # A Routemap consists of Route objects and contains functions 
 # to calculate the quality of the lines and generate output
 #
-# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
 import csv
 
 class Routemap():
+    """ 
+    Represents a routemap, the end result of an algorithm. Contains the final routes.
+    """
+
     def __init__(self):
         self.routes = []
 
@@ -35,7 +39,7 @@ class Routemap():
 
         for route in self.routes:
             for connection in route.connections:
-                all_connections.add(connection.cid)
+                all_connections.add(connection)
 
         return len(all_connections)
 
@@ -77,6 +81,15 @@ class Routemap():
 
             # Retrieve stations from all routes and write them to the file
             for i, route in enumerate(self.routes):
-                writer.writerow([f'train_{i+1}', f'[{", ".join([station.name for station in route.stations])}]'])
+                writer.writerow([f'train_{i+1}', self.routes[i]])
 
             writer.writerow(footer)
+
+    def copy(self):
+        """
+        Creates a deepcopy of self
+        """
+        new_routemap = Routemap()
+        new_routemap.routes = self.routes.copy()
+
+        return new_routemap

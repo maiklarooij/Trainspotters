@@ -4,7 +4,7 @@
 # Contains functions for plotting some basic statistics
 # like score distributions and minutes vs. fraction of connections plots
 #
-# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
 import matplotlib.pyplot as plt

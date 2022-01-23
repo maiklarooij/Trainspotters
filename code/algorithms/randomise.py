@@ -3,7 +3,7 @@
 #
 # Functions to create a random baseline 
 #
-# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
 import random
@@ -12,11 +12,11 @@ from code.classes.route import Route
 from code.classes.routemap import Routemap
 from .constants import get_constants
 
-def random_solution(graph, scale):
+def random_solution(graph):
     """
     Generates a solution on a random basis. Takes in a graph and outputs a routemap object
     """
-    MAX_TIME, MAX_ROUTES = get_constants(scale)
+    MAX_TIME, MAX_ROUTES = get_constants(graph.scale)
 
     # Randomly pick a number of routes
     number_of_routes = random.randint(1, MAX_ROUTES)

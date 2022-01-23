@@ -3,14 +3,12 @@
 #
 # Functions to implement a greedy algorithm
 #
-# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
 from code.classes.route import Route
 from code.classes.routemap import Routemap
 from .constants import get_constants
-
-import copy
 
 def get_next_station(stations):
     """ 
@@ -31,8 +29,10 @@ def find_best_station(route, old_routemap, graph):
     for origin, neighbor, distance in candidates:
 
         # Create a copy of the route and routemap
-        new_route = copy.deepcopy(route)
-        new_routemap = copy.deepcopy(old_routemap)
+        new_route = route.copy()
+        new_routemap = old_routemap.copy()
+
+        print(old_routemap.routes)
         
         # Add this candidate to the route
         new_route.add_connection(graph.fetch_connection(origin, neighbor))
@@ -46,14 +46,14 @@ def find_best_station(route, old_routemap, graph):
     # Return the sorted list of candidates based on the score
     return sorted(scored_candidates, key=lambda x: x[2], reverse=True)
 
-def greedy_solution(graph, scale):
+def greedy_solution(graph):
     """
     Generates a solution on a greedy basis. Takes in a graph and outputs a routemap object
     Starts with the station with the most connections,
     adds stations based on their resulting routemap score
     """
 
-    MAX_TIME, MAX_ROUTES = get_constants(scale)
+    MAX_TIME, MAX_ROUTES = get_constants(graph.scale)
 
     # Create a routemap object to fill with routes
     routemap = Routemap()
