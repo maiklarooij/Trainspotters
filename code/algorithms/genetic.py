@@ -6,11 +6,11 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
+import random
+
 from code.classes.routemap import Routemap
 from .randomise import generate_random_route
 from .constants import get_constants
-
-import random
 
 class GeneticAlgorithm():
     """ 
