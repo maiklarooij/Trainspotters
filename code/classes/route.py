@@ -5,7 +5,7 @@
 # A Route consists of Station and Connection objects, 
 # forming a route 
 #
-# Authors: Mijntje Meijer, Sam Bijhouwer and Maik Larooij
+# Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
 class Route():

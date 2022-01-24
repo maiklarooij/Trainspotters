@@ -31,8 +31,6 @@ def find_best_station(route, old_routemap, graph):
         # Create a copy of the route and routemap
         new_route = route.copy()
         new_routemap = old_routemap.copy()
-
-        print(old_routemap.routes)
         
         # Add this candidate to the route
         new_route.add_connection(graph.fetch_connection(origin, neighbor))
