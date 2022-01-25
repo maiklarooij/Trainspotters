@@ -75,3 +75,17 @@ def genetic(graph):
     create routemap from best chromosome in population
 ```
 
+## Hillclimbing algorithm
+
+```
+def hillclimbing(graph, start_state, restarts):
+    create random solution or generate from start_state
+
+    for every restart:
+        for every route in solution:
+
+            generate 1000 random routes
+            calculate new score for each random route
+            replace route with highest score
+
+```

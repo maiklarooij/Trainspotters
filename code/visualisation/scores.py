@@ -10,7 +10,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_score_distribution(algorithm, graph, scale, test_runs, name):
+def plot_score_distribution(algorithm, graph, test_runs, name):
     """
     Plots a histogram showing the distribution of scores based on a number of test runs
     """
@@ -19,14 +19,14 @@ def plot_score_distribution(algorithm, graph, scale, test_runs, name):
 
     for i in range(test_runs):
         solution = algorithm(graph)
-        scores[i] = solution.calc_score(len(graph.connections))
+        scores[i] = solution.calc_score(graph.total_connections)
 
     plt.hist(scores, bins = 20)
-    plt.title(f'Distribution of scores (algorithm = {name}, n = {test_runs}, scale = {scale})')
+    plt.title(f'Distribution of scores (algorithm = {name}, n = {test_runs}, scale = {graph.scale})')
     plt.xlabel('Score')
     plt.show()
 
-def plot_minutes_fraction(algorithm, graph, scale, test_runs, name):
+def plot_minutes_fraction(algorithm, graph, test_runs, name):
     """
     Makes a scatterplot showing the tradeoff between minutes and fraction of connections
     """
@@ -40,18 +40,20 @@ def plot_minutes_fraction(algorithm, graph, scale, test_runs, name):
         data[solution.M] = solution.P
 
     plt.scatter(data.values(), data.keys(), s = 10)
-    plt.title(f'Fractions vs. minutes (algorithm = {name}, n = {test_runs}, scale = {scale})')
+    plt.title(f'Fractions vs. minutes (algorithm = {name}, n = {test_runs}, scale = {graph.scale})')
     plt.xlabel('Fraction of total connections in routemap (P)')
     plt.ylabel('Minutes (M)')
     plt.show()
 
 
 def plot_beam_score(algorithm, graph, name):
-
+    """
+    Plots BF-algorithm score against a range of beam values
+    """
     scores = {}
     for beam in range(2, 102, 2):
         solution = algorithm(graph, beam=beam)
-        scores[beam] = solution.calc_score(len(graph.connections))
+        scores[beam] = solution.calc_score(graph.total_connections)
 
     for beam, score in scores.items():
         print(f"Beam: {beam}, score: {score}")
