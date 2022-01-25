@@ -22,7 +22,7 @@ if __name__ == "__main__":
     args = p.parse_args(sys.argv[1:])
 
     # Scale = 'Nationaal' or 'Holland'
-    # Algorithm = 'random', 'greedy', 'bf'
+    # Algorithm = 'random', 'greedy', 'bf', 'genetic'
     scale = args.scale
     algorithm = args.algorithm
     
@@ -38,32 +38,3 @@ if __name__ == "__main__":
     # Generate results
     solution.generate_output(nr_connections)
     make_train_map(solution, test_graph, [52.37888718, 4.900277615], algorithm)
-
-    # testing = GeneticAlgorithm(test_graph, 1000).run()
-    # testing.generate_output(nr_connections)
-
-    # ------------------------------------------- Random ------------------------------------------- #
-
-    # test_graph = Graph(f"data/Stations{scale}.csv", f"data/Connecties{scale}.csv")
-
-    # random_solution = random_solution(test_graph, scale)
-    # random_solution.generate_output(len(test_graph.connections))
-
-    # make_train_map(random_solution, test_graph, [52.37888718, 4.900277615], 'random_solution')
-
-    # plot_minutes_fraction(random_solution, test_graph, scale, 10000, 'Random')
-
-    # ------------------------------------------- Greedy ------------------------------------------- #
-
-    # greedy_solution = greedy_solution(test_graph, scale)
-    # greedy_solution.generate_output(len(test_graph.connections))
-
-    # make_train_map(greedy_solution, test_graph, [52.37888718, 4.900277615], 'greedy_solution')
-
-    # ---------------------------------------------------------------------------------------------- #
-
-    #for i in [1, 2, 3, 4, 5, 10]:
-    # test = breadth_first_solution(test_graph, scale, 3)
-    # test.generate_output(len(test_graph.connections))
-
-    # make_train_map(test, test_graph, [52.37888718, 4.900277615], 'breadth_first')
