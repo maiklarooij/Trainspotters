@@ -18,7 +18,7 @@ def plot_score_distribution(algorithm, graph, scale, test_runs, name):
     scores = np.zeros(test_runs)
 
     for i in range(test_runs):
-        solution = algorithm(graph, scale)
+        solution = algorithm(graph)
         scores[i] = solution.calc_score(len(graph.connections))
 
     plt.hist(scores, bins = 20)
@@ -35,7 +35,7 @@ def plot_minutes_fraction(algorithm, graph, scale, test_runs, name):
     data = {}
 
     for _ in range(test_runs):
-        solution = algorithm(graph, scale)
+        solution = algorithm(graph)
         score = solution.calc_score(len(graph.connections))
         data[solution.M] = solution.P
 
@@ -43,4 +43,21 @@ def plot_minutes_fraction(algorithm, graph, scale, test_runs, name):
     plt.title(f'Fractions vs. minutes (algorithm = {name}, n = {test_runs}, scale = {scale})')
     plt.xlabel('Fraction of total connections in routemap (P)')
     plt.ylabel('Minutes (M)')
+    plt.show()
+
+
+def plot_beam_score(algorithm, graph, name):
+
+    scores = {}
+    for beam in range(2, 102, 2):
+        solution = algorithm(graph, beam=beam)
+        scores[beam] = solution.calc_score(len(graph.connections))
+
+    for beam, score in scores.items():
+        print(f"Beam: {beam}, score: {score}")
+
+    plt.plot(scores.keys(), scores.values())
+    plt.title(f'Score for different beam values (algorithm = {name}, scale = {graph.scale})')
+    plt.xlabel('Beam value')
+    plt.ylabel('Routemap score')
     plt.show()

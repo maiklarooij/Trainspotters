@@ -9,7 +9,7 @@ from code.algorithms.breadthfirst import breadth_first_solution
 from code.algorithms.hillclimber import hillclimber_solution
 from code.algorithms.genetic import GeneticAlgorithm
 from code.visualisation.visualise import make_train_map
-from code.visualisation.scores import plot_score_distribution, plot_minutes_fraction
+from code.visualisation.scores import plot_score_distribution, plot_minutes_fraction, plot_beam_score
 
 if __name__ == "__main__":
 
