@@ -26,19 +26,17 @@ def find_best_station(route, routemap, graph):
     candidates = route.get_new_options()
     scored_candidates = []
 
-    new_routemap = routemap.copy()
-    index = len(routemap.routes)
-
     for origin, neighbor, _ in candidates:
 
-        # Create a copy of the route
+        # Create a copy of the route and routemap
+        new_routemap = routemap.copy()
         new_route = route.copy()
         
         # Add this candidate to the route
         new_route.add_connection(graph.fetch_connection(origin, neighbor))
 
         # Replace route in routemap and calculate score
-        new_routemap.routes = new_routemap.routes[:index] + [new_route]
+        new_routemap.add_route(new_route)
         score = new_routemap.calc_score(graph.total_connections)
 
         scored_candidates.append((origin, neighbor, score))
