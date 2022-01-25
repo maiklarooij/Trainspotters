@@ -1,1 +1,3 @@
 folium
+matplotlib.pyplot
+numpy

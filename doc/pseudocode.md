@@ -58,3 +58,20 @@ def breadth_first(graph):
         add most increasing route to routemap
 ```
 
+## Genetic algorithm
+
+```
+def genetic(graph):
+    create n random routes
+    population = create m random combinations of routes
+
+    for every generation:
+
+        select(population) (standard the best half of population)
+        crossover(population)
+        mutate(population)
+        calculate fitness score for every chromosome in population
+
+    create routemap from best chromosome in population
+```
+
