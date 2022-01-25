@@ -23,6 +23,12 @@ class Routemap():
         Adds a route object to the routemap
         """
         self.routes.append(route)
+    
+    def replace_route(self, route, index):
+        """
+        Replaces a route object on a given index
+        """
+        self.routes[index] = route
 
     def show_routemap(self):
         """ 
