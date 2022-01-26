@@ -7,6 +7,7 @@
 # -----------------------------------------------------------
 
 import random
+from code.algorithms.hillclimber import hillclimber_solution
 
 from code.classes.routemap import Routemap
 from .randomise import generate_random_route
@@ -67,7 +68,7 @@ class GeneticAlgorithm():
                 routemap.add_route(gene)
 
             # Calculate the score of this chromosome
-            score = routemap.calc_score(len(self.graph.connections))
+            score = routemap.calc_score(self.graph.total_connections)
             fitness.append((chromosome, score))
         
         # Return a sorted list of all scored chromosomes
@@ -107,20 +108,31 @@ class GeneticAlgorithm():
         
         return new_population
 
-    def mutate(self, population):
+    def mutate(self, population, version):
         """ 
         Mutate a chromosome based on chance.
         A mutation means that a route is replaced by a random route from the start genes.
         """
-        for chromosome in population:
+        for i, chromosome in enumerate(population):
             if random.random() < self.mutation_rate:
                 
-                # Mutation, insert new random route
-                mutate_index = random.randint(0, len(chromosome) - 1)
-                chromosome[mutate_index] = random.choice(self.genes)
+                if version == 'hillclimber':
+                    population[i] = hillclimber_solution(self.graph, chromosome).routes
+                else:
+                    # Mutation, insert new random route
+                    mutate_index = random.randint(0, len(chromosome) - 1)
+                    chromosome[mutate_index] = random.choice(self.genes)
         
         # Return mutated population
         return population
+
+    def generate_routemap(self, routes):
+        """Generates a routemap from a list of route objects"""
+        routemap = Routemap()
+        for route in routes:
+            routemap.add_route(route)
+
+        return routemap
 
     def run(self, graph):
         """ 
@@ -131,17 +143,24 @@ class GeneticAlgorithm():
         population = self.return_random_population()
         fitness_pop = self.calculate_fitness(population)
 
+        
+
         # Go on until number of generations is reached
-        for _ in range(self.generations):
+        for _ in range(1, self.generations + 1):
+            
+            print(f"{_}, {self.generate_routemap(fitness_pop[0]).calc_score(self.graph.total_connections)}")
+            version = 'random'
             
             # Crossover https://en.wikipedia.org/wiki/Crossover_(genetic_algorithm)
             crossed_population = self.crossover(fitness_pop)
 
             # Mutation https://en.wikipedia.org/wiki/Mutation_(genetic_algorithm)
-            mutated_population = self.mutate(crossed_population)
+            mutated_population = self.mutate(crossed_population, version)
 
             # Calculate the fitness of the end population
             fitness_pop = self.calculate_fitness(mutated_population)
+
+            fitness_pop[0] = hillclimber_solution(self.graph, fitness_pop[0]).routes
 
         # Create a routemap of the best option after all generations
         routemap = Routemap()

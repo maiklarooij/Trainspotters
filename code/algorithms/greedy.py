@@ -42,7 +42,7 @@ def find_best_station(route, old_routemap, graph):
         scored_candidates.append((origin, neighbor, score))
 
     # Return the sorted list of candidates based on the score
-    return sorted(scored_candidates, key=lambda x: x[2], reverse=True)
+    return sorted(scored_candidates, key=lambda x: (x[2], x[1].name), reverse=True)
 
 def greedy_solution(graph):
     """
@@ -67,6 +67,7 @@ def greedy_solution(graph):
         # Get station with most connections as start station
         stations = [station for station in stations if station not in stations_visited]
         start_station = get_next_station(stations)
+
         route.add_station(start_station, start_station)
 
         # While there are options possible

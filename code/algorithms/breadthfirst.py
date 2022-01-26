@@ -32,7 +32,7 @@ def measure_increase(route, routemap, candidate, graph):
 
     return route_copy, increase
 
-def breadth_first_solution(graph, beam=5):
+def breadth_first_solution(graph, beam=14):
     """
     Implements a breadth first search algorithm.
     Uses beam search to prune the options.

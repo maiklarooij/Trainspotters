@@ -30,7 +30,7 @@ if __name__ == "__main__":
     
     # Make test graph based on scale
     test_graph = Graph(f"data/Stations{scale}.csv", f"data/Connecties{scale}.csv", scale)
-    nr_connections = len(test_graph.connections)
+    nr_connections = test_graph.total_connections
     algorithms = {'random': random_solution, 'greedy': greedy_solution, 'bf': breadth_first_solution, 
                   'genetic': GeneticAlgorithm(test_graph, 100, args.genes_size, args.pop_size, args.mutation_rate).run,
                   'hillclimber': hillclimber_solution}
@@ -41,3 +41,6 @@ if __name__ == "__main__":
     # Generate results
     solution.generate_output(nr_connections)
     make_train_map(solution, test_graph, [52.37888718, 4.900277615], algorithm)
+
+
+    # plot_beam_score(breadth_first_solution, test_graph, 'Breadth-first')

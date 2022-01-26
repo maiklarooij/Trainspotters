@@ -24,6 +24,7 @@ class Graph():
     """
     
     def __init__(self, stations_file, connections_file, scale):
+        self.total_connections = 0
         self.stations = self.load_stations(stations_file)
         self.connections = self.load_connections(connections_file)
         self.scale = scale
@@ -66,6 +67,8 @@ class Graph():
                 # Add neighbors to stations
                 self.stations[row['station1']].add_neighbor(station2, distance)
                 self.stations[row['station2']].add_neighbor(station1, distance)
+
+        self.total_connections = len(connections)
 
         return connections
     
