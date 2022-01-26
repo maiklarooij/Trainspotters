@@ -25,13 +25,16 @@ class GeneticAlgorithm():
     - mutation_rate: the chance for mutation to happen, 0.2 means 20% chance of mutation
     """
 
-    def __init__(self, graph, generations, genes_size, population_size, mutation_rate):
+    def __init__(self, graph, generations, genes_size, population_size, mutation_rate, use_hillclimber):
         self.graph = graph
         self.max_time, self.max_routes = get_constants(graph.scale)
         self.generations = generations
         self.genes_size = genes_size
         self.population_size = population_size
         self.mutation_rate = mutation_rate
+        self.use_hillclimber = use_hillclimber
+
+        print(use_hillclimber)
 
     def generate_genes(self):
         """
@@ -93,18 +96,22 @@ class GeneticAlgorithm():
         halfway = int(len(population) / 2)
         new_population = self.select(population, halfway)
 
-        for i in range(halfway, len(population)):
+        for i in range(halfway, len(population), 2):
+            
+            place = i - halfway
 
             # Randomly choose two parents
-            first_parent = population[random.randint(0, halfway)]
-            second_parent = population[random.randint(0, halfway)]
+            first_parent = population[place]
+            second_parent = population[place + 1]
 
             # Randomly choose a crossover point
             crossover_point = random.randint(0, min([len(parent) for parent in [first_parent, second_parent]]) - 1)
 
             # Combine parents into new child
-            child = first_parent[:crossover_point] + second_parent[crossover_point:]
-            new_population[i] = child
+            child1 = first_parent[:crossover_point] + second_parent[crossover_point:]
+            child2 = second_parent[:crossover_point] + first_parent[crossover_point:]
+            new_population[i] = child1
+            new_population[i+1] = child2
         
         return new_population
 
@@ -144,10 +151,13 @@ class GeneticAlgorithm():
         fitness_pop = self.calculate_fitness(population)
 
         # Go on until number of generations is reached
-        for _ in range(1, self.generations + 1):
+        for generation in range(1, self.generations + 1):
             
-            print(f"{_}, {self.generate_routemap(fitness_pop[0]).calc_score(self.graph.total_connections)}")
-            version = 'random'
+            print(f"{generation}, {self.generate_routemap(fitness_pop[0]).calc_score(self.graph.total_connections)}")
+            if (generation % (self.generations / 10) == 0) and self.use_hillclimber:
+                version = 'hillclimber'
+            else:
+                version = 'random'
             
             # Crossover https://en.wikipedia.org/wiki/Crossover_(genetic_algorithm)
             crossed_population = self.crossover(fitness_pop)
@@ -157,8 +167,6 @@ class GeneticAlgorithm():
 
             # Calculate the fitness of the end population
             fitness_pop = self.calculate_fitness(mutated_population)
-
-            fitness_pop[0] = hillclimber_solution(self.graph, fitness_pop[0]).routes
 
         # Create a routemap of the best option after all generations
         routemap = Routemap()

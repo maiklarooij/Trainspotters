@@ -21,6 +21,9 @@ if __name__ == "__main__":
     p.add_argument('-gs', '--genes_size', help='Number of random genes (=routes) to generate for GA', default=1000, type=int)
     p.add_argument('-ps', '--pop_size', help='Number of random combinations of genes (=routemaps) to generate for GA', default=1000, type=int)
     p.add_argument('-mr', '--mutation_rate', help='Chance of mutations', default=0.2, type=float)
+    p.add_argument('-gn', '--generations', help='Number of generations', default=100, type=int)
+    p.add_argument('-hc', '--hillclimber', help='Option to use hillclimber in genetic algorithm', default='false', type=str)
+    hillclimber_option = {'true': True, 'false': False}
     args = p.parse_args(sys.argv[1:])
 
     # Scale = 'Nationaal' or 'Holland'
@@ -32,7 +35,7 @@ if __name__ == "__main__":
     test_graph = Graph(f"data/Stations{scale}.csv", f"data/Connecties{scale}.csv", scale)
     nr_connections = test_graph.total_connections
     algorithms = {'random': random_solution, 'greedy': greedy_solution, 'bf': breadth_first_solution, 
-                  'genetic': GeneticAlgorithm(test_graph, 100, args.genes_size, args.pop_size, args.mutation_rate).run,
+                  'genetic': GeneticAlgorithm(test_graph, args.generations, args.genes_size, args.pop_size, args.mutation_rate, hillclimber_option[args.hillclimber]).run,
                   'hillclimber': hillclimber_solution}
 
     # Run algorithm

@@ -6,7 +6,6 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-from turtle import distance
 from code.classes.route import Route
 from code.classes.routemap import Routemap
 from .constants import get_constants
