@@ -6,6 +6,7 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
+from turtle import distance
 from code.classes.route import Route
 from code.classes.routemap import Routemap
 from .constants import get_constants
@@ -18,26 +19,25 @@ def get_next_station(stations):
 
     return stations.pop()
     
-def find_best_station(route, old_routemap, graph):
+def find_best_station(route, routemap, graph):
     """
-    Tries to find the best next station based on the score the new routemap achieves when added
+    Returns the best next station based on the score the new routemap achieves when added
     """
     candidates = route.get_new_options()
-
     scored_candidates = []
 
-    for origin, neighbor, distance in candidates:
+    for origin, neighbor, _ in candidates:
 
         # Create a copy of the route and routemap
+        new_routemap = routemap.copy()
         new_route = route.copy()
-        new_routemap = old_routemap.copy()
         
         # Add this candidate to the route
         new_route.add_connection(graph.fetch_connection(origin, neighbor))
 
-        # Add route to routemap and calculate score
+        # Replace route in routemap and calculate score
         new_routemap.add_route(new_route)
-        score = new_routemap.calc_score(len(graph.connections))
+        score = new_routemap.calc_score(graph.total_connections)
 
         scored_candidates.append((origin, neighbor, score))
 
@@ -60,7 +60,7 @@ def greedy_solution(graph):
     stations = list(graph.stations.values())
 
     # Go on until all stations are reached or MAX_ROUTES are used
-    while (len(stations_visited) != len(graph.stations)) and len(routemap.routes) != MAX_ROUTES:
+    while len(stations_visited) != len(graph.stations) and len(routemap.routes) != MAX_ROUTES:
 
         route = Route(MAX_TIME)
         
@@ -74,7 +74,7 @@ def greedy_solution(graph):
         while route.get_new_options():
             
             # Choose best station
-            origin_station, new_station, score = find_best_station(route, routemap, graph)[0]
+            origin_station, new_station = find_best_station(route, routemap, graph)
             new_connection = graph.fetch_connection(origin_station, new_station)
 
             # Add to route

@@ -19,9 +19,7 @@ def generate_random_route(graph, MAX_TIME, c=0.2):
     # Initiate stations with start distance 0
     candidates = [(station, station, 0) for station in graph.stations.values()]
 
-    go_through = True
-
-    while candidates and go_through:
+    while candidates:
 
         # Pick random station from candidates
         origin_station, new_station, distance = random.choice(candidates)
@@ -38,8 +36,8 @@ def generate_random_route(graph, MAX_TIME, c=0.2):
         candidates = route.get_new_options()
 
         # Random element to determine if another station is added or not
-        if len(route.stations) > 1:
-            go_through = random.random() > c
+        if len(route.stations) > 1 and random.random() < c:
+            break
 
     return route
 

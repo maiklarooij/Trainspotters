@@ -143,8 +143,6 @@ class GeneticAlgorithm():
         population = self.return_random_population()
         fitness_pop = self.calculate_fitness(population)
 
-        
-
         # Go on until number of generations is reached
         for _ in range(1, self.generations + 1):
             
