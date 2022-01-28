@@ -9,10 +9,13 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+import csv
+
+from code.algorithms.genetic import GeneticAlgorithm
 
 def plot_score_distribution(algorithm, graph, test_runs, name):
     """
-    Plots a histogram showing the distribution of scores based on a number of test runs
+    Plots a histogram showing the distribution of scores based on a number of test runs.
     """
     plt.figure()
     scores = np.zeros(test_runs)
@@ -28,7 +31,7 @@ def plot_score_distribution(algorithm, graph, test_runs, name):
 
 def plot_minutes_fraction(algorithm, graph, test_runs, name):
     """
-    Makes a scatterplot showing the tradeoff between minutes and fraction of connections
+    Makes a scatterplot showing the tradeoff between minutes and fraction of connections.
     """
     plt.figure()
 
@@ -45,10 +48,9 @@ def plot_minutes_fraction(algorithm, graph, test_runs, name):
     plt.ylabel('Minutes (M)')
     plt.show()
 
-
 def plot_beam_score(algorithm, graph, name):
     """
-    Plots BF-algorithm score against a range of beam values
+    Plots BF-algorithm score against a range of beam values.
     """
     scores = {}
     for beam in range(2, 102, 2):
@@ -62,4 +64,95 @@ def plot_beam_score(algorithm, graph, name):
     plt.title(f'Score for different beam values (algorithm = {name}, scale = {graph.scale})')
     plt.xlabel('Beam value')
     plt.ylabel('Routemap score')
+    plt.show()
+
+def store_genetic_scores(graph):
+
+    mutate_rate = range(2, 6)
+    generation_size = [200]
+
+    with open('genetic_scores.csv', 'w', newline='') as wf:
+
+        writer = csv.writer(wf)
+        writer.writerow(['generations', 'mutation_rate', 'score'])
+        j = 1
+        for mr in mutate_rate:
+            for gsize in generation_size:
+
+                top_result = 0
+                for i in range(5):
+                    print(f'option {j}-{i}')
+                    result = GeneticAlgorithm(graph, gsize, 10000, 10000, mr /10, False, 'elitism', '1point').run(graph).calc_score(graph.total_connections)
+                    if result > top_result:
+                        top_result = result
+                writer.writerow([gsize, mr/10, top_result])
+
+                j += 1
+
+def compare_selection(graph):
+
+    selections = ['elitism', 'tournament', 'rws']
+
+    for selection in selections:
+        best_result = [0]
+        for i in range(5):
+            print(f"{selection}-{i}")
+            test = GeneticAlgorithm(graph, 200, 10000, 10000, 0.3, False, selection, '1point').run(graph)
+
+            if test[-1] > best_result[-1]:
+                best_result = test
+
+        plt.plot(range(len(best_result)), best_result, label=selection)
+    
+    plt.legend()
+    plt.title(f'Scores for different selection strategies. n = 5, scale = Nationaal)')
+    plt.xlabel('# Generation')
+    plt.ylabel('Score')
+    plt.show()
+
+def compare_breeding(graph):
+
+    breedings = ['1point', '2point', 'uniform']
+
+    with open('breeding_output.csv', 'w', newline='') as wf:
+        writer = csv.writer(wf)
+
+        writer.writerow(['breeding', 'score', 'generation'])
+
+        for breeding in breedings:
+            best_result = [0]
+            for i in range(5):
+                print(f"{breeding}-{i}")
+                test = GeneticAlgorithm(graph, 200, 10000, 10000, 0.3, False, 'elitism', breeding).run(graph)
+
+                if test[-1] > best_result[-1]:
+                    best_result = test
+
+            for i, score in enumerate(best_result):
+                writer.writerow([breeding, score, i])
+
+            plt.plot(range(len(best_result)), best_result, label=breeding)
+    
+    plt.legend()
+    plt.title(f'Scores for different breeding strategies (n = 5, scale = Nationaal)')
+    plt.xlabel('# Generation')
+    plt.ylabel('Score')
+    plt.show()
+
+            
+def plot_mutation(csv_file):
+
+    with open(csv_file, 'r') as csv_file:
+        reader = csv.DictReader(csv_file)
+
+        mr = []
+        scores = []
+        for line in reader:
+            mr.append(float(line['mutation_rate']))
+            scores.append(float(line['score']))
+
+    plt.plot(mr, scores)
+    plt.title(f'Scores for different mutation rates (n = 5, scale = Nationaal)')
+    plt.xlabel('Mutation rate')
+    plt.ylabel('Score')
     plt.show()
