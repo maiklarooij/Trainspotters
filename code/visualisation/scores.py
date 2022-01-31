@@ -3,6 +3,7 @@
 #
 # Contains functions for plotting some basic statistics
 # like score distributions and minutes vs. fraction of connections plots
+# The functions have been used for milestones and results.
 #
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------

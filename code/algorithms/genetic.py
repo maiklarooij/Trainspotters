@@ -6,6 +6,7 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
+from copy import deepcopy
 import random
 from code.algorithms.hillclimber import hillclimber_solution
 from code.algorithms.randomise import generate_random_route
@@ -286,10 +287,14 @@ class GeneticAlgorithm:
 
             # Remember best solution
             if fitness_pop[0]["score"] > best_solution["score"]:
-                best_solution = fitness_pop[0]
+                best_solution = deepcopy(fitness_pop[0])
+
+            print(f"{generation} last score: {fitness_pop[0]['score']}")
+            print(f"{generation} best score: {best_solution['score']}")
 
         # Create routemap of best result
         routemap = Routemap()
         routemap.add_routes(best_solution["routes"])
+        print(routemap.calc_score(graph.total_connections))
 
         return routemap
