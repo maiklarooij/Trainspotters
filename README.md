@@ -1,4 +1,4 @@
-# Trainspotters [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+# Trainspotters <br> [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) ![python emblem](https://badgen.net/pypi/python/black)
 
 Vak: [Programmeertheorie 2022](theorie.mprog.nl) <br>
 Gekozen case: [RailNL](https://theorie.mprog.nl/cases/railnl) <br>
