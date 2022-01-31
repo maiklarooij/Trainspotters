@@ -39,10 +39,10 @@ def experiment(graph):
                             start = time.time()
                             run = 1
                             while time.time() - start < 60:
-                                ga = GeneticAlgorithm(graph, generation, gp_size, gp_size, mutate_rate, False, selection, breeding).run(graph)
+                                ga = GeneticAlgorithm(graph, generation, gp_size, gp_size, mutate_rate / 10, False, selection, breeding).run(graph)
                                 score = ga.calc_score(graph.total_connections)
 
-                                writer.writerow([run, breeding, selection, generation, mutate_rate, gp_size, score])
+                                writer.writerow([run, breeding, selection, generation, mutate_rate / 10, gp_size, score])
                                 run += 1
 
                             option += 1

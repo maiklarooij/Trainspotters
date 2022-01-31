@@ -289,8 +289,8 @@ class GeneticAlgorithm:
             if fitness_pop[0]["score"] > best_solution["score"]:
                 best_solution = deepcopy(fitness_pop[0])
 
-            print(f"{generation} last score: {fitness_pop[0]['score']}")
-            print(f"{generation} best score: {best_solution['score']}")
+            #print(f"{generation} last score: {fitness_pop[0]['score']}")
+            #print(f"{generation} best score: {best_solution['score']}")
 
         # Create routemap of best result
         routemap = Routemap()
