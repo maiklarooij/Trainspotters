@@ -6,23 +6,26 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-from code.classes.routemap import Routemap
 from code.algorithms.randomise import generate_random_route, random_solution
-from .constants import get_constants
+from code.classes.routemap import Routemap
+
 
 def generate_routemap(routes):
-    """Generates a routemap from a list of route objects"""
+    """
+    Generates a routemap from a list of route objects
+    """
     routemap = Routemap()
-    for route in routes:
-        routemap.add_route(route)
+    routemap.add_routes(routes)
 
     return routemap
 
-def find_replacement(routemap, index, graph, MAX_TIME, r=100):
+
+def find_replacement(routemap, index, graph, r=100):
     """
     Generates an X amount of random routes and checks whether replacing the route
     on the given index results in a higher score
     """
+
     # Store initial score and route
     initial_score = routemap.calc_score(len(graph.connections))
     best_route = routemap.routes[index]
@@ -31,7 +34,7 @@ def find_replacement(routemap, index, graph, MAX_TIME, r=100):
     # Generate an r amount of random routes
     for _ in range(r):
 
-        random_route = generate_random_route(graph, MAX_TIME)
+        random_route = generate_random_route(graph)
 
         # Replace route and check for improvement
         routemap_copy.replace_route(random_route, index)
@@ -43,17 +46,17 @@ def find_replacement(routemap, index, graph, MAX_TIME, r=100):
             best_route = random_route
 
     return best_route
-    
+
+
 def hillclimber_solution(graph, start_state=None, restarts=10):
     """
     Generates a solution with hillclimbing algorithm. Takes in a graph and optionally a start state
     Goes over every route in solution and tries random routes and checks for improvement
     Picks route which results in highest improvement of score
     """
-    MAX_TIME, MAX_ROUTES = get_constants(graph.scale)
 
     # Check whether to generate random solution or take given routes
-    if start_state == None:
+    if start_state is None:
         routemap = random_solution(graph)
     else:
         routemap = generate_routemap(start_state)
@@ -62,7 +65,7 @@ def hillclimber_solution(graph, start_state=None, restarts=10):
     for _ in range(restarts):
 
         for index in range(len(routemap.routes)):
-            route = find_replacement(routemap, index, graph, MAX_TIME)
+            route = find_replacement(routemap, index, graph)
             routemap.replace_route(route, index)
-    
+
     return routemap

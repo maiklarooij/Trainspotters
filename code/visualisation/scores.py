@@ -7,11 +7,11 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
+import csv
 import matplotlib.pyplot as plt
 import numpy as np
-import csv
-
 from code.algorithms.genetic import GeneticAlgorithm
+
 
 def plot_score_distribution(algorithm, graph, test_runs, name):
     """
@@ -24,10 +24,11 @@ def plot_score_distribution(algorithm, graph, test_runs, name):
         solution = algorithm(graph)
         scores[i] = solution.calc_score(graph.total_connections)
 
-    plt.hist(scores, bins = 20)
-    plt.title(f'Distribution of scores (algorithm = {name}, n = {test_runs}, scale = {graph.scale})')
-    plt.xlabel('Score')
+    plt.hist(scores, bins=20)
+    plt.title(f"Distribution of scores (algorithm = {name}, n = {test_runs}, scale = {graph.scale})")
+    plt.xlabel("Score")
     plt.show()
+
 
 def plot_minutes_fraction(algorithm, graph, test_runs, name):
     """
@@ -42,11 +43,12 @@ def plot_minutes_fraction(algorithm, graph, test_runs, name):
         score = solution.calc_score(len(graph.connections))
         data[solution.M] = solution.P
 
-    plt.scatter(data.values(), data.keys(), s = 10)
-    plt.title(f'Fractions vs. minutes (algorithm = {name}, n = {test_runs}, scale = {graph.scale})')
-    plt.xlabel('Fraction of total connections in routemap (P)')
-    plt.ylabel('Minutes (M)')
+    plt.scatter(data.values(), data.keys(), s=10)
+    plt.title(f"Fractions vs. minutes (algorithm = {name}, n = {test_runs}, scale = {graph.scale})")
+    plt.xlabel("Fraction of total connections in routemap (P)")
+    plt.ylabel("Minutes (M)")
     plt.show()
+
 
 def plot_beam_score(algorithm, graph, name):
     """
@@ -61,69 +63,52 @@ def plot_beam_score(algorithm, graph, name):
         print(f"Beam: {beam}, score: {score}")
 
     plt.plot(scores.keys(), scores.values())
-    plt.title(f'Score for different beam values (algorithm = {name}, scale = {graph.scale})')
-    plt.xlabel('Beam value')
-    plt.ylabel('Routemap score')
+    plt.title(f"Score for different beam values (algorithm = {name}, scale = {graph.scale})")
+    plt.xlabel("Beam value")
+    plt.ylabel("Routemap score")
     plt.show()
 
-def store_genetic_scores(graph):
-
-    mutate_rate = range(2, 6)
-    generation_size = [200]
-
-    with open('genetic_scores.csv', 'w', newline='') as wf:
-
-        writer = csv.writer(wf)
-        writer.writerow(['generations', 'mutation_rate', 'score'])
-        j = 1
-        for mr in mutate_rate:
-            for gsize in generation_size:
-
-                top_result = 0
-                for i in range(5):
-                    print(f'option {j}-{i}')
-                    result = GeneticAlgorithm(graph, gsize, 10000, 10000, mr /10, False, 'elitism', '1point').run(graph).calc_score(graph.total_connections)
-                    if result > top_result:
-                        top_result = result
-                writer.writerow([gsize, mr/10, top_result])
-
-                j += 1
 
 def compare_selection(graph):
-
-    selections = ['elitism', 'tournament', 'rws']
+    """
+    Function to compare the different selection methods for a genetic algorithm.
+    """
+    selections = ["elitism", "tournament", "rws"]
 
     for selection in selections:
         best_result = [0]
         for i in range(5):
             print(f"{selection}-{i}")
-            test = GeneticAlgorithm(graph, 200, 10000, 10000, 0.3, False, selection, '1point').run(graph)
+            test = GeneticAlgorithm(graph, 200, 10000, 10000, 0.3, False, selection, "1point").run(graph)
 
             if test[-1] > best_result[-1]:
                 best_result = test
 
         plt.plot(range(len(best_result)), best_result, label=selection)
-    
+
     plt.legend()
-    plt.title(f'Scores for different selection strategies. n = 5, scale = Nationaal)')
-    plt.xlabel('# Generation')
-    plt.ylabel('Score')
+    plt.title(f"Scores for different selection strategies. n = 5, scale = Nationaal)")
+    plt.xlabel("# Generation")
+    plt.ylabel("Score")
     plt.show()
 
+
 def compare_breeding(graph):
+    """
+    Function to compare the different breeding methods for a genetic algorithm.
+    """
+    breedings = ["1point", "2point", "uniform"]
 
-    breedings = ['1point', '2point', 'uniform']
-
-    with open('breeding_output.csv', 'w', newline='') as wf:
+    with open("breeding_output.csv", "w", newline="") as wf:
         writer = csv.writer(wf)
 
-        writer.writerow(['breeding', 'score', 'generation'])
+        writer.writerow(["breeding", "score", "generation"])
 
         for breeding in breedings:
             best_result = [0]
             for i in range(5):
                 print(f"{breeding}-{i}")
-                test = GeneticAlgorithm(graph, 200, 10000, 10000, 0.3, False, 'elitism', breeding).run(graph)
+                test = GeneticAlgorithm(graph, 200, 10000, 10000, 0.3, False, "elitism", breeding).run(graph)
 
                 if test[-1] > best_result[-1]:
                     best_result = test
@@ -132,37 +117,29 @@ def compare_breeding(graph):
                 writer.writerow([breeding, score, i])
 
             plt.plot(range(len(best_result)), best_result, label=breeding)
-    
+
     plt.legend()
-    plt.title(f'Scores for different breeding strategies (n = 5, scale = Nationaal)')
-    plt.xlabel('# Generation')
-    plt.ylabel('Score')
+    plt.title(f"Scores for different breeding strategies (n = 5, scale = Nationaal)")
+    plt.xlabel("# Generation")
+    plt.ylabel("Score")
     plt.show()
 
-            
-def plot_mutation(csv_file):
 
-    with open(csv_file, 'r') as csv_file:
+def plot_mutation(csv_file):
+    """
+    Function to compare the different mutation rates for a genetic algorithm.
+    """
+    with open(csv_file, "r") as csv_file:
         reader = csv.DictReader(csv_file)
 
         mr = []
         scores = []
         for line in reader:
-            mr.append(float(line['mutation_rate']))
-            scores.append(float(line['score']))
+            mr.append(float(line["mutation_rate"]))
+            scores.append(float(line["score"]))
 
     plt.plot(mr, scores)
-    plt.title(f'Scores for different mutation rates (n = 5, scale = Nationaal)')
-    plt.xlabel('Mutation rate')
-    plt.ylabel('Score')
+    plt.title(f"Scores for different mutation rates (n = 5, scale = Nationaal)")
+    plt.xlabel("Mutation rate")
+    plt.ylabel("Score")
     plt.show()
-
-def experiment():
-
-    breedings = ['1point', '2point', 'uniform']
-    selections = ['elitism', 'tournament', 'rws']
-    generations = [50, 100, 200]
-    mutate_rate = range(0, 12, 2)
-    genes_and_pop_size = [100, 500, 1000]
-
-

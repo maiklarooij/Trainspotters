@@ -7,7 +7,8 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-class Connection():
+
+class Connection:
     """
     Represents a connection between two stations.
 
@@ -23,4 +24,7 @@ class Connection():
         self.distance = distance
 
     def __repr__(self):
+        """
+        Representation of object when printed in list/dict/set.
+        """
         return f"{self.station1} to {self.station2}. Distance {self.distance}"

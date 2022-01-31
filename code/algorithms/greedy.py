@@ -8,16 +8,17 @@
 
 from code.classes.route import Route
 from code.classes.routemap import Routemap
-from .constants import get_constants
+
 
 def get_next_station(stations):
-    """ 
+    """
     Returns the next station with the most connections as starting point of a new route
     """
-    stations.sort(key=lambda station: len(station.neighbors), reverse = False)
+    stations.sort(key=lambda station: len(station.neighbors), reverse=False)
 
     return stations.pop()
-    
+
+
 def find_best_station(route, routemap, graph):
     """
     Returns the best next station based on the score the new routemap achieves when added
@@ -30,7 +31,7 @@ def find_best_station(route, routemap, graph):
         # Create a copy of the route and routemap
         new_routemap = routemap.copy()
         new_route = route.copy()
-        
+
         # Add this candidate to the route
         new_route.add_connection(graph.fetch_connection(origin, neighbor))
 
@@ -41,7 +42,8 @@ def find_best_station(route, routemap, graph):
         scored_candidates.append((origin, neighbor, score))
 
     # Return the sorted list of candidates based on the score
-    return sorted(scored_candidates, key=lambda x: (x[2], x[1].name), reverse=True)
+    return sorted(scored_candidates, key=lambda x: (x[2], x[1].name), reverse=True)[0]
+
 
 def greedy_solution(graph):
     """
@@ -50,8 +52,6 @@ def greedy_solution(graph):
     adds stations based on their resulting routemap score
     """
 
-    MAX_TIME, MAX_ROUTES = get_constants(graph.scale)
-
     # Create a routemap object to fill with routes
     routemap = Routemap()
 
@@ -59,10 +59,10 @@ def greedy_solution(graph):
     stations = list(graph.stations.values())
 
     # Go on until all stations are reached or MAX_ROUTES are used
-    while len(stations_visited) != len(graph.stations) and len(routemap.routes) != MAX_ROUTES:
+    while len(stations_visited) != len(graph.stations) and len(routemap.routes) != graph.MAX_ROUTES:
 
-        route = Route(MAX_TIME)
-        
+        route = Route(graph.MAX_TIME)
+
         # Get station with most connections as start station
         stations = [station for station in stations if station not in stations_visited]
         start_station = get_next_station(stations)
@@ -71,9 +71,9 @@ def greedy_solution(graph):
 
         # While there are options possible
         while route.get_new_options():
-            
+
             # Choose best station
-            origin_station, new_station = find_best_station(route, routemap, graph)
+            origin_station, new_station, score = find_best_station(route, routemap, graph)
             new_connection = graph.fetch_connection(origin_station, new_station)
 
             # Add to route

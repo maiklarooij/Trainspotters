@@ -1,20 +1,26 @@
 # -----------------------------------------------------------
 # randomise.py
 #
-# Functions to create a random baseline 
+# Functions to create a random baseline
 #
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
 import random
-
 from code.classes.route import Route
 from code.classes.routemap import Routemap
-from .constants import get_constants
 
-def generate_random_route(graph, MAX_TIME, c=0.2):
+
+def generate_random_route(graph, c=0.2):
+    """
+    Function to generate a random route.
+
+    Arguments:
+    - c: chance of breaking the algorithm. Adds randomness, because the algorithm has a chance of terminating before MAX_TIME is reached
+    """
+
     # Create a route object for every iteration
-    route = Route(MAX_TIME)
+    route = Route(graph.MAX_TIME)
 
     # Initiate stations with start distance 0
     candidates = [(station, station, 0) for station in graph.stations.values()]
@@ -41,22 +47,22 @@ def generate_random_route(graph, MAX_TIME, c=0.2):
 
     return route
 
+
 def random_solution(graph):
     """
-    Generates a solution on a random basis. Takes in a graph and outputs a routemap object
+    Generates a solution on a random basis. Takes in a graph and outputs a routemap object.
     """
-    MAX_TIME, MAX_ROUTES = get_constants(graph.scale)
 
     # Randomly pick a number of routes
-    number_of_routes = random.randint(1, MAX_ROUTES)
+    number_of_routes = random.randint(1, graph.MAX_ROUTES)
 
     # Create a routemap object to fill with routes
     routemap = Routemap()
 
     for _ in range(number_of_routes):
 
-        route = generate_random_route(graph, MAX_TIME, 0)
-
+        # Generate a random route and add it to the routemap
+        route = generate_random_route(graph, 0)
         routemap.add_route(route)
-                                                           
+
     return routemap

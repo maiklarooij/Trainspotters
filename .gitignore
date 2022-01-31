@@ -4,4 +4,3 @@ data/
 *.csv
 milestones/.ipynb_checkpoints/*
 *.pdf
-test.py

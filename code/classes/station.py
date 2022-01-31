@@ -7,9 +7,10 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-class Station():
+
+class Station:
     """
-    Represents a single station, for example station Amsterdam Centraal
+    Represents a single station, for example station Amsterdam Centraal.
 
     Arguments:
     - name: the name of the station (e.g. Amsterdam Centraal)
@@ -24,11 +25,12 @@ class Station():
     def add_neighbor(self, neighbor, distance):
         """
         Adds a neighbor to the station with the distance to that station.
+        Neighbors are stored in the form neighbor: distance to neighbor (dict).
         """
         self.neighbors[neighbor] = distance
 
-    def __str___(self):
-        return f"{self.name}:{self.coord}"
-
     def __repr__(self):
+        """
+        Representation of object when printed in list/dict/set.
+        """
         return self.name

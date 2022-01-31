@@ -1,7 +1,15 @@
-from argparse import ArgumentParser
+# -----------------------------------------------------------
+# experiment.py
+#
+# Script to run experiment, comparing different algorithms and parameters.
+#
+# Authors: Sam Bijhouwer and Maik Larooij
+# -----------------------------------------------------------
+
 from code.algorithms.genetic import GeneticAlgorithm
 from code.classes.graph import Graph
 
+from argparse import ArgumentParser
 import time
 import csv
 import sys

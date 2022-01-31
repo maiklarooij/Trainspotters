@@ -2,7 +2,7 @@
 # routemap.py
 #
 # Class definition of a Routemap object
-# A Routemap consists of Route objects and contains functions 
+# A Routemap consists of Route objects and contains functions
 # to calculate the quality of the lines and generate output
 #
 # Authors: Sam Bijhouwer and Maik Larooij
@@ -10,8 +10,9 @@
 
 import csv
 
-class Routemap():
-    """ 
+
+class Routemap:
+    """
     Represents a routemap, the end result of an algorithm. Contains the final routes.
     """
 
@@ -19,27 +20,34 @@ class Routemap():
         self.routes = []
 
     def add_route(self, route):
-        """ 
-        Adds a route object to the routemap
+        """
+        Adds a route object to the routemap.
         """
         self.routes.append(route)
-    
+
+    def add_routes(self, routes):
+        """
+        Adds multiple route objects to the routemap.
+        """
+        for route in routes:
+            self.add_route(route)
+
     def replace_route(self, route, index):
         """
-        Replaces a route object on a given index
+        Replaces a route object on a given index.
         """
         self.routes[index] = route
 
     def show_routemap(self):
-        """ 
-        Prints out the routemap
+        """
+        Prints out the routemap.
         """
         for i, route in enumerate(self.routes):
             print(f"Route {i}: {route}. Total time: {route.total_time}")
 
     def get_total_connections(self):
         """
-        Returns the total number of connections in routemap
+        Returns the total number of connections in routemap.
         """
         all_connections = set()
 
@@ -50,15 +58,14 @@ class Routemap():
         return len(all_connections)
 
     def calc_score(self, graph_connections):
-        """ 
+        """
         Calculates the score of the routemap according to the formula:
         K = P*10000 - (T*100 + M)
-        
+
         P = Fraction of all connections included in routemap
         T = Number of routes used in routemap
         M = Total time of all routes in minutes
         """
-
         # Calculate total time of all routes
         self.M = sum([route.total_time for route in self.routes])
 
@@ -72,28 +79,27 @@ class Routemap():
         return score
 
     def generate_output(self, graph_connections):
-        """ 
-        Writes the output to a .csv file 
         """
-
+        Writes the output to a .csv file.
+        """
         header = ['train', 'stations']
         footer = ['score', self.calc_score(graph_connections)]
 
         # Create a new file
-        with open("output.csv", mode='w', newline='') as output_file:
+        with open('output.csv', mode='w', newline='') as output_file:
             writer = csv.writer(output_file)
 
             writer.writerow(header)
 
             # Retrieve stations from all routes and write them to the file
-            for i, route in enumerate(self.routes):
-                writer.writerow([f'train_{i+1}', self.routes[i]])
+            for i, _ in enumerate(self.routes):
+                writer.writerow([f"train_{i+1}", self.routes[i]])
 
             writer.writerow(footer)
 
     def copy(self):
         """
-        Creates a deepcopy of self
+        Creates a deepcopy of self.
         """
         new_routemap = Routemap()
         new_routemap.routes = self.routes.copy()
