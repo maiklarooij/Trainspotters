@@ -18,7 +18,7 @@ Bevat code om een routemap met routes te creëren door middel van het breadth-fi
 
 Te zien in onderstaand voorbeeld worden de drie meest verbeterende opties gekozen voor de volgende stap bij een beam-waarde van 3.
 
-![bf beam](../../doc/bfbeam2.png)
+![bf beam](../../doc/bfbeam2.PNG)
 
 Voor pseudocode en resultaten van `breadthfirst.py`, [klik hier](../../milestones/first_algorithm.md)
 
