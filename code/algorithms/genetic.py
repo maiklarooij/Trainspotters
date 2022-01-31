@@ -147,13 +147,19 @@ class GeneticAlgorithm():
         return new_population
 
     def select_tournament(self, population, halfway):
-
+        """
+        Returns a cut population, while preserving the original size.
+        Selection based on a tournament. Every time, a random sample from the population is taken.
+        The winner (highest score) of the random sample gets selected into the new population.
+        """
         new_population = [None for _ in range(len(population))]
         
         for i in range(halfway):
             
+            # Take random sample (10%) of population
             selected = sorted(random.choices(population, k=int(len(population) / 10)), key=lambda x: x[1])
 
+            # Select highest scoring
             new_population[i] = selected[0]
         
         return new_population
@@ -307,7 +313,7 @@ class GeneticAlgorithm():
 
         # Create a routemap of the best option after all generations
         routemap = Routemap()
-        for route in best_solution:
+        for route in best_solution[0]:
             routemap.add_route(route)
 
         return routemap

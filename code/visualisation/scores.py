@@ -156,3 +156,13 @@ def plot_mutation(csv_file):
     plt.xlabel('Mutation rate')
     plt.ylabel('Score')
     plt.show()
+
+def experiment():
+
+    breedings = ['1point', '2point', 'uniform']
+    selections = ['elitism', 'tournament', 'rws']
+    generations = [50, 100, 200]
+    mutate_rate = range(0, 12, 2)
+    genes_and_pop_size = [100, 500, 1000]
+
+
