@@ -93,4 +93,4 @@ class TrainMap:
 
         self.add_connections()
 
-        self.base_map.save(f"results/{self.algorithm}_solution.html")
+        self.base_map.save(f"results/{self.algorithm}/{self.algorithm}_solution.html")

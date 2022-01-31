@@ -1,4 +1,4 @@
-# Trainspotters [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+# Trainspotters <br> [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) ![python emblem](https://badgen.net/pypi/python/black)
 
 Vak: [Programmeertheorie 2022](theorie.mprog.nl) <br>
 Gekozen case: [RailNL](https://theorie.mprog.nl/cases/railnl) <br>
@@ -17,6 +17,12 @@ Om de kwaliteit van de lijnvoering te testen is de volgende doelfunctie opgestel
 K = p*10000 - (T*100 + Min)
 ```
 Waarin K = de kwaliteit van de lijnvoering, p = de fractie van alle gereden verbindingen van het totaal aantal verbindingen, T = het aantal trajecten en Min = het aantal minuten van alle trajecten samen.
+
+### Verkenning
+
+[Klik hier](https://nbviewer.org/github/maiklarooij/Trainspotters/blob/main/milestones/exploration.ipynb) om een verkenning van de stations en connecties te bekijken. Dit is gemaakt met `folium` in een Jupyter Notebook zodat de visualisatie interactief kan worden bekeken. Dit ziet er ongeveer zo uit:
+
+![Train map](doc/allstations.PNG)
 
 ## Gebruik
 
