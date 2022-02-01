@@ -6,15 +6,17 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-from code.algorithms.randomise import generate_random_route, Random
-from code.classes.routemap import Routemap
+from codes.algorithms.randomise import generate_random_route, Random
+from codes.classes.routemap import Routemap
+
 
 class Hillclimber:
     """
     Implements a hillclimbing algorithm.
+
     Arguments:
     - graph: the input graph with all stations and connections
-    - restarts: number of times the hillclimber algorithm does a restart 
+    - restarts: number of times the hillclimber algorithm does a restart
     - r: number of random routes the hillclimber algorithm generates to try as replacement
     - start_state: optional list of route objects to run the hillclimber algorithm on
     """
@@ -27,12 +29,12 @@ class Hillclimber:
 
     def generate_start(self, start_state):
         """
-        Turns the start_state into a valid routemap to run the algorithm on. 
+        Turns the start_state into a valid routemap to run the algorithm on.
         Returns a random solution if no start_state is provided
         """
         if start_state == None:
             return Random(self.graph).run()
-        
+
         routemap = Routemap()
         routemap.add_routes(start_state)
         return routemap
@@ -62,7 +64,7 @@ class Hillclimber:
                 best_route = random_route
 
         return best_route
-    
+
     def run(self):
         """
         Runs the hillclimber algorithm

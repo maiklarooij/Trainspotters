@@ -8,10 +8,10 @@
 
 from copy import deepcopy
 import random
-from code.algorithms.hillclimber import Hillclimber
 
-from code.algorithms.randomise import generate_random_route
-from code.classes.routemap import Routemap
+from codes.algorithms.hillclimber import Hillclimber
+from codes.algorithms.randomise import generate_random_route
+from codes.classes.routemap import Routemap
 
 
 class GeneticAlgorithm:
@@ -38,6 +38,8 @@ class GeneticAlgorithm:
         self.use_hillclimber = use_hillclimber
         self.selection_strat = selection_strat
         self.breeding_strat = breeding_strat
+
+        self.generation_scores = []
 
     def generate_genes(self):
         """
@@ -105,7 +107,7 @@ class GeneticAlgorithm:
             normalized_score = chromosome["score"] / total_fitness
             cumulative_score += normalized_score
 
-            acc_fitness.append({"routes": chromosome['routes'], "acc_score": cumulative_score})
+            acc_fitness.append({"routes": chromosome["routes"], "acc_score": cumulative_score})
 
         return acc_fitness
 
@@ -151,7 +153,7 @@ class GeneticAlgorithm:
         for i in range(halfway):
 
             # Take random sample (10%) of population
-            selected = sorted(random.choices(population, k=int(len(population) / 10)), key=lambda x: x['score'])[0]
+            selected = sorted(random.choices(population, k=int(len(population) / 10)), key=lambda x: x["score"])[0]
 
             # Select highest scoring
             new_population[i] = selected
@@ -238,7 +240,7 @@ class GeneticAlgorithm:
             # Add gene to child if gene exists at this place
             if i < len(parent):
                 child.append(parent[i])
-        
+
         return child
 
     def mutate(self, population, version):
@@ -251,7 +253,7 @@ class GeneticAlgorithm:
 
                 # If hillclimber is activated, mutation is done by a hill-climbing algorithm
                 if version == "hillclimber":
-                    routemap = Hillclimber(self.graph, start_state=chromosome['routes']).run()
+                    routemap = Hillclimber(self.graph, start_state=chromosome["routes"]).run()
                     population[i] = {"routes": routemap.routes, "score": 0}
                 else:
                     # Mutation, insert new random route
@@ -291,11 +293,12 @@ class GeneticAlgorithm:
             if fitness_pop[0]["score"] > best_solution["score"]:
                 best_solution = deepcopy(fitness_pop[0])
 
-            #print(f"{generation} last score: {fitness_pop[0]['score']}")
-            #print(f"{generation} best score: {best_solution['score']}")
+            # print(f"{generation} last score: {fitness_pop[0]['score']}")
+            print(f"{generation} best score: {best_solution['score']}")
+            self.generation_scores.append(best_solution["score"])
 
         # Create routemap of best result
         routemap = Routemap()
         routemap.add_routes(best_solution["routes"])
 
-        return routemap
+        return self.generation_scores

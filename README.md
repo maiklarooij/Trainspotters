@@ -36,7 +36,7 @@ Of via conda:
 conda install --file requirements.txt
 ```
 
-### Commando
+### Commando en parameters
 
 Het programma kan op de volgende manier een algoritme draaien:
 
@@ -48,6 +48,14 @@ Bijvoorbeeld het random algoritme op Holland:
 
 ```
 python main.py -s Holland -a random
+```
+
+Het breadth-first algoritme heeft een parameter die kan worden meegegeven:
+
+- `-bm`: Beam-waarde, aantal opties om te behouden elke iteratie
+
+```
+python main.py -s Nationaal -a bf -bm 15
 ```
 
 Het genetisch algoritme heeft een aantal parameters die kunnen worden gekozen:
@@ -64,11 +72,31 @@ Het genetisch algoritme heeft een aantal parameters die kunnen worden gekozen:
 python main.py -s Nationaal -a genetic -gs -ps -mr -gn -hc -sl -br
 ```
 
+Het hillclimber algoritme heeft twee parameters die kunnen worden gekozen:
+
+- `re`: Aantal restarts
+- `r`: Aantal willekeurige routes die het algoritme genereert en probeert toe te voegen per iteratie
+
+```
+python main.py -s Nationaal -a genetic -re 10 -r 1000
+```
+
 Voor hulp bij het draaien van het programma probeer:
 
 ```
 python main.py -h
 ```
+
+### Commando experiment
+
+Om een experiment te draaien dien je een schaal en een algoritme mee te geven:
+
+```
+python experiment.py -s Nationaal -a hillclimber
+```
+
+Als er geen algoritme wordt meegegeven worden alle experimenten achter elkaar gedraaid.
+Het resultaat van het experiment wordt opgeslagen onder `/results/experiment/experiment_algorithm.csv`
 
 ### Structuur
 

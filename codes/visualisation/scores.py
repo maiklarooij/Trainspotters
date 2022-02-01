@@ -9,9 +9,10 @@
 # -----------------------------------------------------------
 
 import csv
+import enum
 import matplotlib.pyplot as plt
 import numpy as np
-from code.algorithms.genetic import GeneticAlgorithm
+from codes.algorithms.genetic import GeneticAlgorithm
 
 
 def plot_score_distribution(algorithm, graph, test_runs, name):
@@ -142,5 +143,17 @@ def plot_mutation(csv_file):
     plt.plot(mr, scores)
     plt.title(f"Scores for different mutation rates (n = 5, scale = Nationaal)")
     plt.xlabel("Mutation rate")
+    plt.ylabel("Score")
+    plt.show()
+
+
+def plot_genhill(genetic_algorithm):
+    """
+    Plots a score for every generation for a genetic algorithm with hillclimber.
+    """
+    scores = genetic_algorithm
+    plt.plot(range(1, len(scores)+1), scores)
+    plt.title(f"Best score after each generation, genetic+hillclimb algorithm")
+    plt.xlabel("Generation")
     plt.ylabel("Score")
     plt.show()

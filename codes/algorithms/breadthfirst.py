@@ -7,16 +7,19 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-from code.classes.route import Route
-from code.classes.routemap import Routemap
+from codes.classes.route import Route
+from codes.classes.routemap import Routemap
+
 
 class BreadthFirst:
     """
     Implements a breadth-first algorithm.
+
     Arguments:
     - graph: the input graph with all stations and connections
     - beam: integer to prune the options for each step
     """
+
     def __init__(self, graph, beam=14):
         self.graph = graph
         self.beam = beam
@@ -44,12 +47,10 @@ class BreadthFirst:
 
         return route_copy, increase
 
-
     def run(self):
         """
         Runs the breadth-first algorithm
         """
-
         while len(self.routemap.routes) != self.graph.MAX_ROUTES:
 
             # At the start of a route, initialize routes with all different stations as start states
@@ -82,7 +83,7 @@ class BreadthFirst:
                             best_option = (route_copy, increase)
 
                 # Create new options, keep only the x (beam value) highest increasing routes
-                children = [route[0] for route in sorted(scored_routes, key=lambda x: x[1], reverse=True)[:self.beam]]
+                children = [route[0] for route in sorted(scored_routes, key=lambda x: x[1], reverse=True)[: self.beam]]
 
             # If there is no option resulting in a higher score, stop the algorithm
             if not best_option[0]:

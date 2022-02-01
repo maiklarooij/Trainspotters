@@ -22,7 +22,7 @@ Het script geeft voor elk algoritme een csv bestand als output. Met de verzameld
 
 Het random algoritme is 100.000 keer gedraaid. Daar kwam de volgende distributie van scores uit:
 
-![Random distributie](..\results\random\random_score_distribution_nationaal.png)
+![Random distributie](../results/random/random_score_distribution_nationaal.png)
 
 De beste score die het random algoritme heeft behaald is een score van 6151.842696629214, maar de gemiddelde score is 3570.795190224718. Het algoritme kan toevallig een goede score halen, maar haalt dit meestal dus niet.
 
@@ -34,7 +34,7 @@ Ons greedy algoritme is deterministisch, daarom hebben we deze niet vaker laten 
 
 Het breadth first algoritme is deterministisch, er zal dus altijd hetzelfde resultaat uit komen. We hebben het algoritme gedraaid met verschillende beam scores.
 
-![Breadth first beam](..\results\bf\beam_plot.png)
+![Breadth first beam](../results/bf/beam_plot.png)
 
 Aangezien de score het hoogste lijkt te liggen tussen een beam waarde van 10 en 20, hebben we deze resultaten nog nader bekeken. Onderstaande tabel laat zien dat een beam waarde van 14 of 18 de beste score oplevert.
 
@@ -91,11 +91,11 @@ Het genetisch algoritme kent ontzettend veel opties. We hebben al deze opties ee
 
 Uit deze resultaten blijkt dat 1-point breeding en elitism selection in combinatie met 200 generaties het beste lijkt te werken. In de milestone van ons tweede algoritme is dit ook al gebleken. Zie onderstaande grafieken met het verloop van de score in de verschillende generations.
 
-![Generations breeding](..\results\genetic\breeding.png) ![Generations selection](..\results\genetic\selection.png)
+![Generations breeding](../results/genetic/breeding.png) ![Generations selection](../results/genetic/selection.png)
 
 Hieronder de scoreverdeling per selectie- en breeding strategie.
 
-![Distri breeding](..\results\genetic\breeding_distri.png) ![Distri selection](..\results\genetic\selection_distri.png)
+![Distri breeding](../results/genetic/breeding_distri.png) ![Distri selection](../results/genetic/selection_distri.png)
 
 Tijd om deze configuratie nog wat beter te testen. Voor de mutatation rates 0.2, 0.4 en 0.6 draaien we elke configuratie 10 minuten met een grotere populatie: 10.000.
 
@@ -109,15 +109,18 @@ We zien dat het algoritme ontzettend constant scoort, tussen de +- 6500 en 6900.
 
 ## Genetic + hillclimber
 
-We kunnen ook een combinatie van een genetisch algoritme en het hillclimber algoritme testen. In plaats van random mutaties wordt er 10% van de generaties gemuteerd volgens door de oplossingen te hillclimben. Hiervoor moeten we wel een wat lagere mutatiekans (5%) kiezen om tijdsredenen. We kiezen wederom 1-point breeding en elitism selection met 200 generaties. We draaien het algoritme 5 keer.
+We kunnen ook een combinatie van een genetisch algoritme en het hillclimber algoritme testen. In plaats van random mutaties wordt er 10% van de generaties gemuteerd volgens door de oplossingen te hillclimben. Hiervoor moeten we wel een wat lagere mutatiekans (5%) kiezen om tijdsredenen. We kiezen wederom 1-point breeding en elitism selection met 200 generaties. We draaien het algoritme 8 keer.
 
-| Run | Score |
-|----:|------:|
-|   1 |  7062 |
-|   2 |       |
-|   3 |       |
-|   4 |       |
-|   5 |       |
+| Run | Score        |
+|----:|-------------:|
+|   1 |  7062        |
+|   2 |  7025.64     |
+|   3 |  6990        |
+|   4 |  7070        |
+|   5 |  7037        |
+|   6 |  7065.64     |
+|   7 |  6995        |
+|   8 |  6942        |
 
 ## Vergelijk van alle algoritmen
 
@@ -128,4 +131,4 @@ We kunnen ook een combinatie van een genetisch algoritme en het hillclimber algo
 | Breadth first (beam=14)         |  6477.97     |  6477.96        |
 | Hillclimber (r=500, restarts=20)|  5556        |  6958.64        |
 | Genetic                         |  6777.55     |  6884.92        |   
-| Genetic + hillclimber           |
+| Genetic + hillclimber           |  7023.41     |  7070           |

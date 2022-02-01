@@ -7,15 +7,18 @@
 # -----------------------------------------------------------
 
 import random
-from code.classes.route import Route
-from code.classes.routemap import Routemap
+from codes.classes.route import Route
+from codes.classes.routemap import Routemap
+
 
 class Random:
     """
     Implements a random algorithm.
+
     Arguments:
     - graph: the input graph with all stations and connections
     """
+
     def __init__(self, graph):
         self.graph = graph
         self.routemap = Routemap()

@@ -6,45 +6,47 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-from argparse import ArgumentParser
+import argparse
 import csv
-import random
 import sys
 import time
 
-from code.algorithms.breadthfirst import breadth_first_solution
+from code.algorithms.breadthfirst import BreadthFirst
 from code.algorithms.genetic import GeneticAlgorithm
-from code.algorithms.hillclimber import hillclimber_solution
-from code.algorithms.randomise import random_solution
+from code.algorithms.hillclimber import Hillclimber
+from code.algorithms.randomise import Random
 from code.classes.graph import Graph
+
 
 def experiment_random(graph, runs=100000):
     """
     Executes random algorithm a number of times and writes results to a csv file named experiment_random.csv
     """
-    with open("results/experiment/experiment_random.csv", 'w', newline='') as csv_file:
+    with open("results/experiment/experiment_random.csv", "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
-        writer.writerow(['run', 'score'])
+        writer.writerow(["run", "score"])
 
         for i in range(runs):
-            rs = random_solution(graph)
+            rs = Random(graph).run()
             score = rs.calc_score(graph.total_connections)
 
-            writer.writerow([i+1, score])
+            writer.writerow([i + 1, score])
+
 
 def experiment_bf(graph):
     """
     Executes breadth first algorithm for beam values between 2 and 100 and writes results to a csv file named experiment_bf.csv
     """
-    with open("results/experiment/experiment_bf.csv", 'w', newline='') as csv_file:
+    with open("results/experiment/experiment_bf.csv", "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
-        writer.writerow(['beam', 'score'])
-        
+        writer.writerow(["beam", "score"])
+
         for beam in range(2, 102, 2):
-            bf = breadth_first_solution(graph, beam=beam)
+            bf = BreadthFirst(graph, beam=beam).run()
             score = bf.calc_score(graph.total_connections)
 
             writer.writerow([beam, score])
+
 
 def experiment_hillclimber(graph):
     """
@@ -53,25 +55,26 @@ def experiment_hillclimber(graph):
     restarts = [1, 5, 10, 20]
     r_values = [100, 500, 1000]
 
-    with open("results/experiment/experiment_hillclimber_2.csv", 'w', newline='') as csv_file:
+    with open("results/experiment/experiment_hillclimber_2.csv", "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
-        writer.writerow(['run', 'restarts', 'r-value', 'score'])
+        writer.writerow(["run", "restarts", "r-value", "score"])
 
         option = 1
         for restart in restarts:
             for r_value in r_values:
-                
+
                 print(f"option {option} of 2")
                 print(f"{restart}:{r_value}")
                 start = time.time()
                 run = 1
                 while time.time() - start < 300:
-                    hc = hillclimber_solution(graph, restarts=restart, r=r_value)
+                    hc = Hillclimber(graph, restarts=restart, r=r_value).run()
                     score = hc.calc_score(graph.total_connections)
 
                     writer.writerow([run, restart, r_value, score])
                     run += 1
                 option += 1
+
 
 def experiment_genetic(graph):
     """
@@ -96,7 +99,7 @@ def experiment_genetic(graph):
                 for generation in generations:
                     for mutate_rate in mutate_rates:
                         for gp_size in genes_and_pop_size:
-                            
+
                             print(f"option {option} of 324")
                             print(f"{breeding}:{selection}:{generation}:{mutate_rate}:{gp_size}")
 
@@ -113,12 +116,16 @@ def experiment_genetic(graph):
 
 
 if __name__ == "__main__":
-    p = ArgumentParser()
+    p = argparse.ArgumentParser()
     p.add_argument("-s", "--scale", help='Scale to run experiment on. Options = "Holland" or "Nationaal"', default="Holland", type=str)
-    p.add_argument("-a", "--algorithm", help='Algorithm to run experiment on', type=str)
+    p.add_argument("-a", "--algorithm", help="Algorithm to run experiment on", default='all', type=str)
     args = p.parse_args(sys.argv[1:])
 
     experiment_graph = Graph(f"data/Stations{args.scale}.csv", f"data/Connecties{args.scale}.csv", args.scale)
-    experiments = {'random': experiment_random, 'genetic': experiment_genetic, 'bf': experiment_bf, 'hillclimber': experiment_hillclimber}
+    experiments = {"random": experiment_random, "genetic": experiment_genetic, "bf": experiment_bf, "hillclimber": experiment_hillclimber}
 
-    experiments[args.algorithm](experiment_graph)
+    if args.algorithm == 'all':
+        for function in experiments.values():
+            function(experiment_graph)
+    else:
+        experiments[args.algorithm](experiment_graph)
