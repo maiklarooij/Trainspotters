@@ -1,4 +1,4 @@
-# Trainspotters [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+# Trainspotters <br> [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) ![python emblem](https://badgen.net/pypi/python/black)
 
 Vak: [Programmeertheorie 2022](theorie.mprog.nl) <br>
 Gekozen case: [RailNL](https://theorie.mprog.nl/cases/railnl) <br>
@@ -17,6 +17,12 @@ Om de kwaliteit van de lijnvoering te testen is de volgende doelfunctie opgestel
 K = p*10000 - (T*100 + Min)
 ```
 Waarin K = de kwaliteit van de lijnvoering, p = de fractie van alle gereden verbindingen van het totaal aantal verbindingen, T = het aantal trajecten en Min = het aantal minuten van alle trajecten samen.
+
+### Verkenning
+
+[Klik hier](https://nbviewer.org/github/maiklarooij/Trainspotters/blob/main/milestones/exploration.ipynb) om een verkenning van de stations en connecties te bekijken. Dit is gemaakt met `folium` in een Jupyter Notebook zodat de visualisatie interactief kan worden bekeken. Dit ziet er ongeveer zo uit:
+
+![Train map](doc/allstations.PNG)
 
 ## Gebruik
 
@@ -44,11 +50,37 @@ Bijvoorbeeld het random algoritme op Holland:
 python main.py -s Holland -a random
 ```
 
+Het genetisch algoritme heeft een aantal parameters die kunnen worden gekozen:
+
+- `-gs`: Aantal random genes (routes) om te genereren
+- `-ps`: Aantal random combinaties van routes om te genereren
+- `-mr`: Mutatiekans
+- `-gn`: Aantal generaties (aantal iteraties) van het algoritme
+- `-hc`: Optie om Hillclimber te gebruiken als mutatieoptie
+- `-sl`: Selectiemethode ('rws', 'elitism' of 'tournament')
+- `-br`: Breeding-methode ('1point', '2point' of 'uniform')
+
+```
+python main.py -s Nationaal -a genetic -gs -ps -mr -gn -hc -sl -br
+```
+
 Voor hulp bij het draaien van het programma probeer:
 
 ```
 python main.py -h
 ```
+
+### Structuur
+
+De mappen in deze repository:
+- /code: bevat de code van dit project
+    - /code/algorithms: bevat de algoritmes
+    - /code/classes: bevat de benodigde classes
+    - /code/visualisation: bevat code om visualisaties te maken
+- /data: bevat de input data van dit project
+- /doc: bevat belangrijke documenten, zoals pseudocodes en ondersteunende plaatjes
+- /milestones: bevat milestones en twee notebooks met verkenning
+- /results: bevat resultaten, zowel interactieve visualisaties als statische plots
 
 ## Auteurs
 

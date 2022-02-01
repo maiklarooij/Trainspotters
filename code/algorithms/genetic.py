@@ -6,6 +6,7 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
+from copy import deepcopy
 import random
 from code.algorithms.hillclimber import Hillclimber
 
@@ -104,7 +105,7 @@ class GeneticAlgorithm:
             normalized_score = chromosome["score"] / total_fitness
             cumulative_score += normalized_score
 
-            acc_fitness.append({"routes": chromosome, "acc_score": cumulative_score})
+            acc_fitness.append({"routes": chromosome['routes'], "acc_score": cumulative_score})
 
         return acc_fitness
 
@@ -150,10 +151,10 @@ class GeneticAlgorithm:
         for i in range(halfway):
 
             # Take random sample (10%) of population
-            selected = dict(sorted(random.choices(population, k=int(len(population) / 10)), key=lambda x: x[1]))
+            selected = sorted(random.choices(population, k=int(len(population) / 10)), key=lambda x: x['score'])[0]
 
             # Select highest scoring
-            new_population[i] = selected[0]
+            new_population[i] = selected
 
         return new_population
 
@@ -237,7 +238,7 @@ class GeneticAlgorithm:
             # Add gene to child if gene exists at this place
             if i < len(parent):
                 child.append(parent[i])
-
+        
         return child
 
     def mutate(self, population, version):
@@ -289,7 +290,10 @@ class GeneticAlgorithm:
 
             # Remember best solution
             if fitness_pop[0]["score"] > best_solution["score"]:
-                best_solution = fitness_pop[0]
+                best_solution = deepcopy(fitness_pop[0])
+
+            #print(f"{generation} last score: {fitness_pop[0]['score']}")
+            #print(f"{generation} best score: {best_solution['score']}")
 
         # Create routemap of best result
         routemap = Routemap()

@@ -1,23 +1,32 @@
+# -----------------------------------------------------------
+# main.py
+#
+# Used to run algorithms.
+#
+# Authors: Sam Bijhouwer and Maik Larooij
+# -----------------------------------------------------------
+
 import sys
 import argparse
 
-from code.classes.graph import Graph
-from code.algorithms.randomise import Random
-from code.algorithms.greedy import Greedy
 from code.algorithms.breadthfirst import BreadthFirst
-from code.algorithms.hillclimber import Hillclimber
 from code.algorithms.genetic import GeneticAlgorithm
-from code.visualisation.visualise import make_train_map
-from code.visualisation.scores import compare_breeding, compare_selection, plot_mutation, plot_score_distribution, plot_minutes_fraction, plot_beam_score
+from code.algorithms.greedy import Greedy
+from code.algorithms.hillclimber import Hillclimber
+from code.algorithms.randomise import Random
+from code.classes.graph import Graph
+from code.visualisation.visualise import TrainMap
+
 
 if __name__ == "__main__":
 
     # Command line arguments
     p = argparse.ArgumentParser()
-    
+
     # All algorithms arguments
-    p.add_argument('-s', '--scale', help='Scale to run algorithms on. Options = "Holland" or "Nationaal"', default='Holland', type=str)
-    p.add_argument('-a', '--algorithm', help='Algorithm to run. Options = "random", "greedy", "bf", "hillclimber", "genetic".', default='random', type=str)
+    p.add_argument("-s", "--scale", help='Scale to run algorithms on. Options = "Holland" or "Nationaal"', default="Holland", type=str)
+    p.add_argument("-a", "--algorithm", help='Algorithm to run. Options = "random", "greedy", "bf", "hillclimber", "genetic".',
+                   default="random", type=str)
 
     # Breadth-first algorithm optional argument
     p.add_argument('-bm', '--beam', help='Number of options to keep after each iteration', default=14, type=int)
@@ -43,15 +52,21 @@ if __name__ == "__main__":
     # Algorithm = 'random', 'greedy', 'bf', 'genetic'
     scale = args.scale
     algorithm = args.algorithm
-    
+
     # Make test graph based on scale
     test_graph = Graph(f"data/Stations{scale}.csv", f"data/Connecties{scale}.csv", scale)
     nr_connections = test_graph.total_connections
     algorithms = {'random': Random(test_graph).run,
                   'greedy': Greedy(test_graph).run,
                   'bf': BreadthFirst(test_graph, args.beam).run, 
-                  'genetic': GeneticAlgorithm(test_graph, args.generations, args.genes_size, args.pop_size, args.mutation_rate, 
-                  hillclimber_option[args.hillclimber], args.selection, args.breeding).run,
+                  'genetic': GeneticAlgorithm(test_graph,
+                  args.generations,
+                  args.genes_size,
+                  args.pop_size,
+                  args.mutation_rate, 
+                  hillclimber_option[args.hillclimber],
+                  args.selection,
+                  args.breeding).run,
                   'hillclimber': Hillclimber(test_graph, args.restarts, args.r).run}
 
     # Run algorithm
@@ -59,10 +74,4 @@ if __name__ == "__main__":
 
     # Generate results
     solution.generate_output(nr_connections)
-    make_train_map(solution, test_graph, [52.37888718, 4.900277615], algorithm)
-
-    #store_genetic_scores(test_graph)
-    #plot_mutation('genetic_scores_mr.csv')
-    #compare_breeding(test_graph)
-
-    # plot_beam_score(breadth_first_solution, test_graph, 'Breadth-first')
+    TrainMap(solution, test_graph, algorithm).export()
