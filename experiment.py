@@ -8,44 +8,106 @@
 
 from argparse import ArgumentParser
 import csv
+import random
 import sys
 import time
 
+from code.algorithms.breadthfirst import breadth_first_solution
 from code.algorithms.genetic import GeneticAlgorithm
+from code.algorithms.hillclimber import hillclimber_solution
+from code.algorithms.randomise import random_solution
 from code.classes.graph import Graph
 
+def experiment_random(graph, runs=100000):
+    """
+    Executes random algorithm a number of times and writes results to a csv file named experiment_random.csv
+    """
+    with open("results/experiment/experiment_random.csv", 'w', newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(['run', 'score'])
 
-def experiment(graph):
+        for i in range(runs):
+            rs = random_solution(graph)
+            score = rs.calc_score(graph.total_connections)
 
+            writer.writerow([i+1, score])
+
+def experiment_bf(graph):
+    """
+    Executes breadth first algorithm for beam values between 2 and 100 and writes results to a csv file named experiment_bf.csv
+    """
+    with open("results/experiment/experiment_bf.csv", 'w', newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(['beam', 'score'])
+        
+        for beam in range(2, 102, 2):
+            bf = breadth_first_solution(graph, beam=beam)
+            score = bf.calc_score(graph.total_connections)
+
+            writer.writerow([beam, score])
+
+def experiment_hillclimber(graph):
+    """
+    Executes hillclimber algorithm for different values for restart and r and writes results to a csv file named experiment_hillclimber.csv
+    """
+    restarts = [1, 5, 10, 20]
+    r_values = [100, 500, 1000]
+
+    with open("results/experiment/experiment_hillclimber_2.csv", 'w', newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(['run', 'restarts', 'r-value', 'score'])
+
+        option = 1
+        for restart in restarts:
+            for r_value in r_values:
+                
+                print(f"option {option} of 2")
+                print(f"{restart}:{r_value}")
+                start = time.time()
+                run = 1
+                while time.time() - start < 300:
+                    hc = hillclimber_solution(graph, restarts=restart, r=r_value)
+                    score = hc.calc_score(graph.total_connections)
+
+                    writer.writerow([run, restart, r_value, score])
+                    run += 1
+                option += 1
+
+def experiment_genetic(graph):
+    """
+    Executes genetic algorithm for different configurations and writes results to a csv file named experiment_genetic.csv
+    """
     breedings = ["1point", "2point"]
     selections = ["elitism", "tournament", "rws"]
     generations = [50, 100, 200]
     mutate_rates = range(0, 12, 2)
     genes_and_pop_size = [100, 500, 1000]
 
-    with open("experiment.csv", "w", newline="") as csv_file:
+    with open("results/experiment/experiment_genetic.csv", "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
 
         writer.writerow(["run", "breeding", "selection", "generations", "mutate_rate", "gp_size", "score"])
 
         option = 1
+
+        # Go through all options
         for breeding in breedings:
             for selection in selections:
                 for generation in generations:
                     for mutate_rate in mutate_rates:
                         for gp_size in genes_and_pop_size:
                             
-                            if option > 44:
-                                print(f"option {option} of 405")
-                                print(f"{breeding}:{selection}:{generation}:{mutate_rate}:{gp_size}")
+                            print(f"option {option} of 324")
+                            print(f"{breeding}:{selection}:{generation}:{mutate_rate}:{gp_size}")
 
-                                start = time.time()
-                                run = 1
-                                while time.time() - start < 60:
-                                    ga = GeneticAlgorithm(graph, generation, gp_size, gp_size, mutate_rate / 10, False, selection, breeding).run(graph)
-                                    score = ga.calc_score(graph.total_connections)
-                                    writer.writerow([run, breeding, selection, generation, mutate_rate / 10, gp_size, score])
-                                    run += 1
+                            # Give each option a minute to run as often as possible.
+                            start = time.time()
+                            run = 1
+                            while time.time() - start < 60:
+                                ga = GeneticAlgorithm(graph, generation, gp_size, gp_size, mutate_rate / 10, False, selection, breeding).run(graph)
+                                score = ga.calc_score(graph.total_connections)
+                                writer.writerow([run, breeding, selection, generation, mutate_rate / 10, gp_size, score])
+                                run += 1
 
                             option += 1
 
@@ -53,8 +115,10 @@ def experiment(graph):
 if __name__ == "__main__":
     p = ArgumentParser()
     p.add_argument("-s", "--scale", help='Scale to run experiment on. Options = "Holland" or "Nationaal"', default="Holland", type=str)
+    p.add_argument("-a", "--algorithm", help='Algorithm to run experiment on', type=str)
     args = p.parse_args(sys.argv[1:])
 
     experiment_graph = Graph(f"data/Stations{args.scale}.csv", f"data/Connecties{args.scale}.csv", args.scale)
+    experiments = {'random': experiment_random, 'genetic': experiment_genetic, 'bf': experiment_bf, 'hillclimber': experiment_hillclimber}
 
-    experiment(experiment_graph)
+    experiments[args.algorithm](experiment_graph)

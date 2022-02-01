@@ -3,4 +3,3 @@ __pycache__/
 data/
 milestones/.ipynb_checkpoints/*
 *.pdf
-*.csv

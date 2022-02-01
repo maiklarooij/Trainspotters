@@ -15,7 +15,7 @@ from code.classes.routemap import Routemap
 
 class GeneticAlgorithm:
     """
-    Implements a genetic algorithm, insipred by the process of natural selection.
+    Implements a genetic algorithm, inspired by the process of natural selection.
 
     Arguments:
     - graph: the input graph with all the stations and connections
@@ -250,7 +250,7 @@ class GeneticAlgorithm:
 
                 # If hillclimber is activated, mutation is done by a hill-climbing algorithm
                 if version == "hillclimber":
-                    population[i] = {"routes": hillclimber_solution(self.graph, chromosome[0]).routes, "score": 0}
+                    population[i] = {"routes": hillclimber_solution(self.graph, chromosome['routes']).routes, "score": 0}
                 else:
                     # Mutation, insert new random route
                     mutate_index = random.randint(0, len(chromosome["routes"]) - 1)
@@ -290,7 +290,7 @@ class GeneticAlgorithm:
                 best_solution = deepcopy(fitness_pop[0])
 
             #print(f"{generation} last score: {fitness_pop[0]['score']}")
-            #print(f"{generation} best score: {best_solution['score']}")
+            print(f"{generation} best score: {best_solution['score']}")
 
         # Create routemap of best result
         routemap = Routemap()

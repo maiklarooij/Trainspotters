@@ -20,7 +20,7 @@ def generate_routemap(routes):
     return routemap
 
 
-def find_replacement(routemap, index, graph, r=100):
+def find_replacement(routemap, index, graph, r):
     """
     Generates an X amount of random routes and checks whether replacing the route
     on the given index results in a higher score
@@ -48,7 +48,7 @@ def find_replacement(routemap, index, graph, r=100):
     return best_route
 
 
-def hillclimber_solution(graph, start_state=None, restarts=10):
+def hillclimber_solution(graph, start_state=None, restarts=10, r=100):
     """
     Generates a solution with hillclimbing algorithm. Takes in a graph and optionally a start state
     Goes over every route in solution and tries random routes and checks for improvement
@@ -65,7 +65,7 @@ def hillclimber_solution(graph, start_state=None, restarts=10):
     for _ in range(restarts):
 
         for index in range(len(routemap.routes)):
-            route = find_replacement(routemap, index, graph)
+            route = find_replacement(routemap, index, graph, r)
             routemap.replace_route(route, index)
 
     return routemap
