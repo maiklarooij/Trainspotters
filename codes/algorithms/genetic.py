@@ -301,4 +301,4 @@ class GeneticAlgorithm:
         routemap = Routemap()
         routemap.add_routes(best_solution["routes"])
 
-        return self.generation_scores
+        return routemap
