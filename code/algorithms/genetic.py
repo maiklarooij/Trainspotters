@@ -8,7 +8,8 @@
 
 from copy import deepcopy
 import random
-from code.algorithms.hillclimber import hillclimber_solution
+from code.algorithms.hillclimber import Hillclimber
+
 from code.algorithms.randomise import generate_random_route
 from code.classes.routemap import Routemap
 
@@ -250,7 +251,8 @@ class GeneticAlgorithm:
 
                 # If hillclimber is activated, mutation is done by a hill-climbing algorithm
                 if version == "hillclimber":
-                    population[i] = {"routes": hillclimber_solution(self.graph, chromosome['routes']).routes, "score": 0}
+                    routemap = Hillclimber(self.graph, start_state=chromosome['routes']).run()
+                    population[i] = {"routes": routemap.routes, "score": 0}
                 else:
                     # Mutation, insert new random route
                     mutate_index = random.randint(0, len(chromosome["routes"]) - 1)
@@ -259,7 +261,7 @@ class GeneticAlgorithm:
         # Return mutated population
         return population
 
-    def run(self, graph):
+    def run(self):
         """
         Runs the genetic algorithm
         """
@@ -290,7 +292,7 @@ class GeneticAlgorithm:
                 best_solution = deepcopy(fitness_pop[0])
 
             #print(f"{generation} last score: {fitness_pop[0]['score']}")
-            print(f"{generation} best score: {best_solution['score']}")
+            #print(f"{generation} best score: {best_solution['score']}")
 
         # Create routemap of best result
         routemap = Routemap()
