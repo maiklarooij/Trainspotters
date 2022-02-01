@@ -26,7 +26,7 @@ def breadth_first(graph):
 
 We hebben ons algoritme gedraaid met beam waarden tussen de 2 en 100. Hieronder een plot van de scores:
 
-![Score per beam waarde](../results/bf/beam_plot.png)
+![Score per beam waarde](../results/bf/experiment/beam_plot.png)
 
 Aangezien de score het hoogste lijkt te liggen tussen een beam waarde van 10 en 20, hebben we deze resultaten nog nader bekeken. Onderstaande tabel laat zien dat een beam waarde van 14 of 18 de beste score oplevert.
 
@@ -43,6 +43,6 @@ Aangezien de score het hoogste lijkt te liggen tussen een beam waarde van 10 en 
 
 ## Vergelijking met baseline
 
-![Histogram random algoritme Nationaal](../results/random/random_score_distribution_nationaal.png)
+![Histogram random algoritme Nationaal](../results/random/experiment/random_score_distribution_nationaal.png)
 
 We zien dat onze random scores op het nationale treinnetwerk meestal een score tussen de 3000 en 4000 oplevert. In het beste geval behaalt het random algoritme een score van net iets boven de 5000. Aangezien ons breadth first algoritme in het beste geval een score van 6478 haalt, kunnen we stellen dat dit een flinke verbetering is ten opzichte van de baseline. Zelfs met beam waardes waarbij de score lager ligt, scoort het algoritme beter dan de baseline in alle gevallen.

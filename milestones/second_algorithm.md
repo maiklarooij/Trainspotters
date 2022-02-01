@@ -36,19 +36,19 @@ Voor de generations, genes_size en population_size geldt: hoe hoger de waarde, h
 
 Allereerst hebben we gekeken naar een goede waarde voor de mutation rate. Na een test met een populatie van 1000 hebben we ingezoomd op mutatiekansen van 20, 30, 40 en 50%. Hogere mutatiekansen werden te willekeurig, waardoor vaak goede oplossingen juist slechter werden door de hoge mutatiekans. We hebben het genetisch algoritme vijf keer uitgevoerd voor elke kans en het beste resultaat gepakt.
 
-![Mutation rate](../results/genetic/mutation_rate.png)
+![Mutation rate](../results/genetic/experiment/mutation_rate.png)
 
 ### Selection strategie
 
 We hebben drie verschillende selectie-strategieën uitgewerkt. Elke selectiestrategie is vijf keer uitgevoerd op een populatie van 10000 en 200 generaties. De beste oplossing is weergegeven.
 
-![Breeding](../results/genetic/selection.png)
+![Breeding](../results/genetic/experiment/selection.png)
 
 ### Breeding strategie
 
 We hebben drie verschillende breeding-strategieën uitgewerkt. Elke breedingstrategie is vijf keer uitgevoerd op een populatie van 10000 en 200 generaties. De beste oplossing is weergegeven.
 
-![Breeding](../results/genetic/breeding.png)
+![Breeding](../results/genetic/experiment/breeding.png)
 
 ### Combinatie met hillclimber
 
@@ -58,6 +58,6 @@ We zijn bezig met hillclimber. We halen resultaten boven de 7000, wat betekent d
 
 ## Vergelijking met baseline
 
-![Histogram random algoritme Nationaal](../results/random/random_score_distribution_nationaal.png)
+![Histogram random algoritme Nationaal](../results/random/experiment/random_score_distribution_nationaal.png)
 
 We zien dat onze random scores op het nationale treinnetwerk meestal een score tussen de 3000 en 4000 oplevert. In het beste geval behaalt het random algoritme een score van net iets boven de 5000. Aangezien ons genetisch algoritme veelal boven de 6500 scoort bij goede configuraties, kunnen we stellen dat dit een flinke verbetering is ten opzichte van de baseline. Ook lijkt het algoritme beter te scoren dan het deterministische breadth-first algoritme (score van 6478).

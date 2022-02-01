@@ -11,18 +11,18 @@ import csv
 import sys
 import time
 
-from code.algorithms.breadthfirst import BreadthFirst
-from code.algorithms.genetic import GeneticAlgorithm
-from code.algorithms.hillclimber import Hillclimber
-from code.algorithms.randomise import Random
-from code.classes.graph import Graph
+from codes.algorithms.breadthfirst import BreadthFirst
+from codes.algorithms.genetic import GeneticAlgorithm
+from codes.algorithms.hillclimber import Hillclimber
+from codes.algorithms.randomise import Random
+from codes.classes.graph import Graph
 
 
 def experiment_random(graph, runs=100000):
     """
     Executes random algorithm a number of times and writes results to a csv file named experiment_random.csv
     """
-    with open("results/experiment/experiment_random.csv", "w", newline="") as csv_file:
+    with open("results/random/experiment/experiment_random.csv", "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(["run", "score"])
 
@@ -37,7 +37,7 @@ def experiment_bf(graph):
     """
     Executes breadth first algorithm for beam values between 2 and 100 and writes results to a csv file named experiment_bf.csv
     """
-    with open("results/experiment/experiment_bf.csv", "w", newline="") as csv_file:
+    with open("results/bf/experiment/experiment_bf.csv", "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(["beam", "score"])
 
@@ -55,7 +55,7 @@ def experiment_hillclimber(graph):
     restarts = [1, 5, 10, 20]
     r_values = [100, 500, 1000]
 
-    with open("results/experiment/experiment_hillclimber_2.csv", "w", newline="") as csv_file:
+    with open("results/hillclimber/experiment/experiment_hillclimber.csv", "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(["run", "restarts", "r-value", "score"])
 
@@ -86,7 +86,7 @@ def experiment_genetic(graph):
     mutate_rates = range(0, 12, 2)
     genes_and_pop_size = [100, 500, 1000]
 
-    with open("results/experiment/experiment_genetic.csv", "w", newline="") as csv_file:
+    with open("results/genetic/experiment/experiment_genetic.csv", "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
 
         writer.writerow(["run", "breeding", "selection", "generations", "mutate_rate", "gp_size", "score"])

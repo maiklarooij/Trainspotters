@@ -26,6 +26,7 @@ class TrainMap:
         self.routemap = routemap
         self.graph = graph
         self.algorithm = algorithm
+        self.feature_groups = {}
 
     def station_in_routemap(self, station):
         """
@@ -40,18 +41,28 @@ class TrainMap:
         """
         stations_in_route = []
 
-        for station in self.graph.stations.values():
-            if self.station_in_routemap(station):
-                color = "darkblue"
-            else:
-                color = "red"
+        # Add stations in routemap
+        for i, route in enumerate(self.routemap.routes):
 
-            folium.Marker(
-                location=[station.coord[0], station.coord[1]],
-                popup=f"Station {station.name}. Location: ({station.coord[0]}, {station.coord[1]})",
-                icon=folium.Icon(color=color, icon="train", icon_color="#FEBE00", prefix="fa"),
-            ).add_to(self.base_map)
-            stations_in_route.append(station)
+            route_name = f"route{i+1}"
+            for station in route.stations:
+
+                folium.Marker(
+                    location=[station.coord[0], station.coord[1]],
+                    tooltip=f"Station {station.name}. Location: ({station.coord[0]}, {station.coord[1]})",
+                    icon=folium.Icon(color='darkblue', icon="train", icon_color="#FEBE00", prefix="fa"),
+                ).add_to(self.feature_groups[route_name].add_to(self.base_map))
+                stations_in_route.append(station.name)
+
+        # Add stations not in routemap
+        for station in self.graph.stations.values():
+            if station.name not in stations_in_route:
+                folium.Marker(
+                    location=[station.coord[0], station.coord[1]],
+                    tooltip=f"Station {station.name}. Location: ({station.coord[0]}, {station.coord[1]})",
+                    icon=folium.Icon(color='red', icon="train", icon_color="#FEBE00", prefix="fa"),
+                ).add_to(self.base_map)
+                stations_in_route.append(station)
 
     def add_connections(self):
         """
@@ -65,6 +76,7 @@ class TrainMap:
 
         for i, route in enumerate(self.routemap.routes):
             color = colors[i]
+            route_name = f"route{i+1}"
             for connection in route.connections:
 
                 station1_loc = (connection.station1.coord[0], connection.station1.coord[1])
@@ -81,16 +93,25 @@ class TrainMap:
                     locations=[station1_loc, station2_loc],
                     color=color,
                     popup=f"{connection.station1.name} to {connection.station2.name}: {connection.distance} minutes. Route {i+1}",
-                ).add_to(self.base_map)
+                ).add_to(self.feature_groups[route_name].add_to(self.base_map))
 
                 seen_connections.add(connection)
+
+    def create_feature_groups(self):
+        for i, route in enumerate(self.routemap.routes):
+            route_name = f"route{i+1}"
+            self.feature_groups[route_name] = folium.FeatureGroup(name=f"Route {i+1}, {route.stations[0]} to {route.stations[-1]}, distance {route.total_time}")
 
     def export(self):
         """
         Creates the train map and exports it to an interactive html page.
         """
+        self.create_feature_groups()
+
         self.add_stations()
 
         self.add_connections()
 
-        self.base_map.save(f"results/{self.algorithm}/{self.algorithm}_solution.html")
+        folium.LayerControl(collapsed=False).add_to(self.base_map)
+
+        self.base_map.save(f"results/{self.algorithm}/solution/{self.algorithm}_hillclimber_solution_{self.graph.scale}.html")

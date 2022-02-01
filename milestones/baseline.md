@@ -26,8 +26,8 @@ def random_solution(graph):
 
 ## Resultaten algoritme
 
-![Histogram random algoritme Holland](../results/random/random_score_distribution_holland.png)
-![Histogram random algoritme Nationaal](../results/random/random_score_distribution_nationaal.png)
+![Histogram random algoritme Holland](../results/random/experiment/random_score_distribution_holland.png)
+![Histogram random algoritme Nationaal](../results/random/experiment/random_score_distribution_nationaal.png)
 
 Het algoritme scoort een stuk beter op Noord- en Zuid-Holland dan op geheel Nederland. Dit komt waarschijnlijk doordat Noord- en Zuid-Holland in totaal een stuk minder connecties bevatten dan heel Nederland, waardoor de fractie gereden verbindingen al gauw wat beter is. 
 We zien in beide histogrammen een 'left skewed' distributie. Waarom zijn er wel (hele) lage scores maar zijn de scores vaak niet veel hoger dan de modus?
@@ -37,4 +37,4 @@ We zien in beide histogrammen een 'left skewed' distributie. Waarom zijn er wel 
 - Het algoritme vult routes totdat het maximum aantal minuten is bereikt, waardoor er wellicht onnodig connecties in meerdere trajecten voorkomen. Het totaal aantal minuten (Min in de formule) valt zo erg hoog uit
 - Het algoritme kiest een willekeurig aantal trajecten waardoor er soms maar weinig routes worden toegevoegd. Hoewel het lagere aantal trajecten meer punten oplevert, resulteert dit vaak ook weer in een kleine fractie bereden connecties. In de volgende plot is deze trade-off mooi te zien:
 
-![Bereden verbindingen vs. minuten](../results/random/fractions_minutes.png)
+![Bereden verbindingen vs. minuten](../results/random/experiment/fractions_minutes.png)

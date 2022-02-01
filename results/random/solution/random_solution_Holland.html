@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_1b68b8b978c5475cbc831498179f1878 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_1b68b8b978c5475cbc831498179f1878" ></div>
+        
+</body>
+<script>    
+    
+            var map_1b68b8b978c5475cbc831498179f1878 = L.map(
+                "map_1b68b8b978c5475cbc831498179f1878",
+                {
+                    center: [52.37888718, 4.900277615],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 8,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a6340ba9ba08480584c526378f0544e3 = L.tileLayer(
+                "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"http://cartodb.com/attributions\"\u003eCartoDB\u003c/a\u003e, CartoDB \u003ca href =\"http://cartodb.com/attributions\"\u003eattributions\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_1b68b8b978c5475cbc831498179f1878);
+        
+    
+            var feature_group_dcff008cf5534d85bbb7d32bfbe11fc1 = L.featureGroup(
+                {}
+            ).addTo(map_1b68b8b978c5475cbc831498179f1878);
+        
+    
+            var marker_8e20e2269413483f800e8fb96d96ae1a = L.marker(
+                [52.30944443, 4.761944294],
+                {}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+            var icon_b161b0fdfe8d4dab9afef15021e20037 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_8e20e2269413483f800e8fb96d96ae1a.setIcon(icon_b161b0fdfe8d4dab9afef15021e20037);
+        
+    
+            marker_8e20e2269413483f800e8fb96d96ae1a.bindTooltip(
+                `<div>
+                     Station Schiphol Airport. Location: (52.30944443, 4.761944294)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7477725385d24e6f852575ea97d52543 = L.marker(
+                [52.338889, 4.872356],
+                {}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+            var icon_8a000efc991c48e3973931d4a2ea66b4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_7477725385d24e6f852575ea97d52543.setIcon(icon_8a000efc991c48e3973931d4a2ea66b4);
+        
+    
+            marker_7477725385d24e6f852575ea97d52543.bindTooltip(
+                `<div>
+                     Station Amsterdam Zuid. Location: (52.338889, 4.872356)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ee80304e96dc4c5985fe1ec68a6d2f12 = L.marker(
+                [52.34666824, 4.917778015],
+                {}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+            var icon_6a248dcb5b2b4549952f48eee6bd68b5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_ee80304e96dc4c5985fe1ec68a6d2f12.setIcon(icon_6a248dcb5b2b4549952f48eee6bd68b5);
+        
+    
+            marker_ee80304e96dc4c5985fe1ec68a6d2f12.bindTooltip(
+                `<div>
+                     Station Amsterdam Amstel. Location: (52.34666824, 4.917778015)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9e283f682b3a4f56a126d64552a86664 = L.marker(
+                [52.37888718, 4.900277615],
+                {}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+            var icon_da464f3d083241f7a6a593a3d0fb3c55 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_9e283f682b3a4f56a126d64552a86664.setIcon(icon_da464f3d083241f7a6a593a3d0fb3c55);
+        
+    
+            marker_9e283f682b3a4f56a126d64552a86664.bindTooltip(
+                `<div>
+                     Station Amsterdam Centraal. Location: (52.37888718, 4.900277615)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d9bb73e806984a11a10a4f0c1358d26c = L.marker(
+                [52.38888931, 4.837777615],
+                {}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+            var icon_2c4a60af2448434386c078924c3e0ad5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_d9bb73e806984a11a10a4f0c1358d26c.setIcon(icon_2c4a60af2448434386c078924c3e0ad5);
+        
+    
+            marker_d9bb73e806984a11a10a4f0c1358d26c.bindTooltip(
+                `<div>
+                     Station Amsterdam Sloterdijk. Location: (52.38888931, 4.837777615)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_acdddddc18234be0a7da55ae51732529 = L.marker(
+                [52.38777924, 4.638333321],
+                {}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+            var icon_7a95b32e981e415abaca756a0289e3bc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_acdddddc18234be0a7da55ae51732529.setIcon(icon_7a95b32e981e415abaca756a0289e3bc);
+        
+    
+            marker_acdddddc18234be0a7da55ae51732529.bindTooltip(
+                `<div>
+                     Station Haarlem. Location: (52.38777924, 4.638333321)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f11b9ba34dc14ef2b83180466a68543d = L.marker(
+                [52.47833252, 4.656666756],
+                {}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+            var icon_8df7cedaf87f40b0ae70f1ab3890dac3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_f11b9ba34dc14ef2b83180466a68543d.setIcon(icon_8df7cedaf87f40b0ae70f1ab3890dac3);
+        
+    
+            marker_f11b9ba34dc14ef2b83180466a68543d.bindTooltip(
+                `<div>
+                     Station Beverwijk. Location: (52.47833252, 4.656666756)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d4c4c854ddb64a22bf28c82e93df0a3c = L.marker(
+                [52.43888855, 4.813611031],
+                {}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+            var icon_dd1c55b0449f4fe3844f6a5d3bbe83c7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_d4c4c854ddb64a22bf28c82e93df0a3c.setIcon(icon_dd1c55b0449f4fe3844f6a5d3bbe83c7);
+        
+    
+            marker_d4c4c854ddb64a22bf28c82e93df0a3c.bindTooltip(
+                `<div>
+                     Station Zaandam. Location: (52.43888855, 4.813611031)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f17b19ab0e3f4256b03866725e7c003c = L.marker(
+                [52.64472198, 5.055555344],
+                {}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+            var icon_fc59ddc6bb4649088d825ec28c20a6a2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_f17b19ab0e3f4256b03866725e7c003c.setIcon(icon_fc59ddc6bb4649088d825ec28c20a6a2);
+        
+    
+            marker_f17b19ab0e3f4256b03866725e7c003c.bindTooltip(
+                `<div>
+                     Station Hoorn. Location: (52.64472198, 5.055555344)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var poly_line_73f467b9cb9e4c9a802b414c0eda1c65 = L.polyline(
+                [[52.38888931, 4.837777615], [52.38777924, 4.638333321]],
+                {"bubblingMouseEvents": true, "color": "#F6786F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#F6786F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+        var popup_df06f0cfa90645dd8ca163667e35d782 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ceb9dbc23c9046ea87d5a0762d198d12 = $(`<div id="html_ceb9dbc23c9046ea87d5a0762d198d12" style="width: 100.0%; height: 100.0%;">Amsterdam Sloterdijk to Haarlem: 11.0 minutes. Route 1</div>`)[0];
+            popup_df06f0cfa90645dd8ca163667e35d782.setContent(html_ceb9dbc23c9046ea87d5a0762d198d12);
+        
+
+        poly_line_73f467b9cb9e4c9a802b414c0eda1c65.bindPopup(popup_df06f0cfa90645dd8ca163667e35d782)
+        ;
+
+        
+    
+    
+            var poly_line_9af92847e08c428385cdd277c9827a61 = L.polyline(
+                [[52.38777924, 4.638333321], [52.47833252, 4.656666756]],
+                {"bubblingMouseEvents": true, "color": "#F6786F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#F6786F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+        var popup_e2018d23422042a39ad5c6b7d832a78f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a435aba0ac0d47929ae52d08df9b6b10 = $(`<div id="html_a435aba0ac0d47929ae52d08df9b6b10" style="width: 100.0%; height: 100.0%;">Haarlem to Beverwijk: 16.0 minutes. Route 1</div>`)[0];
+            popup_e2018d23422042a39ad5c6b7d832a78f.setContent(html_a435aba0ac0d47929ae52d08df9b6b10);
+        
+
+        poly_line_9af92847e08c428385cdd277c9827a61.bindPopup(popup_e2018d23422042a39ad5c6b7d832a78f)
+        ;
+
+        
+    
+    
+            var poly_line_6fbd9bfe17e64c4cb814f354f96f94a9 = L.polyline(
+                [[52.37888718, 4.900277615], [52.38888931, 4.837777615]],
+                {"bubblingMouseEvents": true, "color": "#F6786F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#F6786F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+        var popup_dc51c93faef9441ba0391ff0cadfc70b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e0bbe9df479f4a2eae8ab0c396f181a0 = $(`<div id="html_e0bbe9df479f4a2eae8ab0c396f181a0" style="width: 100.0%; height: 100.0%;">Amsterdam Centraal to Amsterdam Sloterdijk: 6.0 minutes. Route 1</div>`)[0];
+            popup_dc51c93faef9441ba0391ff0cadfc70b.setContent(html_e0bbe9df479f4a2eae8ab0c396f181a0);
+        
+
+        poly_line_6fbd9bfe17e64c4cb814f354f96f94a9.bindPopup(popup_dc51c93faef9441ba0391ff0cadfc70b)
+        ;
+
+        
+    
+    
+            var poly_line_17314cc977c14c09b69b252e47e420e7 = L.polyline(
+                [[52.34666824, 4.917778015], [52.37888718, 4.900277615]],
+                {"bubblingMouseEvents": true, "color": "#F6786F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#F6786F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+        var popup_6af1fe2c164f4d0595b66639cfe3bb7f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_0dcde7668866449d99113d70720bad45 = $(`<div id="html_0dcde7668866449d99113d70720bad45" style="width: 100.0%; height: 100.0%;">Amsterdam Amstel to Amsterdam Centraal: 8.0 minutes. Route 1</div>`)[0];
+            popup_6af1fe2c164f4d0595b66639cfe3bb7f.setContent(html_0dcde7668866449d99113d70720bad45);
+        
+
+        poly_line_17314cc977c14c09b69b252e47e420e7.bindPopup(popup_6af1fe2c164f4d0595b66639cfe3bb7f)
+        ;
+
+        
+    
+    
+            var poly_line_d45fd4e90ddb41de8264c19d7980f7fd = L.polyline(
+                [[52.34666824, 4.917778015], [52.338889, 4.872356]],
+                {"bubblingMouseEvents": true, "color": "#F6786F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#F6786F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+        var popup_405208ab1a504692872907ada83e742c = L.popup({"maxWidth": "100%"});
+
+        
+            var html_594b50f19a624f42b96971a622dcc05b = $(`<div id="html_594b50f19a624f42b96971a622dcc05b" style="width: 100.0%; height: 100.0%;">Amsterdam Amstel to Amsterdam Zuid: 10.0 minutes. Route 1</div>`)[0];
+            popup_405208ab1a504692872907ada83e742c.setContent(html_594b50f19a624f42b96971a622dcc05b);
+        
+
+        poly_line_d45fd4e90ddb41de8264c19d7980f7fd.bindPopup(popup_405208ab1a504692872907ada83e742c)
+        ;
+
+        
+    
+    
+            var poly_line_852c817b6ca04f189338e96c42d4ce0b = L.polyline(
+                [[52.338889, 4.872356], [52.30944443, 4.761944294]],
+                {"bubblingMouseEvents": true, "color": "#F6786F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#F6786F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+        var popup_b4ad89b72854488fbe89b8d6d8253f0e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b6753900f04c4d20be3188b95de28e5a = $(`<div id="html_b6753900f04c4d20be3188b95de28e5a" style="width: 100.0%; height: 100.0%;">Amsterdam Zuid to Schiphol Airport: 6.0 minutes. Route 1</div>`)[0];
+            popup_b4ad89b72854488fbe89b8d6d8253f0e.setContent(html_b6753900f04c4d20be3188b95de28e5a);
+        
+
+        poly_line_852c817b6ca04f189338e96c42d4ce0b.bindPopup(popup_b4ad89b72854488fbe89b8d6d8253f0e)
+        ;
+
+        
+    
+    
+            var poly_line_aed56fc56b004f7a8856271b1ecee114 = L.polyline(
+                [[52.43888855, 4.813611031], [52.47833252, 4.656666756]],
+                {"bubblingMouseEvents": true, "color": "#F6786F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#F6786F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+        var popup_4669ab4c700b4a63b8f9b16e97c954a5 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_f3df59318e28435badc5c60a69dafde6 = $(`<div id="html_f3df59318e28435badc5c60a69dafde6" style="width: 100.0%; height: 100.0%;">Zaandam to Beverwijk: 25.0 minutes. Route 1</div>`)[0];
+            popup_4669ab4c700b4a63b8f9b16e97c954a5.setContent(html_f3df59318e28435badc5c60a69dafde6);
+        
+
+        poly_line_aed56fc56b004f7a8856271b1ecee114.bindPopup(popup_4669ab4c700b4a63b8f9b16e97c954a5)
+        ;
+
+        
+    
+    
+            var poly_line_472c281d96bd49a6a37e5b7cbb0aad83 = L.polyline(
+                [[52.43888855, 4.813611031], [52.64472198, 5.055555344]],
+                {"bubblingMouseEvents": true, "color": "#F6786F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#F6786F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_dcff008cf5534d85bbb7d32bfbe11fc1);
+        
+    
+        var popup_02e907ca230a4c91b6490f2ed6af917d = L.popup({"maxWidth": "100%"});
+
+        
+            var html_0fa20449027b4ff78d82cbcf4c97c308 = $(`<div id="html_0fa20449027b4ff78d82cbcf4c97c308" style="width: 100.0%; height: 100.0%;">Zaandam to Hoorn: 26.0 minutes. Route 1</div>`)[0];
+            popup_02e907ca230a4c91b6490f2ed6af917d.setContent(html_0fa20449027b4ff78d82cbcf4c97c308);
+        
+
+        poly_line_472c281d96bd49a6a37e5b7cbb0aad83.bindPopup(popup_02e907ca230a4c91b6490f2ed6af917d)
+        ;
+
+        
+    
+    
+            var feature_group_d1da3ab71272463f9eba0e0eefc000b3 = L.featureGroup(
+                {}
+            ).addTo(map_1b68b8b978c5475cbc831498179f1878);
+        
+    
+            var marker_545ac483e17d471382e09c61cb125632 = L.marker(
+                [52.43888855, 4.813611031],
+                {}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+            var icon_9c1ecdc82cd44a3ca4623b830a23a19b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_545ac483e17d471382e09c61cb125632.setIcon(icon_9c1ecdc82cd44a3ca4623b830a23a19b);
+        
+    
+            marker_545ac483e17d471382e09c61cb125632.bindTooltip(
+                `<div>
+                     Station Zaandam. Location: (52.43888855, 4.813611031)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_48341cb6389a433caa5d145a187ba888 = L.marker(
+                [52.38888931, 4.837777615],
+                {}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+            var icon_67ecf247f7574dd4adda913da8d8010c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_48341cb6389a433caa5d145a187ba888.setIcon(icon_67ecf247f7574dd4adda913da8d8010c);
+        
+    
+            marker_48341cb6389a433caa5d145a187ba888.bindTooltip(
+                `<div>
+                     Station Amsterdam Sloterdijk. Location: (52.38888931, 4.837777615)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a3014e86a3a647a4a827a20ed67edf0c = L.marker(
+                [52.338889, 4.872356],
+                {}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+            var icon_c7444ff282b14889a44d335c257970ca = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_a3014e86a3a647a4a827a20ed67edf0c.setIcon(icon_c7444ff282b14889a44d335c257970ca);
+        
+    
+            marker_a3014e86a3a647a4a827a20ed67edf0c.bindTooltip(
+                `<div>
+                     Station Amsterdam Zuid. Location: (52.338889, 4.872356)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_00c19d1c03fc4fff883f35084ac00cc5 = L.marker(
+                [52.30944443, 4.761944294],
+                {}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+            var icon_a6ca1393d9f845d58d12fad4d82ad780 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_00c19d1c03fc4fff883f35084ac00cc5.setIcon(icon_a6ca1393d9f845d58d12fad4d82ad780);
+        
+    
+            marker_00c19d1c03fc4fff883f35084ac00cc5.bindTooltip(
+                `<div>
+                     Station Schiphol Airport. Location: (52.30944443, 4.761944294)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_486631cfe5394901995a805515e3a0cd = L.marker(
+                [52.16611099, 4.481666565],
+                {}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+            var icon_c21ecf1acdc043a396f3ca475a7444a2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_486631cfe5394901995a805515e3a0cd.setIcon(icon_c21ecf1acdc043a396f3ca475a7444a2);
+        
+    
+            marker_486631cfe5394901995a805515e3a0cd.bindTooltip(
+                `<div>
+                     Station Leiden Centraal. Location: (52.16611099, 4.481666565)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3ab17ce2a5f7446ebf5e0b99707c50e6 = L.marker(
+                [52.12444305, 4.657777786],
+                {}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+            var icon_5918341011274e968ddd029f4fca2e3a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_3ab17ce2a5f7446ebf5e0b99707c50e6.setIcon(icon_5918341011274e968ddd029f4fca2e3a);
+        
+    
+            marker_3ab17ce2a5f7446ebf5e0b99707c50e6.bindTooltip(
+                `<div>
+                     Station Alphen a/d Rijn. Location: (52.12444305, 4.657777786)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8f6b2c4b7de94443a17f77508ef483f0 = L.marker(
+                [52.01750183, 4.704444408],
+                {}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+            var icon_0438a7c52e234c1e894962af84796f44 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_8f6b2c4b7de94443a17f77508ef483f0.setIcon(icon_0438a7c52e234c1e894962af84796f44);
+        
+    
+            marker_8f6b2c4b7de94443a17f77508ef483f0.bindTooltip(
+                `<div>
+                     Station Gouda. Location: (52.01750183, 4.704444408)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_be3dbeee9d77457baef21655aca256e5 = L.marker(
+                [52.08027649, 4.324999809],
+                {}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+            var icon_1c5880406c6e4373a92b7253efaed4e2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_be3dbeee9d77457baef21655aca256e5.setIcon(icon_1c5880406c6e4373a92b7253efaed4e2);
+        
+    
+            marker_be3dbeee9d77457baef21655aca256e5.bindTooltip(
+                `<div>
+                     Station Den Haag Centraal. Location: (52.08027649, 4.324999809)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_baa51510bc2f43cfbbc4a3cb73f4651c = L.marker(
+                [52.00666809, 4.356389046],
+                {}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+            var icon_95067e662c7242c5a76571ccf9adcd0d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_baa51510bc2f43cfbbc4a3cb73f4651c.setIcon(icon_95067e662c7242c5a76571ccf9adcd0d);
+        
+    
+            marker_baa51510bc2f43cfbbc4a3cb73f4651c.bindTooltip(
+                `<div>
+                     Station Delft. Location: (52.00666809, 4.356389046)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4836e430a7a2483ab6c977c80fa8fd0e = L.marker(
+                [51.92124381, 4.408993721],
+                {}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+            var icon_2c8603b90486446187fbf4fd3583a70b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_4836e430a7a2483ab6c977c80fa8fd0e.setIcon(icon_2c8603b90486446187fbf4fd3583a70b);
+        
+    
+            marker_4836e430a7a2483ab6c977c80fa8fd0e.bindTooltip(
+                `<div>
+                     Station Schiedam Centrum. Location: (51.92124381, 4.408993721)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_36cd5b1ab26b43a898fdee1950dd5b2e = L.marker(
+                [51.92499924, 4.46888876],
+                {}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+            var icon_02ca83f99f414a6f920b091eac3dd4a0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_36cd5b1ab26b43a898fdee1950dd5b2e.setIcon(icon_02ca83f99f414a6f920b091eac3dd4a0);
+        
+    
+            marker_36cd5b1ab26b43a898fdee1950dd5b2e.bindTooltip(
+                `<div>
+                     Station Rotterdam Centraal. Location: (51.92499924, 4.46888876)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var poly_line_344c173f981641c895d89e1ca4d7dbdc = L.polyline(
+                [[51.92124381, 4.408993721], [52.00666809, 4.356389046]],
+                {"bubblingMouseEvents": true, "color": "#76368E", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#76368E", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+        var popup_93b1241475844938a863aef00a617d64 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_fda8ba17d2fd454c8f70eedfc39c5f0d = $(`<div id="html_fda8ba17d2fd454c8f70eedfc39c5f0d" style="width: 100.0%; height: 100.0%;">Schiedam Centrum to Delft: 7.0 minutes. Route 2</div>`)[0];
+            popup_93b1241475844938a863aef00a617d64.setContent(html_fda8ba17d2fd454c8f70eedfc39c5f0d);
+        
+
+        poly_line_344c173f981641c895d89e1ca4d7dbdc.bindPopup(popup_93b1241475844938a863aef00a617d64)
+        ;
+
+        
+    
+    
+            var poly_line_b0fdda52f5e04c6ba473e4731041ee98 = L.polyline(
+                [[52.00666809, 4.356389046], [52.08027649, 4.324999809]],
+                {"bubblingMouseEvents": true, "color": "#76368E", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#76368E", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+        var popup_77d5ba31fe2949a3878d74ba9d79da5d = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2d85a6ebe59f4baea770fbc731b62c73 = $(`<div id="html_2d85a6ebe59f4baea770fbc731b62c73" style="width: 100.0%; height: 100.0%;">Delft to Den Haag Centraal: 13.0 minutes. Route 2</div>`)[0];
+            popup_77d5ba31fe2949a3878d74ba9d79da5d.setContent(html_2d85a6ebe59f4baea770fbc731b62c73);
+        
+
+        poly_line_b0fdda52f5e04c6ba473e4731041ee98.bindPopup(popup_77d5ba31fe2949a3878d74ba9d79da5d)
+        ;
+
+        
+    
+    
+            var poly_line_4917835c1b5740b8b6abe798c27a6adc = L.polyline(
+                [[52.08027649, 4.324999809], [52.01750183, 4.704444408]],
+                {"bubblingMouseEvents": true, "color": "#76368E", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#76368E", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+        var popup_81f166e9e8784377b99e4a7a221a166f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ba1e890d1660431e9bb7f1179a8bf5ea = $(`<div id="html_ba1e890d1660431e9bb7f1179a8bf5ea" style="width: 100.0%; height: 100.0%;">Den Haag Centraal to Gouda: 18.0 minutes. Route 2</div>`)[0];
+            popup_81f166e9e8784377b99e4a7a221a166f.setContent(html_ba1e890d1660431e9bb7f1179a8bf5ea);
+        
+
+        poly_line_4917835c1b5740b8b6abe798c27a6adc.bindPopup(popup_81f166e9e8784377b99e4a7a221a166f)
+        ;
+
+        
+    
+    
+            var poly_line_ce1ac34623a64c70a534767fa2fe309a = L.polyline(
+                [[52.01750183, 4.704444408], [52.12444305, 4.657777786]],
+                {"bubblingMouseEvents": true, "color": "#76368E", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#76368E", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+        var popup_9828f029679640eeb9333fa01ea7e736 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c7619429425848e985b61564011ae036 = $(`<div id="html_c7619429425848e985b61564011ae036" style="width: 100.0%; height: 100.0%;">Gouda to Alphen a/d Rijn: 19.0 minutes. Route 2</div>`)[0];
+            popup_9828f029679640eeb9333fa01ea7e736.setContent(html_c7619429425848e985b61564011ae036);
+        
+
+        poly_line_ce1ac34623a64c70a534767fa2fe309a.bindPopup(popup_9828f029679640eeb9333fa01ea7e736)
+        ;
+
+        
+    
+    
+            var poly_line_1bd61b14622248f9943f6b34dbc3e2db = L.polyline(
+                [[52.16611099, 4.481666565], [52.12444305, 4.657777786]],
+                {"bubblingMouseEvents": true, "color": "#76368E", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#76368E", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+        var popup_f7b7a56f99fd439288d62ee5a2ee378a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_bc378d767543436ca51451349b9dfe7a = $(`<div id="html_bc378d767543436ca51451349b9dfe7a" style="width: 100.0%; height: 100.0%;">Leiden Centraal to Alphen a/d Rijn: 14.0 minutes. Route 2</div>`)[0];
+            popup_f7b7a56f99fd439288d62ee5a2ee378a.setContent(html_bc378d767543436ca51451349b9dfe7a);
+        
+
+        poly_line_1bd61b14622248f9943f6b34dbc3e2db.bindPopup(popup_f7b7a56f99fd439288d62ee5a2ee378a)
+        ;
+
+        
+    
+    
+            var poly_line_9b6dc331e37146b3b8b8d70c63fb3001 = L.polyline(
+                [[52.16611099, 4.481666565], [52.30944443, 4.761944294]],
+                {"bubblingMouseEvents": true, "color": "#76368E", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#76368E", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+        var popup_fe23fab072c94714aad5d9bb9b374176 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_82a7b5a8fd5640bb924673672f878167 = $(`<div id="html_82a7b5a8fd5640bb924673672f878167" style="width: 100.0%; height: 100.0%;">Leiden Centraal to Schiphol Airport: 15.0 minutes. Route 2</div>`)[0];
+            popup_fe23fab072c94714aad5d9bb9b374176.setContent(html_82a7b5a8fd5640bb924673672f878167);
+        
+
+        poly_line_9b6dc331e37146b3b8b8d70c63fb3001.bindPopup(popup_fe23fab072c94714aad5d9bb9b374176)
+        ;
+
+        
+    
+    
+            var poly_line_a2557bd3cc3545d4bf578317e13c2626 = L.polyline(
+                [[52.34182089026371, 4.872356], [52.31237632026371, 4.761944294]],
+                {"bubblingMouseEvents": true, "color": "#76368E", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#76368E", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+        var popup_ee80a12e44ca4e688510c17b68871cae = L.popup({"maxWidth": "100%"});
+
+        
+            var html_95205817d8ed4b4e8c6636d6a03d21c0 = $(`<div id="html_95205817d8ed4b4e8c6636d6a03d21c0" style="width: 100.0%; height: 100.0%;">Amsterdam Zuid to Schiphol Airport: 6.0 minutes. Route 2</div>`)[0];
+            popup_ee80a12e44ca4e688510c17b68871cae.setContent(html_95205817d8ed4b4e8c6636d6a03d21c0);
+        
+
+        poly_line_a2557bd3cc3545d4bf578317e13c2626.bindPopup(popup_ee80a12e44ca4e688510c17b68871cae)
+        ;
+
+        
+    
+    
+            var poly_line_8caf0c14c9494e1db9c1939b1e68a473 = L.polyline(
+                [[51.92499924, 4.46888876], [51.92124381, 4.408993721]],
+                {"bubblingMouseEvents": true, "color": "#76368E", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#76368E", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+        var popup_9dab0d9e5f88447a939e77b2e5a47f09 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_447714164ada4c05974a125265a30a92 = $(`<div id="html_447714164ada4c05974a125265a30a92" style="width: 100.0%; height: 100.0%;">Rotterdam Centraal to Schiedam Centrum: 5.0 minutes. Route 2</div>`)[0];
+            popup_9dab0d9e5f88447a939e77b2e5a47f09.setContent(html_447714164ada4c05974a125265a30a92);
+        
+
+        poly_line_8caf0c14c9494e1db9c1939b1e68a473.bindPopup(popup_9dab0d9e5f88447a939e77b2e5a47f09)
+        ;
+
+        
+    
+    
+            var poly_line_02924b4da7d64619972c3bb2a3716a06 = L.polyline(
+                [[52.338889, 4.872356], [52.38888931, 4.837777615]],
+                {"bubblingMouseEvents": true, "color": "#76368E", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#76368E", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+        var popup_68b6d6d6d2454e9fb4fd409106856394 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a5591024408f4f53b3dceccdd5658203 = $(`<div id="html_a5591024408f4f53b3dceccdd5658203" style="width: 100.0%; height: 100.0%;">Amsterdam Zuid to Amsterdam Sloterdijk: 16.0 minutes. Route 2</div>`)[0];
+            popup_68b6d6d6d2454e9fb4fd409106856394.setContent(html_a5591024408f4f53b3dceccdd5658203);
+        
+
+        poly_line_02924b4da7d64619972c3bb2a3716a06.bindPopup(popup_68b6d6d6d2454e9fb4fd409106856394)
+        ;
+
+        
+    
+    
+            var poly_line_c28fba0f93e84bc3948d0c622444a75f = L.polyline(
+                [[52.38888931, 4.837777615], [52.43888855, 4.813611031]],
+                {"bubblingMouseEvents": true, "color": "#76368E", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#76368E", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_d1da3ab71272463f9eba0e0eefc000b3);
+        
+    
+        var popup_7ee42be40e7a4fb0baf99f269e61abc6 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_81d3e4f967234260bf8990974bceac07 = $(`<div id="html_81d3e4f967234260bf8990974bceac07" style="width: 100.0%; height: 100.0%;">Amsterdam Sloterdijk to Zaandam: 6.0 minutes. Route 2</div>`)[0];
+            popup_7ee42be40e7a4fb0baf99f269e61abc6.setContent(html_81d3e4f967234260bf8990974bceac07);
+        
+
+        poly_line_c28fba0f93e84bc3948d0c622444a75f.bindPopup(popup_7ee42be40e7a4fb0baf99f269e61abc6)
+        ;
+
+        
+    
+    
+            var feature_group_02d29b4547084dcf8ad2fa534876406f = L.featureGroup(
+                {}
+            ).addTo(map_1b68b8b978c5475cbc831498179f1878);
+        
+    
+            var marker_c89fc8c8b25b48a3a3ac07def0d545e3 = L.marker(
+                [52.95527649, 4.761111259],
+                {}
+            ).addTo(feature_group_02d29b4547084dcf8ad2fa534876406f);
+        
+    
+            var icon_0f347ed522b8404eb23c7e1a345a2458 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_c89fc8c8b25b48a3a3ac07def0d545e3.setIcon(icon_0f347ed522b8404eb23c7e1a345a2458);
+        
+    
+            marker_c89fc8c8b25b48a3a3ac07def0d545e3.bindTooltip(
+                `<div>
+                     Station Den Helder. Location: (52.95527649, 4.761111259)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7cb76c936f4841ac966233fde303879b = L.marker(
+                [52.63777924, 4.739722252],
+                {}
+            ).addTo(feature_group_02d29b4547084dcf8ad2fa534876406f);
+        
+    
+            var icon_e50998c9299d4062839516df476e7604 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_7cb76c936f4841ac966233fde303879b.setIcon(icon_e50998c9299d4062839516df476e7604);
+        
+    
+            marker_7cb76c936f4841ac966233fde303879b.bindTooltip(
+                `<div>
+                     Station Alkmaar. Location: (52.63777924, 4.739722252)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e99ac35f265c41c2b0c37b72f2997026 = L.marker(
+                [52.54583359, 4.658611298],
+                {}
+            ).addTo(feature_group_02d29b4547084dcf8ad2fa534876406f);
+        
+    
+            var icon_8c0d8972312048e7b0210728a050615f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_e99ac35f265c41c2b0c37b72f2997026.setIcon(icon_8c0d8972312048e7b0210728a050615f);
+        
+    
+            marker_e99ac35f265c41c2b0c37b72f2997026.bindTooltip(
+                `<div>
+                     Station Castricum. Location: (52.54583359, 4.658611298)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9ddc0a1e496d447c9823682ba565b3cd = L.marker(
+                [52.47833252, 4.656666756],
+                {}
+            ).addTo(feature_group_02d29b4547084dcf8ad2fa534876406f);
+        
+    
+            var icon_925ecb001ed84bb188886ace45fd6243 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_9ddc0a1e496d447c9823682ba565b3cd.setIcon(icon_925ecb001ed84bb188886ace45fd6243);
+        
+    
+            marker_9ddc0a1e496d447c9823682ba565b3cd.bindTooltip(
+                `<div>
+                     Station Beverwijk. Location: (52.47833252, 4.656666756)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_aef1e449969a4c4fb60d7e2491b6c557 = L.marker(
+                [52.43888855, 4.813611031],
+                {}
+            ).addTo(feature_group_02d29b4547084dcf8ad2fa534876406f);
+        
+    
+            var icon_5a3b2550afb24df6a144cb3725900b52 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_aef1e449969a4c4fb60d7e2491b6c557.setIcon(icon_5a3b2550afb24df6a144cb3725900b52);
+        
+    
+            marker_aef1e449969a4c4fb60d7e2491b6c557.bindTooltip(
+                `<div>
+                     Station Zaandam. Location: (52.43888855, 4.813611031)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d5b551c1c0b54e9b830a20f82b4b1585 = L.marker(
+                [52.64472198, 5.055555344],
+                {}
+            ).addTo(feature_group_02d29b4547084dcf8ad2fa534876406f);
+        
+    
+            var icon_844081c38f884fe9a27dec735627de2d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "darkblue", "prefix": "fa"}
+            );
+            marker_d5b551c1c0b54e9b830a20f82b4b1585.setIcon(icon_844081c38f884fe9a27dec735627de2d);
+        
+    
+            marker_d5b551c1c0b54e9b830a20f82b4b1585.bindTooltip(
+                `<div>
+                     Station Hoorn. Location: (52.64472198, 5.055555344)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var poly_line_80e3a18f53f64ce185dc8f5f3ca5f982 = L.polyline(
+                [[52.44148297108147, 4.813611031], [52.64731640108147, 5.055555344]],
+                {"bubblingMouseEvents": true, "color": "#CD8C3F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#CD8C3F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_02d29b4547084dcf8ad2fa534876406f);
+        
+    
+        var popup_4da1a3ce1da8408ba9ecf41377181e2a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_7efb5c5b08c7457b8d7d5cdfe65c3023 = $(`<div id="html_7efb5c5b08c7457b8d7d5cdfe65c3023" style="width: 100.0%; height: 100.0%;">Zaandam to Hoorn: 26.0 minutes. Route 3</div>`)[0];
+            popup_4da1a3ce1da8408ba9ecf41377181e2a.setContent(html_7efb5c5b08c7457b8d7d5cdfe65c3023);
+        
+
+        poly_line_80e3a18f53f64ce185dc8f5f3ca5f982.bindPopup(popup_4da1a3ce1da8408ba9ecf41377181e2a)
+        ;
+
+        
+    
+    
+            var poly_line_ce93da263dd547c981ac1f64cefa9379 = L.polyline(
+                [[52.44157300722005, 4.813611031], [52.48101697722005, 4.656666756]],
+                {"bubblingMouseEvents": true, "color": "#CD8C3F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#CD8C3F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_02d29b4547084dcf8ad2fa534876406f);
+        
+    
+        var popup_f6a555070b1340b491e63dfb307b9bef = L.popup({"maxWidth": "100%"});
+
+        
+            var html_01b6238b7b6048d6856bd3b4ee926e9e = $(`<div id="html_01b6238b7b6048d6856bd3b4ee926e9e" style="width: 100.0%; height: 100.0%;">Zaandam to Beverwijk: 25.0 minutes. Route 3</div>`)[0];
+            popup_f6a555070b1340b491e63dfb307b9bef.setContent(html_01b6238b7b6048d6856bd3b4ee926e9e);
+        
+
+        poly_line_ce93da263dd547c981ac1f64cefa9379.bindPopup(popup_f6a555070b1340b491e63dfb307b9bef)
+        ;
+
+        
+    
+    
+            var poly_line_15fe66570b144704a15945c99fc3cc1f = L.polyline(
+                [[52.47833252, 4.656666756], [52.54583359, 4.658611298]],
+                {"bubblingMouseEvents": true, "color": "#CD8C3F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#CD8C3F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_02d29b4547084dcf8ad2fa534876406f);
+        
+    
+        var popup_9ca15b8e20fd4040bbdf5c030548851b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_3331496e867e4fbe9d9c902930456c01 = $(`<div id="html_3331496e867e4fbe9d9c902930456c01" style="width: 100.0%; height: 100.0%;">Beverwijk to Castricum: 13.0 minutes. Route 3</div>`)[0];
+            popup_9ca15b8e20fd4040bbdf5c030548851b.setContent(html_3331496e867e4fbe9d9c902930456c01);
+        
+
+        poly_line_15fe66570b144704a15945c99fc3cc1f.bindPopup(popup_9ca15b8e20fd4040bbdf5c030548851b)
+        ;
+
+        
+    
+    
+            var poly_line_c55aefb110a743bb9fd37004f7ef5db2 = L.polyline(
+                [[52.54583359, 4.658611298], [52.63777924, 4.739722252]],
+                {"bubblingMouseEvents": true, "color": "#CD8C3F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#CD8C3F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_02d29b4547084dcf8ad2fa534876406f);
+        
+    
+        var popup_81da6d6ce97341cf873fda675699adcb = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c40cfe479b80487ba577ba435be986ea = $(`<div id="html_c40cfe479b80487ba577ba435be986ea" style="width: 100.0%; height: 100.0%;">Castricum to Alkmaar: 9.0 minutes. Route 3</div>`)[0];
+            popup_81da6d6ce97341cf873fda675699adcb.setContent(html_c40cfe479b80487ba577ba435be986ea);
+        
+
+        poly_line_c55aefb110a743bb9fd37004f7ef5db2.bindPopup(popup_81da6d6ce97341cf873fda675699adcb)
+        ;
+
+        
+    
+    
+            var poly_line_4bd8293d11b94ab5b09e3be310d10562 = L.polyline(
+                [[52.63777924, 4.739722252], [52.95527649, 4.761111259]],
+                {"bubblingMouseEvents": true, "color": "#CD8C3F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#CD8C3F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_02d29b4547084dcf8ad2fa534876406f);
+        
+    
+        var popup_b8ff071a1f77490b9290ccb3cfc57dde = L.popup({"maxWidth": "100%"});
+
+        
+            var html_32eaa621e90d4f5a81d836b64077bfe7 = $(`<div id="html_32eaa621e90d4f5a81d836b64077bfe7" style="width: 100.0%; height: 100.0%;">Alkmaar to Den Helder: 36.0 minutes. Route 3</div>`)[0];
+            popup_b8ff071a1f77490b9290ccb3cfc57dde.setContent(html_32eaa621e90d4f5a81d836b64077bfe7);
+        
+
+        poly_line_4bd8293d11b94ab5b09e3be310d10562.bindPopup(popup_b8ff071a1f77490b9290ccb3cfc57dde)
+        ;
+
+        
+    
+    
+            var marker_8b66ab862d19499588da6258f56fc5e7 = L.marker(
+                [51.80722046, 4.66833353],
+                {}
+            ).addTo(map_1b68b8b978c5475cbc831498179f1878);
+        
+    
+            var icon_69d1e56719934ec0909652e0a96e5c17 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "red", "prefix": "fa"}
+            );
+            marker_8b66ab862d19499588da6258f56fc5e7.setIcon(icon_69d1e56719934ec0909652e0a96e5c17);
+        
+    
+            marker_8b66ab862d19499588da6258f56fc5e7.bindTooltip(
+                `<div>
+                     Station Dordrecht. Location: (51.80722046, 4.66833353)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7a1a9cd289c04094b58ea213b428413a = L.marker(
+                [52.35916519, 4.606666565],
+                {}
+            ).addTo(map_1b68b8b978c5475cbc831498179f1878);
+        
+    
+            var icon_24ef083239d34aa48901430157df78f4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "red", "prefix": "fa"}
+            );
+            marker_7a1a9cd289c04094b58ea213b428413a.setIcon(icon_24ef083239d34aa48901430157df78f4);
+        
+    
+            marker_7a1a9cd289c04094b58ea213b428413a.bindTooltip(
+                `<div>
+                     Station Heemstede-Aerdenhout. Location: (52.35916519, 4.606666565)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7873397db0f14976861a30c7ce6633f1 = L.marker(
+                [51.95194626, 4.553611279],
+                {}
+            ).addTo(map_1b68b8b978c5475cbc831498179f1878);
+        
+    
+            var icon_9b46976b06594d9cb1ba2284d482f9cc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "train", "iconColor": "#FEBE00", "markerColor": "red", "prefix": "fa"}
+            );
+            marker_7873397db0f14976861a30c7ce6633f1.setIcon(icon_9b46976b06594d9cb1ba2284d482f9cc);
+        
+    
+            marker_7873397db0f14976861a30c7ce6633f1.bindTooltip(
+                `<div>
+                     Station Rotterdam Alexander. Location: (51.95194626, 4.553611279)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var layer_control_db14cf301a0f4eccaaf5669282dbefc9 = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_a6340ba9ba08480584c526378f0544e3,
+                },
+                overlays :  {
+                    "Route 1, Schiphol Airport to Hoorn, distance 108.0" : feature_group_dcff008cf5534d85bbb7d32bfbe11fc1,
+                    "Route 2, Zaandam to Rotterdam Centraal, distance 119.0" : feature_group_d1da3ab71272463f9eba0e0eefc000b3,
+                    "Route 3, Den Helder to Hoorn, distance 109.0" : feature_group_02d29b4547084dcf8ad2fa534876406f,
+                },
+            };
+            L.control.layers(
+                layer_control_db14cf301a0f4eccaaf5669282dbefc9.base_layers,
+                layer_control_db14cf301a0f4eccaaf5669282dbefc9.overlays,
+                {"autoZIndex": true, "collapsed": false, "position": "topright"}
+            ).addTo(map_1b68b8b978c5475cbc831498179f1878);
+        
+</script>
