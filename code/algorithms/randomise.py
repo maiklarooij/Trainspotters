@@ -1,7 +1,7 @@
 # -----------------------------------------------------------
 # randomise.py
 #
-# Functions to create a random baseline
+# Class definition to create a random baseline
 #
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
@@ -10,7 +10,37 @@ import random
 from code.classes.route import Route
 from code.classes.routemap import Routemap
 
+class Random:
+    """
+    Implements a random algorithm.
+    Arguments:
+    - graph: the input graph with all stations and connections
+    """
+    def __init__(self, graph):
+        self.graph = graph
+        self.routemap = Routemap()
 
+    def run(self):
+        """
+        Runs the random algorithm
+        """
+
+        # Randomly pick a number of routes
+        number_of_routes = random.randint(1, self.graph.MAX_ROUTES)
+
+        # Create a routemap object to fill with routes
+        routemap = Routemap()
+
+        for _ in range(number_of_routes):
+
+            # Generate a random route and add it to the routemap
+            route = generate_random_route(self.graph, 0)
+            routemap.add_route(route)
+
+        return routemap
+
+
+    
 def generate_random_route(graph, c=0.2):
     """
     Function to generate a random route.
@@ -47,22 +77,3 @@ def generate_random_route(graph, c=0.2):
 
     return route
 
-
-def random_solution(graph):
-    """
-    Generates a solution on a random basis. Takes in a graph and outputs a routemap object.
-    """
-
-    # Randomly pick a number of routes
-    number_of_routes = random.randint(1, graph.MAX_ROUTES)
-
-    # Create a routemap object to fill with routes
-    routemap = Routemap()
-
-    for _ in range(number_of_routes):
-
-        # Generate a random route and add it to the routemap
-        route = generate_random_route(graph, 0)
-        routemap.add_route(route)
-
-    return routemap

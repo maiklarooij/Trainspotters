@@ -7,14 +7,15 @@
 # -----------------------------------------------------------
 
 import random
-from code.algorithms.hillclimber import hillclimber_solution
+from code.algorithms.hillclimber import Hillclimber
+
 from code.algorithms.randomise import generate_random_route
 from code.classes.routemap import Routemap
 
 
 class GeneticAlgorithm:
     """
-    Implements a genetic algorithm, insipred by the process of natural selection.
+    Implements a genetic algorithm, inspired by the process of natural selection.
 
     Arguments:
     - graph: the input graph with all the stations and connections
@@ -249,7 +250,9 @@ class GeneticAlgorithm:
 
                 # If hillclimber is activated, mutation is done by a hill-climbing algorithm
                 if version == "hillclimber":
-                    population[i] = {"routes": hillclimber_solution(self.graph, chromosome[0]).routes, "score": 0}
+                    routemap = Hillclimber(self.graph, start_state=chromosome["routes"]).run()
+                    population[i] = {"routes": routemap.routes, "score": 0}
+                    # population[i] = {"routes": hillclimber_solution(self.graph, chromosome.routes).routes, "score": 0}
                 else:
                     # Mutation, insert new random route
                     mutate_index = random.randint(0, len(chromosome["routes"]) - 1)
@@ -258,7 +261,7 @@ class GeneticAlgorithm:
         # Return mutated population
         return population
 
-    def run(self, graph):
+    def run(self):
         """
         Runs the genetic algorithm
         """
