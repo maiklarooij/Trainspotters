@@ -24,7 +24,8 @@ Voor pseudocode en resultaten van `breadthfirst.py`, [klik hier](../../milestone
 
 ## hillclimber.py
 
-TODO - SAM
+Bevat code om een routemap met routes te creëren door middel van een hillclimber algoritme.
+Het algoritme heeft als startpunt een valide oplossing nodig, en gaat vervolgens voor ieder traject een `r` aantal random routes genereren. Als er tussen deze `r` aantal routes een route zit die een verhoging van de score oplevert, wordt de huidige route vervangen door de route die de hoogste score oplevert. Het algoritme gaat het aantal `restarts` keer over alle trajecten heen.  
 
 ## genetic.py
 

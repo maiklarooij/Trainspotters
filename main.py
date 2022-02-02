@@ -8,7 +8,9 @@
 
 import sys
 import argparse
-#from gooey import Gooey, GooeyParser
+
+from sympy import Q
+from gooey import Gooey, GooeyParser
 
 from codes.algorithms.breadthfirst import BreadthFirst
 from codes.algorithms.genetic import GeneticAlgorithm
@@ -18,37 +20,44 @@ from codes.algorithms.randomise import Random
 from codes.classes.graph import Graph
 from codes.visualisation.visualise import TrainMap
 
-
-#@Gooey
+scale_choices = ['Holland', 'Nationaal']
+algorithm_choices = ['random', 'greedy', 'bf', 'hillclimber', 'genetic']
+hillclimber_choices = ['true', 'false']
+selection_choices = ['elitism', 'rws', 'tournament']
+breeding_choices = ['1point', '2point']
+@Gooey(program_name="RailNL algorithm arguments GUI", navigation="Tabbed", tabbed_groups=True)
 def main():
 
     # Command line arguments
-    p = argparse.ArgumentParser()
+    p = GooeyParser(description="A GUI to help you pick optional arguments for the algorithms")
 
     # All algorithms arguments
-    p.add_argument("-s", "--scale", help='Scale to run algorithms on. Options = "Holland" or "Nationaal"', type=str)
-    p.add_argument("-a", "--algorithm", help='Algorithm to run. Options = "random", "greedy", "bf", "hillclimber", "genetic".',
-                default="random", type=str)
-
+    p.add_argument('scale', help='Scale to run algorithms on', choices=scale_choices)
+    p.add_argument('algorithm', help='Algorithm to run. Options = "random", "greedy", "bf", "hillclimber", "genetic".', choices=algorithm_choices)
+    
+    bfs_group = p.add_argument_group("BFS options")
+    genetic_group = p.add_argument_group("Genetic Algorithm options")
+    hillclimber_group = p.add_argument_group("Hillclimber Algorithm options")
+    
     # Breadth-first algorithm optional argument
-    p.add_argument('-bm', '--beam', help='Number of options to keep after each iteration', default=14, type=int)
+    bfs_group.add_argument('-bm', '--beam', help='Number of options to keep after each iteration', default=14, type=int, widget="IntegerField")
 
     # Genetic algorithm optional arguments
-    p.add_argument('-gs', '--genes_size', help='Number of random genes (=routes) to generate for GA', default=1000, type=int)
-    p.add_argument('-ps', '--pop_size', help='Number of random combinations of genes (=routemaps) to generate for GA', default=1000, type=int)
-    p.add_argument('-mr', '--mutation_rate', help='Chance of mutations', default=0.2, type=float)
-    p.add_argument('-gn', '--generations', help='Number of generations', default=100, type=int)
-    p.add_argument('-hc', '--hillclimber', help='Option to use hillclimber in genetic algorithm', default='false', type=str)
-    p.add_argument('-sl', '--selection', help='Selection strategies. Options = "rws", "elitism"', default='elitism', type=str)
-    p.add_argument('-br', '--breeding', help='Breeding strategies. Options = "1point", "2point"', default='1point', type=str)
+    genetic_group.add_argument('-gs', '--genes_size', help='Number of random genes (=routes) to generate for GA', default=1000, type=int)
+    genetic_group.add_argument('-ps', '--pop_size', help='Number of random combinations of genes (=routemaps) to generate for GA', default=1000, type=int)
+    genetic_group.add_argument('-mr', '--mutation_rate', help='Chance of mutations', default=0.2, type=float, widget="DecimalField")
+    genetic_group.add_argument('-gn', '--generations', help='Number of generations', default=100, type=int)
+    genetic_group.add_argument('-hc', '--hillclimber', help='Option to use hillclimber in genetic algorithm', default='false', type=str, choices=hillclimber_choices)
+    genetic_group.add_argument('-sl', '--selection', help='Selection strategies. Options = "rws", "elitism"', default='elitism', type=str, choices=selection_choices)
+    genetic_group.add_argument('-br', '--breeding', help='Breeding strategies. Options = "1point", "2point"', default='1point', type=str, choices=breeding_choices)
 
     # Hillclimber algorithm optional arguments
-    p.add_argument("-re", '--restarts', help='Number of times the hillclimber algorithm does a restart', default=10, type=int)
-    p.add_argument('-r', '--r', help='Number of random routes the hillclimber algorithm generates to try as replacement', default=100, type=int)
+    hillclimber_group.add_argument("-re", '--restarts', help='Number of times the hillclimber algorithm does a restart', default=10, type=int, widget="IntegerField")
+    hillclimber_group.add_argument('-r', '--r', help='Number of random routes the hillclimber algorithm generates to try as replacement', default=100, type=int, widget="IntegerField")
 
     hillclimber_option = {'true': True, 'false': False}
     
-    args = p.parse_args(sys.argv[1:])
+    args = p.parse_args()
 
     # Scale = 'Nationaal' or 'Holland'
     # Algorithm = 'random', 'greedy', 'bf', 'genetic'
