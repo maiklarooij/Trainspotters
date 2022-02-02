@@ -78,7 +78,7 @@ class Routemap:
 
         return score
 
-    def generate_output(self, graph_connections):
+    def generate_output(self, graph_connections, algorithm, scale):
         """
         Writes the output to a .csv file.
         """
@@ -86,7 +86,7 @@ class Routemap:
         footer = ['score', self.calc_score(graph_connections)]
 
         # Create a new file
-        with open('output.csv', mode='w', newline='') as output_file:
+        with open(f'results/{algorithm}/solution/{algorithm}_output_{scale}.csv', mode='w', newline='') as output_file:
             writer = csv.writer(output_file)
 
             writer.writerow(header)

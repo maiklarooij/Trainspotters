@@ -17,7 +17,7 @@ class BreadthFirst:
 
     Arguments:
     - graph: the input graph with all stations and connections
-    - beam: integer to prune the options for each step
+    - beam: integer to prune the options for each step. Indicates how many options to keep after each step
     """
 
     def __init__(self, graph, beam=14):
@@ -30,7 +30,6 @@ class BreadthFirst:
         Takes in a route, routemap and candidate.
         Measures the increase if the candidate would be added to the graph.
         """
-
         # Make copies
         routemap_copy = self.routemap.copy()
         route_copy = route.copy()
@@ -49,7 +48,7 @@ class BreadthFirst:
 
     def run(self):
         """
-        Runs the breadth-first algorithm
+        Runs the breadth-first algorithm.
         """
         while len(self.routemap.routes) != self.graph.MAX_ROUTES:
 

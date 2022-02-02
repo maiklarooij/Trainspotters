@@ -38,16 +38,24 @@ conda install --file requirements.txt
 
 ### Commando en parameters
 
-Het programma kan op de volgende manier een algoritme draaien:
+Simpel, gewoon:
 
 ```
-python main.py --scale (or -s) --algorithm (or -a)
+python main.py
+```
+
+Er verschijnt nu een menu waarin je het algoritme dat je wilt draaien helemaal kunt instellen!
+
+Het programma kan ook op de volgende manier een algoritme draaien:
+
+```
+python main.py scale algorithm
 ```
 
 Bijvoorbeeld het random algoritme op Holland:
 
 ```
-python main.py -s Holland -a random
+python main.py Holland random
 ```
 
 Het breadth-first algoritme heeft een parameter die kan worden meegegeven:
@@ -74,8 +82,8 @@ python main.py -s Nationaal -a genetic -gs -ps -mr -gn -hc -sl -br
 
 Het hillclimber algoritme heeft twee parameters die kunnen worden gekozen:
 
-- `re`: Aantal restarts
-- `r`: Aantal willekeurige routes die het algoritme genereert en probeert toe te voegen per iteratie
+- `-re`: Aantal restarts
+- `-r`: Aantal willekeurige routes die het algoritme genereert en probeert toe te voegen per iteratie
 
 ```
 python main.py -s Nationaal -a genetic -re 10 -r 1000

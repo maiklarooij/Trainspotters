@@ -54,7 +54,7 @@ class TrainMap:
                 ).add_to(self.feature_groups[route_name].add_to(self.base_map))
                 stations_in_route.append(station.name)
 
-        # Add stations not in routemap
+        # Add stations not in routemap (different color and not included in feature groups)
         for station in self.graph.stations.values():
             if station.name not in stations_in_route:
                 folium.Marker(
@@ -98,6 +98,9 @@ class TrainMap:
                 seen_connections.add(connection)
 
     def create_feature_groups(self):
+        """
+        Initializes a feature group for every route. This makes it possible to show/hide routes in the visualisation.
+        """
         for i, route in enumerate(self.routemap.routes):
             route_name = f"route{i+1}"
             self.feature_groups[route_name] = folium.FeatureGroup(name=f"Route {i+1}, {route.stations[0]} to {route.stations[-1]}, distance {route.total_time}")
@@ -114,4 +117,4 @@ class TrainMap:
 
         folium.LayerControl(collapsed=False).add_to(self.base_map)
 
-        self.base_map.save(f"results/{self.algorithm}/solution/{self.algorithm}_hillclimber_solution_{self.graph.scale}.html")
+        self.base_map.save(f"results/{self.algorithm}/solution/{self.algorithm}_solution_{self.graph.scale}.html")

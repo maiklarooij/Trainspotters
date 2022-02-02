@@ -6,10 +6,7 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-import sys
-import argparse
 
-from sympy import Q
 from gooey import Gooey, GooeyParser
 
 from codes.algorithms.breadthfirst import BreadthFirst
@@ -24,8 +21,9 @@ scale_choices = ['Holland', 'Nationaal']
 algorithm_choices = ['random', 'greedy', 'bf', 'hillclimber', 'genetic']
 hillclimber_choices = ['true', 'false']
 selection_choices = ['elitism', 'rws', 'tournament']
-breeding_choices = ['1point', '2point']
-@Gooey(program_name="RailNL algorithm arguments GUI", navigation="Tabbed", tabbed_groups=True)
+breeding_choices = ['1point', '2point', 'uniform']
+
+@Gooey(program_name="RailNL algorithm arguments GUI", navigation="Tabbed", tabbed_groups=True, use_cmd_args=True)
 def main():
 
     # Command line arguments
@@ -48,8 +46,8 @@ def main():
     genetic_group.add_argument('-mr', '--mutation_rate', help='Chance of mutations', default=0.2, type=float, widget="DecimalField")
     genetic_group.add_argument('-gn', '--generations', help='Number of generations', default=100, type=int)
     genetic_group.add_argument('-hc', '--hillclimber', help='Option to use hillclimber in genetic algorithm', default='false', type=str, choices=hillclimber_choices)
-    genetic_group.add_argument('-sl', '--selection', help='Selection strategies. Options = "rws", "elitism"', default='elitism', type=str, choices=selection_choices)
-    genetic_group.add_argument('-br', '--breeding', help='Breeding strategies. Options = "1point", "2point"', default='1point', type=str, choices=breeding_choices)
+    genetic_group.add_argument('-sl', '--selection', help='Choose a selection strategy.', default='elitism', type=str, choices=selection_choices)
+    genetic_group.add_argument('-br', '--breeding', help='Choose a breeding strategy.', default='1point', type=str, choices=breeding_choices)
 
     # Hillclimber algorithm optional arguments
     hillclimber_group.add_argument("-re", '--restarts', help='Number of times the hillclimber algorithm does a restart', default=10, type=int, widget="IntegerField")
@@ -80,12 +78,16 @@ def main():
                 args.breeding).run,
                 'hillclimber': Hillclimber(test_graph, args.restarts, args.r).run}
 
+    print(f"Running {algorithm} algorithm... Please wait!")
+
     # Run algorithm
     solution = algorithms[algorithm]()
 
     # Generate results
-    solution.generate_output(nr_connections)
-    TrainMap(solution, test_graph, algorithm).export()
+    solution.generate_output(nr_connections, algorithm, scale)
+    #TrainMap(solution, test_graph, algorithm).export()
+
+    print(f"All done! Check out the results in the results/{algorithm} folder!")
 
 if __name__ == "__main__":
     main()

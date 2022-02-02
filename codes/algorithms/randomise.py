@@ -27,7 +27,6 @@ class Random:
         """
         Runs the random algorithm
         """
-
         # Randomly pick a number of routes
         number_of_routes = random.randint(1, self.graph.MAX_ROUTES)
 
@@ -45,12 +44,11 @@ class Random:
 
 def generate_random_route(graph, c=0.2):
     """
-    Function to generate a random route.
+    Function to generate a random route. Used in random algorithm and genetic algorithm
 
     Arguments:
     - c: chance of breaking the algorithm. Adds randomness, because the algorithm has a chance of terminating before MAX_TIME is reached
     """
-
     # Create a route object for every iteration
     route = Route(graph.MAX_TIME)
 

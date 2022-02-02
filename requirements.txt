@@ -2,3 +2,5 @@ folium
 matplotlib
 numpy
 argparse
+tabulate
+pandas

@@ -54,7 +54,6 @@ class GeneticAlgorithm:
         A population consists of chromosomes (= random combination of route objects, or genes).
         A chromosome consists of genes (= randomly generated route objects)
         """
-
         # Generate genes
         self.genes = self.generate_genes()
 
@@ -168,7 +167,6 @@ class GeneticAlgorithm:
         - selection: choose selection strategy ('elitism', 'rws' or 'tournament')
         - breeding: choose breeding strategy ('1point', '2point' or 'uniform')
         """
-
         # Different selection strategies
         selection_options = {"elitism": self.select_elitism, "rws": self.select_rws, "tournament": self.select_tournament}
 
@@ -201,7 +199,6 @@ class GeneticAlgorithm:
         Breed two parents, producing a new child based on k-point breeding.
         k = number of crossover points to cut the parents.
         """
-
         # Randomly choose k crossover points and append last point
         crossover_points = sorted([random.randint(0, min([len(parent) for parent in [first_parent, second_parent]]) - 1) for k in range(k)])
         crossover_points.append(max([len(parent) for parent in [first_parent, second_parent]]))
@@ -225,7 +222,6 @@ class GeneticAlgorithm:
         Breed two parent, producing a new child based on uniform breeding.
         Every gene of the child is randomly picked from one of the two parents.
         """
-
         # How often do we need to flip a coin?
         child_length = max([len(parent) for parent in [first_parent, second_parent]])
         # Flip a coin!
@@ -267,7 +263,6 @@ class GeneticAlgorithm:
         """
         Runs the genetic algorithm
         """
-
         # Create start population and calculate fitness
         population = self.return_random_population()
         fitness_pop = self.calculate_fitness(population)
@@ -292,8 +287,8 @@ class GeneticAlgorithm:
             # Remember best solution
             if fitness_pop[0]["score"] > best_solution["score"]:
                 best_solution = deepcopy(fitness_pop[0])
-
-            # print(f"{generation} last score: {fitness_pop[0]['score']}")
+            
+            # Output score per generation
             print(f"{generation} best score: {best_solution['score']}")
             self.generation_scores.append(best_solution["score"])
 
