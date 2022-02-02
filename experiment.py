@@ -11,11 +11,11 @@ import csv
 import sys
 import time
 
-from codes.algorithms.breadthfirst import BreadthFirst
-from codes.algorithms.genetic import GeneticAlgorithm
-from codes.algorithms.hillclimber import Hillclimber
-from codes.algorithms.randomise import Random
-from codes.classes.graph import Graph
+from src.algorithms.breadthfirst import BreadthFirst
+from src.algorithms.genetic import GeneticAlgorithm
+from src.algorithms.hillclimber import Hillclimber
+from src.algorithms.randomise import Random
+from src.classes.graph import Graph
 
 
 def experiment_random(graph, runs=100000):
@@ -117,8 +117,8 @@ def experiment_genetic(graph):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("-s", "--scale", help='Scale to run experiment on. Options = "Holland" or "Nationaal"', default="Holland", type=str)
-    p.add_argument("-a", "--algorithm", help="Algorithm to run experiment on", default='all', type=str)
+    p.add_argument('scale', help='Scale to run experiment on. Options = "Holland" or "Nationaal"', default="Holland", type=str)
+    p.add_argument('algorithm', help="Algorithm to run experiment on", default='all', type=str)
     args = p.parse_args(sys.argv[1:])
 
     experiment_graph = Graph(f"data/Stations{args.scale}.csv", f"data/Connecties{args.scale}.csv", args.scale)

@@ -6,16 +6,15 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-
 from gooey import Gooey, GooeyParser
 
-from codes.algorithms.breadthfirst import BreadthFirst
-from codes.algorithms.genetic import GeneticAlgorithm
-from codes.algorithms.greedy import Greedy
-from codes.algorithms.hillclimber import Hillclimber
-from codes.algorithms.randomise import Random
-from codes.classes.graph import Graph
-from codes.visualisation.visualise import TrainMap
+from src.algorithms.breadthfirst import BreadthFirst
+from src.algorithms.genetic import GeneticAlgorithm
+from src.algorithms.greedy import Greedy
+from src.algorithms.hillclimber import Hillclimber
+from src.algorithms.randomise import Random
+from src.classes.graph import Graph
+from src.visualisation.visualise import TrainMap
 
 scale_choices = ['Holland', 'Nationaal']
 algorithm_choices = ['random', 'greedy', 'bf', 'hillclimber', 'genetic']

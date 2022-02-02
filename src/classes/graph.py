@@ -9,8 +9,8 @@
 # -----------------------------------------------------------
 
 import csv
-from codes.classes.connection import Connection
-from codes.classes.station import Station
+from src.classes.connection import Connection
+from src.classes.station import Station
 
 
 class Graph:

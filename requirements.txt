@@ -1,6 +1,6 @@
-folium
-matplotlib
-numpy
-argparse
-tabulate
-pandas
+Gooey == 1.0.8.1
+folium == 0.12.1
+matplotlib == 3.2.1
+numpy == 1.18.3
+pandas == 1.0.3
+tabulate == 0.8.9

@@ -109,10 +109,10 @@ Het resultaat van het experiment wordt opgeslagen onder `/results/experiment/exp
 ### Structuur
 
 De mappen in deze repository:
-- /code: bevat de code van dit project
-    - /code/algorithms: bevat de algoritmes
-    - /code/classes: bevat de benodigde classes
-    - /code/visualisation: bevat code om visualisaties te maken
+- /src: bevat de code van dit project
+    - /src/algorithms: bevat de algoritmes
+    - /src/classes: bevat de benodigde classes
+    - /src/visualisation: bevat code om visualisaties te maken
 - /data: bevat de input data van dit project
 - /doc: bevat belangrijke documenten, zoals pseudocodes en ondersteunende plaatjes
 - /milestones: bevat milestones en twee notebooks met verkenning

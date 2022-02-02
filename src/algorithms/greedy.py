@@ -6,8 +6,8 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-from codes.classes.route import Route
-from codes.classes.routemap import Routemap
+from src.classes.route import Route
+from src.classes.routemap import Routemap
 
 
 class Greedy:

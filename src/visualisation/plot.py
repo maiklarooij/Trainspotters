@@ -14,8 +14,12 @@ import numpy as np
 import pandas as pd
 from tabulate import tabulate
 
+<<<<<<< HEAD:codes/visualisation/plot.py
 from codes.algorithms.genetic import GeneticAlgorithm
 
+=======
+from src.algorithms.genetic import GeneticAlgorithm
+>>>>>>> e451770a52b5875586924125df7afe7d6be9dc24:src/visualisation/plot.py
 
 
 # ---------------------------------------------- Milestone: Baseline --------------------------------------------------------------#
