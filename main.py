@@ -49,8 +49,8 @@ def main():
     genetic_group.add_argument('-br', '--breeding', help='Choose a breeding strategy.', default='1point', type=str, choices=breeding_choices)
 
     # Hillclimber algorithm optional arguments
-    hillclimber_group.add_argument("-re", '--restarts', help='Number of times the hillclimber algorithm does a restart', default=10, type=int, widget="IntegerField")
-    hillclimber_group.add_argument('-r', '--r', help='Number of random routes the hillclimber algorithm generates to try as replacement', default=100, type=int, widget="IntegerField")
+    hillclimber_group.add_argument("-re", '--restarts', help='Number of times the hillclimber algorithm does a restart', default=10, type=int)
+    hillclimber_group.add_argument('-r', '--r', help='Number of random routes the hillclimber algorithm generates to try as replacement', default=100, type=int)
 
     hillclimber_option = {'true': True, 'false': False}
     
