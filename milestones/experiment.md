@@ -91,7 +91,7 @@ Het genetisch algoritme kent ontzettend veel opties. We hebben al deze opties ee
 
 Uit deze resultaten blijkt dat 1-point breeding en elitism selection in combinatie met 200 generaties het beste lijkt te werken. In de milestone van ons tweede algoritme is dit ook al gebleken. Zie onderstaande grafieken met het verloop van de score in de verschillende generations.
 
-![Generations breeding](../results/experiment/genetic/breeding.png) ![Generations selection](../results/experiment/genetic/selection.png)
+![Generations breeding](../results/genetic/experiment/genetic/breeding.png) ![Generations selection](../results/genetic/experiment/genetic/selection.png)
 
 Hieronder de scoreverdeling per selectie- en breeding strategie.
 

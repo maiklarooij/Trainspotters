@@ -11,7 +11,7 @@ import random
 
 
 class TrainMap:
-    """ 
+    """
     Represents a trainmap, a visualisation made of a routemap (solution).
 
     Arguments:
@@ -50,7 +50,7 @@ class TrainMap:
                 folium.Marker(
                     location=[station.coord[0], station.coord[1]],
                     tooltip=f"Station {station.name}. Location: ({station.coord[0]}, {station.coord[1]})",
-                    icon=folium.Icon(color='darkblue', icon="train", icon_color="#FEBE00", prefix="fa"),
+                    icon=folium.Icon(color="darkblue", icon="train", icon_color="#FEBE00", prefix="fa"),
                 ).add_to(self.feature_groups[route_name].add_to(self.base_map))
                 stations_in_route.append(station.name)
 
@@ -60,7 +60,7 @@ class TrainMap:
                 folium.Marker(
                     location=[station.coord[0], station.coord[1]],
                     tooltip=f"Station {station.name}. Location: ({station.coord[0]}, {station.coord[1]})",
-                    icon=folium.Icon(color='red', icon="train", icon_color="#FEBE00", prefix="fa"),
+                    icon=folium.Icon(color="red", icon="train", icon_color="#FEBE00", prefix="fa"),
                 ).add_to(self.base_map)
                 stations_in_route.append(station)
 
@@ -103,7 +103,9 @@ class TrainMap:
         """
         for i, route in enumerate(self.routemap.routes):
             route_name = f"route{i+1}"
-            self.feature_groups[route_name] = folium.FeatureGroup(name=f"Route {i+1}, {route.stations[0]} to {route.stations[-1]}, distance {route.total_time}")
+            self.feature_groups[route_name] = folium.FeatureGroup(
+                name=f"Route {i+1}, {route.stations[0]} to {route.stations[-1]}, distance {route.total_time}"
+            )
 
     def export(self):
         """

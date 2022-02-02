@@ -58,10 +58,8 @@ class GeneticAlgorithm:
         self.genes = self.generate_genes()
 
         # Randomly create combinations of genes
-        self.start_population = [
-            {"routes": [random.choice(self.genes) for _ in range(random.randint(1, self.graph.MAX_ROUTES))], "score": 0}
-            for _ in range(self.population_size)
-        ]
+        self.start_population = [{"routes": [random.choice(self.genes) for _ in range(random.randint(1, self.graph.MAX_ROUTES))], "score": 0}
+                                 for _ in range(self.population_size)]
 
         return self.start_population
 
@@ -287,7 +285,7 @@ class GeneticAlgorithm:
             # Remember best solution
             if fitness_pop[0]["score"] > best_solution["score"]:
                 best_solution = deepcopy(fitness_pop[0])
-            
+
             # Output score per generation
             print(f"{generation} best score: {best_solution['score']}")
             self.generation_scores.append(best_solution["score"])

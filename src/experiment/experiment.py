@@ -117,14 +117,14 @@ def experiment_genetic(graph):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument('scale', help='Scale to run experiment on. Options = "Holland" or "Nationaal"', default="Holland", type=str)
-    p.add_argument('algorithm', help="Algorithm to run experiment on", default='all', type=str)
+    p.add_argument("scale", help='Scale to run experiment on. Options = "Holland" or "Nationaal"', default="Holland", type=str)
+    p.add_argument("algorithm", help="Algorithm to run experiment on", default="all", type=str)
     args = p.parse_args(sys.argv[1:])
 
     experiment_graph = Graph(f"data/Stations{args.scale}.csv", f"data/Connecties{args.scale}.csv", args.scale)
     experiments = {"random": experiment_random, "genetic": experiment_genetic, "bf": experiment_bf, "hillclimber": experiment_hillclimber}
 
-    if args.algorithm == 'all':
+    if args.algorithm == "all":
         for function in experiments.values():
             function(experiment_graph)
     else:

@@ -9,6 +9,7 @@
 # -----------------------------------------------------------
 
 import csv
+
 from src.classes.connection import Connection
 from src.classes.station import Station
 
@@ -36,12 +37,12 @@ class Graph:
         """
         stations = {}
 
-        with open(stations_file, 'r') as s_file:
+        with open(stations_file, "r") as s_file:
             reader = csv.DictReader(s_file)
 
             for row in reader:
-                name = row['station']
-                coord = (float(row['x']), float(row['y']))
+                name = row["station"]
+                coord = (float(row["x"]), float(row["y"]))
                 stations[name] = Station(name, coord)
 
         return stations
@@ -53,21 +54,21 @@ class Graph:
         """
         connections = []
 
-        with open(connections_file, 'r') as c_file:
+        with open(connections_file, "r") as c_file:
             reader = csv.DictReader(c_file)
 
             for row in reader:
 
                 # Add station objects from stations in graph
-                station1 = self.stations[row['station1']]
-                station2 = self.stations[row['station2']]
-                distance = float(row['distance'])
+                station1 = self.stations[row["station1"]]
+                station2 = self.stations[row["station2"]]
+                distance = float(row["distance"])
 
                 connections.append(Connection(station1, station2, distance))
 
                 # Add neighbors to stations
-                self.stations[row['station1']].add_neighbor(station2, distance)
-                self.stations[row['station2']].add_neighbor(station1, distance)
+                self.stations[row["station1"]].add_neighbor(station2, distance)
+                self.stations[row["station2"]].add_neighbor(station1, distance)
 
         self.total_connections = len(connections)
 

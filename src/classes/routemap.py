@@ -82,11 +82,11 @@ class Routemap:
         """
         Writes the output to a .csv file.
         """
-        header = ['train', 'stations']
-        footer = ['score', self.calc_score(graph_connections)]
+        header = ["train", "stations"]
+        footer = ["score", self.calc_score(graph_connections)]
 
         # Create a new file
-        with open(f'results/{algorithm}/solution/{algorithm}_output_{scale}.csv', mode='w', newline='') as output_file:
+        with open(f"results/{algorithm}/solution/{algorithm}_output_{scale}.csv", mode="w", newline="") as output_file:
             writer = csv.writer(output_file)
 
             writer.writerow(header)

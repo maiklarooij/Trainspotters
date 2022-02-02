@@ -7,6 +7,7 @@
 # -----------------------------------------------------------
 
 import random
+
 from src.classes.route import Route
 from src.classes.routemap import Routemap
 

@@ -175,9 +175,9 @@ def plot_breeding_distri(csv_file):
 
     for breeding in ["1point", "2point"]:
 
-        df_breeding_scores = df[df["breeding"] == breeding]["breeding"]
+        df_breeding_scores = df[df["breeding"] == breeding]["score"]
 
-        plt.hist(df_breeding_scores, bins=20, label=breeding)
+        plt.hist(df_breeding_scores, bins=20, label=breeding, alpha=0.5)
 
     plt.legend()
     plt.title("Distribution of scores for different breeding strategies")
@@ -193,11 +193,11 @@ def plot_selection_distri(csv_file):
     """
     df = pd.read_csv(csv_file)
 
-    for selection in ["roulette", "tournament", "elitism"]:
+    for selection in ["rws", "tournament", "elitism"]:
 
-        df_selection_scores = df[df["selection"] == selection]["selection"]
+        df_selection_scores = df[df["selection"] == selection]["score"]
 
-        plt.hist(df_selection_scores, bins=20, label=selection)
+        plt.hist(df_selection_scores, bins=20, label=selection, alpha=0.5)
 
     plt.legend()
     plt.title("Distribution of scores for different selection strategies")
@@ -242,11 +242,26 @@ def table_genetic(csv_file):
     """
     df = pd.read_csv(csv_file)
 
-    return tabulate(
-        df.groupby(["breeding", "selection", "generations", "mutate_rate", "gp_size"])
-        .agg(["mean", "min", "max", "median"])
-        .sort_values([("score", "max")], ascending=False)
-        .nlargest(5, ("score", "max")),
-        headers="keys",
-        tablefmt="pipe",
-    )
+    return tabulate(df.groupby(["breeding", "selection", "generations", "mutate_rate", "gp_size"])
+                    .agg(["mean", "min", "max", "median"])
+                    .sort_values([("score", "max")], ascending=False)
+                    .nlargest(5, ("score", "max")),
+                    headers="keys",
+                    tablefmt="pipe")
+
+
+def plot_hillcimber_distri(csv_file):
+    """
+    Outputs a plot of the distribution of hillclimber scores.
+
+    Plot found in milestones/experiment.md and doc/presentation
+    Input file: results/hillclimber/experiment/experiment_hillclimber.csv
+    """
+    df = pd.read_csv(csv_file)
+
+    scores = df["score"]
+
+    plt.hist(scores, bins=20)
+    plt.title(f"Distribution of hill climber scores")
+    plt.xlabel("Score")
+    plt.show()

@@ -100,7 +100,7 @@ python main.py -h
 Om een experiment te draaien dien je een schaal en een algoritme mee te geven:
 
 ```
-python experiment.py -s Nationaal -a hillclimber
+python src/experiment/experiment.py -s Nationaal -a hillclimber
 ```
 
 Als er geen algoritme wordt meegegeven worden alle experimenten achter elkaar gedraaid.
@@ -112,6 +112,7 @@ De mappen in deze repository:
 - /src: bevat de code van dit project
     - /src/algorithms: bevat de algoritmes
     - /src/classes: bevat de benodigde classes
+    - /src/experiment: bevat een script om een experiment te draaien
     - /src/visualisation: bevat code om visualisaties te maken
 - /data: bevat de input data van dit project
 - /doc: bevat belangrijke documenten, zoals pseudocodes en ondersteunende plaatjes
