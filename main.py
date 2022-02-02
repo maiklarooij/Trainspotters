@@ -38,7 +38,7 @@ def main():
     hillclimber_group = p.add_argument_group("Hillclimber Algorithm options")
 
     # Breadth-first algorithm optional argument
-    bfs_group.add_argument("-bm", "--beam", help="Number of options to keep after each iteration", default=14, type=int, widget="IntegerField")
+    bfs_group.add_argument("-bm", "--beam", help="Number of options to keep after each iteration", default=14, type=int)
 
     # Genetic algorithm optional arguments
     genetic_group.add_argument("-gs", "--genes_size", help="Number of random genes (=routes) to generate for GA", default=1000, type=int)
@@ -53,9 +53,9 @@ def main():
 
     # Hillclimber algorithm optional arguments
     hillclimber_group.add_argument("-re", "--restarts", help="Number of times the hillclimber algorithm does a restart",
-                                   default=10, type=int, widget="IntegerField")
+                                   default=10, type=int)
     hillclimber_group.add_argument("-r", "--r", help="Number of random routes the hillclimber algorithm generates to try as replacement",
-                                   default=100, type=int, widget="IntegerField")
+                                   default=100, type=int)
 
     hillclimber_option = {"true": True, "false": False}
 
