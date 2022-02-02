@@ -10,8 +10,8 @@
 
 import csv
 
-from src.classes.connection import Connection
-from src.classes.station import Station
+from . connection import Connection
+from . station import Station
 
 
 class Graph:

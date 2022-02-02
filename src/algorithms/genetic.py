@@ -9,9 +9,9 @@
 from copy import deepcopy
 import random
 
-from src.algorithms.hillclimber import Hillclimber
-from src.algorithms.randomise import generate_random_route
-from src.classes.routemap import Routemap
+from .. algorithms.hillclimber import Hillclimber
+from .. algorithms.randomise import generate_random_route
+from .. classes.routemap import Routemap
 
 
 class GeneticAlgorithm:

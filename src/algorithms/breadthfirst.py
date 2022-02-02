@@ -7,8 +7,8 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-from src.classes.route import Route
-from src.classes.routemap import Routemap
+from .. classes.route import Route
+from .. classes.routemap import Routemap
 
 
 class BreadthFirst:

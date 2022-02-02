@@ -6,8 +6,8 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-from src.algorithms.randomise import generate_random_route, Random
-from src.classes.routemap import Routemap
+from .. algorithms.randomise import generate_random_route, Random
+from .. classes.routemap import Routemap
 
 
 class Hillclimber:

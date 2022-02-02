@@ -97,10 +97,10 @@ python main.py -h
 
 ### Commando experiment
 
-Om een experiment te draaien dien je een schaal en een algoritme mee te geven:
+Om een experiment te draaien dien je precies de volgende syntax aan te houden en een schaal en een algoritme mee te geven:
 
 ```
-python src/experiment/experiment.py -s Nationaal -a hillclimber
+python -m src.experiment.experiment Nationaal random
 ```
 
 Als er geen algoritme wordt meegegeven worden alle experimenten achter elkaar gedraaid.
