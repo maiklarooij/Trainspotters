@@ -11,9 +11,10 @@
 import csv
 import matplotlib.pyplot as plt
 import numpy as np
-from codes.algorithms.genetic import GeneticAlgorithm
 import pandas as pd
 from tabulate import tabulate
+
+from src.algorithms.genetic import GeneticAlgorithm
 
 
 # ---------------------------------------------- Milestone: Baseline --------------------------------------------------------------#

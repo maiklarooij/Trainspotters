@@ -6,26 +6,22 @@
 # Authors: Sam Bijhouwer and Maik Larooij
 # -----------------------------------------------------------
 
-import sys
-import argparse
-
-from sympy import Q
 from gooey import Gooey, GooeyParser
 
-from codes.algorithms.breadthfirst import BreadthFirst
-from codes.algorithms.genetic import GeneticAlgorithm
-from codes.algorithms.greedy import Greedy
-from codes.algorithms.hillclimber import Hillclimber
-from codes.algorithms.randomise import Random
-from codes.classes.graph import Graph
-from codes.visualisation.visualise import TrainMap
+from src.algorithms.breadthfirst import BreadthFirst
+from src.algorithms.genetic import GeneticAlgorithm
+from src.algorithms.greedy import Greedy
+from src.algorithms.hillclimber import Hillclimber
+from src.algorithms.randomise import Random
+from src.classes.graph import Graph
+from src.visualisation.visualise import TrainMap
 
 scale_choices = ['Holland', 'Nationaal']
 algorithm_choices = ['random', 'greedy', 'bf', 'hillclimber', 'genetic']
 hillclimber_choices = ['true', 'false']
 selection_choices = ['elitism', 'rws', 'tournament']
 breeding_choices = ['1point', '2point']
-@Gooey(program_name="RailNL algorithm arguments GUI", navigation="Tabbed", tabbed_groups=True)
+@Gooey(program_name="RailNL algorithm arguments GUI", navigation="Tabbed", tabbed_groups=True, use_cmd_args=True)
 def main():
 
     # Command line arguments
