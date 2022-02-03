@@ -132,7 +132,7 @@ Hieronder het verloop van een genetic + hillclimber run. Hierin is goed te zien 
 |:--------------------------------|-------------:|----------------:|
 | Random                          |  3570.79     |  6151.84        |
 | Greedy                          |  6316.48     |  6316.48        |
-| Breadth first (beam=14)         |  6477.97     |  6477.96        |
+| Breadth first (beam=14)         |  6477.97     |  6477.97        |
 | Hillclimber (r=500, restarts=20)|  5556        |  6958.64        |
 | Genetic                         |  6777.55     |  6884.92        |   
 | Genetic + hillclimber           |  7023.41     |  7070           |
